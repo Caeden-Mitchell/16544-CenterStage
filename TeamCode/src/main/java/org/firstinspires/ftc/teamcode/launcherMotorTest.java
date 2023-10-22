@@ -1,10 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
  * This opMode will turn each motor in the launcher prototype
@@ -12,20 +16,22 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  */
 @Autonomous
 public class launcherMotorTest extends LinearOpMode {
-    public DcMotorSimple leftMotor, rightMotor;
+    public DcMotorEx leftMotor, rightMotor;
 
     @Override
     public void runOpMode() {
-        leftMotor = hardwareMap.get(DcMotorSimple.class, "launchMotorLeft");
-        rightMotor = hardwareMap.get(DcMotorSimple.class, "launchMotorRight");
+       Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
+
+        leftMotor = hardwareMap.get(DcMotorEx.class, "launchMotorLeft");
+        rightMotor = hardwareMap.get(DcMotorEx.class, "launchMotorRight");
 
         int leftMotorTicks = 0;
         int rightMotorTicks = 0;
 
         waitForStart();
 
-        //runMotorsClockwise(leftMotor, leftMotorTicks);
-        //runMotorsClockwise(rightMotor, rightMotorTicks);
+        runMotorsClockwise(leftMotor, leftMotorTicks);
+        runMotorsClockwise(rightMotor, rightMotorTicks);
 
         //runMotorsCounterClockwise(leftMotor, leftMotorTicks);
        // runMotorsCounterClockwise(rightMotor, rightMotorTicks);
@@ -37,6 +43,7 @@ public class launcherMotorTest extends LinearOpMode {
 
     public void runMotorsClockwise(DcMotorEx motor, int ticks) {
         motor.setPower(1);
+
         sleep(3000);
         while(motor.isBusy()){
             ticks += motor.getCurrentPosition();
