@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.RoadRunner.tuning;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.reflection.ReflectionConfig;
+import com.acmerobotics.roadrunner.MotorFeedforward;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.ftc.AngularRampLogger;
 import com.acmerobotics.roadrunner.ftc.DriveType;
@@ -20,8 +23,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.TankDrive;
-import org.firstinspires.ftc.teamcode.RoadRunner.localization.TwoDeadWheelLocalizer;
 import org.firstinspires.ftc.teamcode.RoadRunner.localization.ThreeDeadWheelLocalizer;
+import org.firstinspires.ftc.teamcode.RoadRunner.localization.TwoDeadWheelLocalizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,7 +77,7 @@ public final class TuningOpModes {
                 }
 
                 return new DriveView(
-                    DriveType.MECANUM,
+                        DriveType.MECANUM,
                         MecanumDrive.PARAMS.inPerTick,
                         MecanumDrive.PARAMS.maxWheelVel,
                         MecanumDrive.PARAMS.minProfileAccel,
@@ -94,7 +97,9 @@ public final class TuningOpModes {
                         perpEncs,
                         md.imu,
                         md.voltageSensor,
-                        md.feedforward
+                        () -> new MotorFeedforward(MecanumDrive.PARAMS.kS,
+                                MecanumDrive.PARAMS.kV / MecanumDrive.PARAMS.inPerTick,
+                                MecanumDrive.PARAMS.kA / MecanumDrive.PARAMS.inPerTick)
                 );
             };
         } else if (DRIVE_CLASS.equals(TankDrive.class)) {
@@ -121,7 +126,7 @@ public final class TuningOpModes {
                 }
 
                 return new DriveView(
-                    DriveType.TANK,
+                        DriveType.TANK,
                         TankDrive.PARAMS.inPerTick,
                         TankDrive.PARAMS.maxWheelVel,
                         TankDrive.PARAMS.minProfileAccel,
@@ -135,7 +140,9 @@ public final class TuningOpModes {
                         perpEncs,
                         td.imu,
                         td.voltageSensor,
-                        td.feedforward
+                        () -> new MotorFeedforward(TankDrive.PARAMS.kS,
+                                TankDrive.PARAMS.kV / TankDrive.PARAMS.inPerTick,
+                                TankDrive.PARAMS.kA / TankDrive.PARAMS.inPerTick)
                 );
             };
         } else {
@@ -153,5 +160,18 @@ public final class TuningOpModes {
         manager.register(metaForClass(ManualFeedbackTuner.class), ManualFeedbackTuner.class);
         manager.register(metaForClass(SplineTest.class), SplineTest.class);
         manager.register(metaForClass(LocalizationTest.class), LocalizationTest.class);
+
+        FtcDashboard.getInstance().withConfigRoot(configRoot -> {
+            for (Class<?> c : Arrays.asList(
+                    AngularRampLogger.class,
+                    ForwardRampLogger.class,
+                    LateralRampLogger.class,
+                    ManualFeedforwardTuner.class,
+                    MecanumMotorDirectionDebugger.class,
+                    ManualFeedbackTuner.class
+            )) {
+                configRoot.putVariable(c.getSimpleName(), ReflectionConfig.createVariableFromClass(c));
+            }
+        });
     }
 }
