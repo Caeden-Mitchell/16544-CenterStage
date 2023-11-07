@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RoadRunner.tuning;
+package org.firstinspires.ftc.teamcode.RoadRunner.Tuning;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.reflection.ReflectionConfig;
@@ -23,8 +23,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.TankDrive;
-import org.firstinspires.ftc.teamcode.RoadRunner.localization.ThreeDeadWheelLocalizer;
-import org.firstinspires.ftc.teamcode.RoadRunner.localization.TwoDeadWheelLocalizer;
+import org.firstinspires.ftc.teamcode.RoadRunner.Localization.ThreeDeadWheelLocalizer;
+import org.firstinspires.ftc.teamcode.RoadRunner.Localization.TwoDeadWheelLocalizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

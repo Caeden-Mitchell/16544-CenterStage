@@ -49,7 +49,7 @@ public class DC1 extends LinearOpMode {
                 rx = gamepad1.right_stick_x;
             }
 
-
+            //set height for pixel lift
             if (gamepad2.dpad_down) {
                 setPxlLiftHeight(300);
             }
@@ -59,6 +59,7 @@ public class DC1 extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 setPxlLiftHeight(900);
             }
+
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio, but only when
             // at least one is out of the range [-1, 1]
