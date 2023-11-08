@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 
 @Autonomous
-public class InitialFile extends LinearOpMode {
+public class AutoExample extends LinearOpMode {
     MecanumDrive mecanumDrive = new MecanumDrive(hardwareMap, new Pose2d(0,0,Math.toRadians(0)));
     DcMotorEx pixelLift;
 
