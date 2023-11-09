@@ -1,23 +1,15 @@
 package org.firstinspires.ftc.teamcode.Code16544.MotorSystems;
 
-import com.arcrobotics.ftclib.controller.PController;
-import com.arcrobotics.ftclib.controller.PIDFController;
-import com.arcrobotics.ftclib.controller.wpilibcontroller.ArmFeedforward;
-import com.arcrobotics.ftclib.controller.wpilibcontroller.ElevatorFeedforward;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.*;
 
 public class MotorSystems {
     DcMotorEx pixelLift; // lifts the pixels using linear slide
     DcMotorEx robotLift; // lifts the robot in endgame
     DcMotorEx intakeMotor; // intake motor
 
-    // parameters for pixel lift feedforward
-    final double kS = 0.0;
-    final double kG = 0.0;
-    final double kV = 0.0;
-    final double kA = 0.0;
+    PIDFCoefficients pixPID = new PIDFCoefficients(0, 0, 0, 0);
+    PIDFCoefficients robPID = new PIDFCoefficients(0, 0, 0, 0);
+    PIDFCoefficients inPID = new PIDFCoefficients(0, 0, 0, 0);
 
 
     public MotorSystems(HardwareMap hardwareMap) {
@@ -40,31 +32,20 @@ public class MotorSystems {
         pixelLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robotLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         intakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        pixelLift.setPIDFCoefficients(pixelLift.getMode(), pixPID);
+        robotLift.setPIDFCoefficients(robotLift.getMode(), robPID);
+        intakeMotor.setPIDFCoefficients(intakeMotor.getMode(), inPID);
     }
 
-    public void pixelFeedforward() {
-        ElevatorFeedforward feedforward = new ElevatorFeedforward(
-                kS, kG, kV, kA
-        );
+    public void setPixelLiftHeight(int height, int tolerance) {
+        pixelLift.setTargetPositionTolerance(tolerance);
+        pixelLift.setTargetPosition(height);
+        pixelLift.setPower(0.6);
     }
 
-    public void PIDF(DcMotorEx motor, double kP, double kI, double kD, double kF) {
-
-        PIDFController pidf = new PIDFController(kP, kI, kD, kF);
-        // We set the setpoint here.
-        pidf.setSetPoint(1200);
-
-        while (!pidf.atSetPoint()) {
-            // Calculates the output of the PIDF algorithm based on sensor
-            // readings. Requires both the measured value and the desired setpoint
-            double output = pidf.calculate(
-                    motor.getCurrentPosition()
-            );
-            motor.setVelocity(output);
-        }
-
-        motor.setPower(0); // stop the motor
-
-        // NOTE: motors have internal PID control
+    public void liftRobot(int height) {
+        robotLift.setTargetPosition(height);
+        robotLift.setPower(0.4);
     }
 }
