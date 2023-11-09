@@ -10,10 +10,10 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class TestOneMotor extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        DcMotorEx test = hardwareMap.get(DcMotorEx.class, "leftBack");
+        DcMotorEx test = hardwareMap.get(DcMotorEx.class, "pixelLift");
         waitForStart();
-        test.setPower(0.45);
-        sleep(15000);
+        test.setPower(0.05);
+        sleep(1000);
         test.setPower(0);
     }
 }

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Code16544.MotorSystems;
 
+import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.*;
 
 public class MotorSystems {
@@ -7,9 +8,14 @@ public class MotorSystems {
     DcMotorEx robotLift; // lifts the robot in endgame
     DcMotorEx intakeMotor; // intake motor
 
-    PIDFCoefficients pixPID = new PIDFCoefficients(0, 0, 0, 0);
-    PIDFCoefficients robPID = new PIDFCoefficients(0, 0, 0, 0);
-    PIDFCoefficients inPID = new PIDFCoefficients(0, 0, 0, 0);
+    PIDController pid;
+
+    double kP = 0.0;
+    double kI = 0.0;
+    double kD = 0.0;
+    double kF = 0.0;
+
+    int target = 0;
 
 
     public MotorSystems(HardwareMap hardwareMap) {
@@ -33,15 +39,18 @@ public class MotorSystems {
         robotLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         intakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        pixelLift.setPIDFCoefficients(pixelLift.getMode(), pixPID);
-        robotLift.setPIDFCoefficients(robotLift.getMode(), robPID);
-        intakeMotor.setPIDFCoefficients(intakeMotor.getMode(), inPID);
+        pid = new PIDController(0,0,0);
+
     }
 
     public void setPixelLiftHeight(int height, int tolerance) {
         pixelLift.setTargetPositionTolerance(tolerance);
         pixelLift.setTargetPosition(height);
         pixelLift.setPower(0.6);
+    }
+
+    public void pixelLiftPID() {
+
     }
 
     public void liftRobot(int height) {
