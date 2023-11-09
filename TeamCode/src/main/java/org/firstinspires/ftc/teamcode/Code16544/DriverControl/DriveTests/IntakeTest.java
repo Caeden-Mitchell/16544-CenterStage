@@ -15,9 +15,9 @@ public class IntakeTest extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            if (gamepad1.left_trigger > 0.1) {
+            if (gamepad1.b) {
                 intakeOn();
-            } else if (gamepad1.right_trigger > 0.1) {
+            } else if (gamepad1.a) {
                 intakeReverse();
             } else {
                 intakeOff();
@@ -26,11 +26,11 @@ public class IntakeTest extends LinearOpMode {
     }
 
     private void intakeOn() {
-        intake.setPower(0.5);
+        intake.setPower(0.1);
     }
 
     private void intakeReverse() {
-        intake.setPower(-0.5);
+        intake.setPower(-0.1);
     }
 
     private void intakeOff() {

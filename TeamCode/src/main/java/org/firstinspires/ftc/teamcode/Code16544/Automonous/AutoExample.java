@@ -14,16 +14,6 @@ import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 public class AutoExample extends LinearOpMode {
     MecanumDrive mecanumDrive = new MecanumDrive(hardwareMap, new Pose2d(0,0,Math.toRadians(0)));
     DcMotorEx pixelLift;
-
-    public void initialize() {
-        pixelLift = hardwareMap.get(DcMotorEx.class, "pixelLift");
-
-        pixelLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        pixelLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        pixelLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        pixelLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }
-
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -47,5 +37,13 @@ public class AutoExample extends LinearOpMode {
                     return false; // Returning true causes the action to run again, returning false causes it to cease
                 }
         ));
+    }
+    public void initialize() {
+        pixelLift = hardwareMap.get(DcMotorEx.class, "pixelLift");
+
+        pixelLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        pixelLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        pixelLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        pixelLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 }
