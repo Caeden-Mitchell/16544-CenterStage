@@ -68,7 +68,12 @@ public class DC1 extends LinearOpMode {
 
 
             setDrivePower((y - x + rx) / denominator, (y + x + rx) / denominator, (y + x - rx) / denominator, (y - x - rx) / denominator);
-            liftRobot();
+
+            if (gamepad1.right_trigger > 0.5) {
+                liftRobot(500);
+            } else {
+                liftRobot(0);
+            }
         }
     }
 
@@ -77,14 +82,9 @@ public class DC1 extends LinearOpMode {
         pixelLift.setPower(0.6);
     }
 
-    private void liftRobot() {
-        if (gamepad1.right_trigger > 0.5) {
-            robotLift.setTargetPosition(500);
-            robotLift.setPower(0.4);
-        } else {
-            robotLift.setTargetPosition(0);
-            robotLift.setPower(0.4);
-        }
+    private void liftRobot(int height) {
+        robotLift.setTargetPosition(height);
+        robotLift.setPower(0.4);
     }
 
     private void setDrivePower(double lf, double lb, double rf, double rb) {

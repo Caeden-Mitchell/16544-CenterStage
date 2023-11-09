@@ -8,11 +8,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import org.firstinspires.ftc.teamcode.Code16544.MotorSystems.MotorSystems;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 
 @Autonomous
 public class AutoExample extends LinearOpMode {
-    MecanumDrive mecanumDrive = new MecanumDrive(hardwareMap, new Pose2d(0,0,Math.toRadians(0)));
+    MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0,0,Math.toRadians(0)));
+    MotorSystems motors = new MotorSystems(hardwareMap);
     DcMotorEx pixelLift;
     @Override
     public void runOpMode() throws InterruptedException {
@@ -21,7 +24,7 @@ public class AutoExample extends LinearOpMode {
 
         // This is how trajectories will be built from now on using RR 1.0
         // This traj will drive forward to a point of 10
-        Action trajAction = mecanumDrive.actionBuilder(mecanumDrive.pose)
+        Action trajAction = drive.actionBuilder(drive.pose)
                 .lineToX(10)
                 .build();
 
