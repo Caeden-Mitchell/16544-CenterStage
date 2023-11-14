@@ -24,7 +24,7 @@ public class Auto1 extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Pose2d startPose = new Pose2d(-41.67, 65.52, Math.toRadians(270.00));
+        Pose2d startPose = new Pose2d(-41.67, 65.52, Math.toRadians(90));
 
         drive = new MecanumDrive(hardwareMap, startPose);
 
@@ -34,32 +34,33 @@ public class Auto1 extends LinearOpMode {
 
 
         Action rightSpike = drive.actionBuilder(startPose)
-                .splineToSplineHeading(new Pose2d(-36.5, 35.00, Math.toRadians(180)), Math.toRadians(270.00))
-                .strafeTo(new Vector2d(-31.41, 35.5))
+                .strafeTo(new Vector2d(-36.5, 35.00))
+                .turnTo(Math.toRadians(180))
+                .strafeTo(new Vector2d(-33.5, 35.5))
                 .build();
 
         Action leftSpike = drive.actionBuilder(startPose)
-                .splineToSplineHeading(new Pose2d(-31.41, 35.00, Math.toRadians(0.00)), Math.toRadians(270.00))
+                .strafeTo(new Vector2d(-33.41, 35.00))
+                .turnTo(Math.toRadians(0))
                 .turnTo(Math.toRadians(180))
-                .strafeTo(new Vector2d(-31.41, 35.5))
                 .build();
 
         Action midSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(-36, 34))
                 .turnTo(Math.toRadians(180))
-                .strafeTo(new Vector2d(-31.41, 35.5))
+                .strafeTo(new Vector2d(-33.5, 35.5))
                 .build();
 
-        Action midDrop = drive.actionBuilder(new Pose2d(-31.41, 35.5, Math.toRadians(0.00)))
+        Action midDrop = drive.actionBuilder(new Pose2d(-33.5, 35.5, Math.toRadians(0.00)))
                 .strafeTo(new Vector2d(45.0, 35.50))
                 .build();
 
-        Action leftDrop = drive.actionBuilder(new Pose2d(-31.41, 35.5, Math.toRadians(0.00)))
+        Action leftDrop = drive.actionBuilder(new Pose2d(-33.5, 35.5, Math.toRadians(0.00)))
                 .strafeToConstantHeading(new Vector2d(8.92, 35.50))
                 .splineToSplineHeading(new Pose2d(45, 43.3, Math.toRadians(180.00)), Math.toRadians(0.00))
                 .build();
 
-        Action rightDrop = drive.actionBuilder(new Pose2d(-31.41, 35.5, Math.toRadians(0.00)))
+        Action rightDrop = drive.actionBuilder(new Pose2d(-33.5, 35.5, Math.toRadians(0.00)))
                 .strafeToConstantHeading(new Vector2d(8.92, 35.50))
                 .splineToSplineHeading(new Pose2d(45, 29.0, Math.toRadians(180.00)), Math.toRadians(0.00))
                 .build();
@@ -69,12 +70,12 @@ public class Auto1 extends LinearOpMode {
         if (isStopRequested()) return;
 
         Actions.runBlocking(new SequentialAction(
-                midSpike,
-                telemetryPacket -> {
-                    telemetry.addLine("Action");
-                    return false;
-                },
-                midDrop));
-        
+                rightSpike
+                ,telemetryPacket -> {
+            telemetry.addLine("Action");
+            return false;
+        }
+                // ,midDrop
+        ));
     }
 }
