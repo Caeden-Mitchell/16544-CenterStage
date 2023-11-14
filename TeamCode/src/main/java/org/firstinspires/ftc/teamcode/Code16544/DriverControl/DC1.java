@@ -1,31 +1,27 @@
 package org.firstinspires.ftc.teamcode.Code16544.DriverControl;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.PoseVelocity2d;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
+import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 
 @TeleOp
 public class DC1 extends LinearOpMode {
-    DcMotor leftFront = null;
-    DcMotor rightFront = null;
-    DcMotor leftBack = null;
-    DcMotor rightBack = null;
-    DcMotorEx pixelLift = null;
-    DcMotorEx robotLift = null;
+    MecanumDrive drive;
+    RobotSystems robot;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        //declare Motors
-        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
-        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
-        leftBack = hardwareMap.get(DcMotor.class, "leftBack");
-        rightBack = hardwareMap.get(DcMotor.class, "rightBack");
-        pixelLift = hardwareMap.get(DcMotorEx.class, "pixelLift");
-        robotLift = hardwareMap.get(DcMotorEx.class, "robotLift");
+        drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
+        robot = new RobotSystems(hardwareMap);
 
-        initialize();
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         double y = 0.0; //left stick y
         double x = 0.0; //left stick x
@@ -41,23 +37,32 @@ public class DC1 extends LinearOpMode {
                 //slow mode
                 y = -gamepad1.left_stick_y / 3.5; // Y Stick is reversed
                 x = -gamepad1.left_stick_x * 1.1 / 3.5; //counters imperfect strafing
-                rx = gamepad1.right_stick_x / 3.5;
+                rx = -gamepad1.right_stick_x / 3.5;
             } else {
                 //fast mode
                 y = -gamepad1.left_stick_y; // Y Stick is reversed
                 x = -gamepad1.left_stick_x * 1.1; //counters imperfect strafing
-                rx = gamepad1.right_stick_x;
+                rx = -gamepad1.right_stick_x;
             }
 
             //set height for pixel lift
             if (gamepad2.dpad_down) {
-                setPxlLiftHeight(300);
+                robot.setPixelLiftHeight(0);
             }
-            if (gamepad2.dpad_left || gamepad2.dpad_right) {
-                setPxlLiftHeight(600);
+            if (gamepad2.dpad_left){
+                robot.setPixelLiftHeight(750);
+            }
+            if (gamepad2.dpad_right) {
+                robot.setPixelLiftHeight(1500);
             }
             if (gamepad2.dpad_up) {
-                setPxlLiftHeight(900);
+                robot.setPixelLiftHeight(3000);
+            }
+            if (gamepad2.a) {
+                drive.leftFront.setPower(0.7);
+                drive.leftBack.setPower(0.7);
+                drive.rightFront.setPower(0.7);
+                drive.rightBack.setPower(0.7);
             }
 
             // Denominator is the largest motor power (absolute value) or 1
@@ -66,51 +71,29 @@ public class DC1 extends LinearOpMode {
             denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
             //denominator = 1;
 
+            drive.setDrivePowers(new PoseVelocity2d(new Vector2d(y, x), rx));
 
-            setDrivePower((y - x + rx) / denominator, (y + x + rx) / denominator, (y + x - rx) / denominator, (y - x - rx) / denominator);
+           // setDrivePower((y - x + rx) / denominator, (y + x + rx) / denominator, (y + x - rx) / denominator, (y - x - rx) / denominator);
+
 
             if (gamepad1.right_trigger > 0.5) {
-                liftRobot(500);
+                robot.liftRobot(500);
             } else {
-                liftRobot(0);
+                robot.liftRobot(0);
             }
+
+            telemetry.addData("pixel pos ", robot.pixelLift.getCurrentPosition());
+            telemetry.addData("right encoder", drive.leftFront.getCurrentPosition());
+            telemetry.addData("left encoder", drive.rightBack.getCurrentPosition());
+            telemetry.addData("perp encoder", drive.leftBack.getCurrentPosition());
+            telemetry.update();
         }
     }
 
-    private void setPxlLiftHeight(int liftHeight) {
-        pixelLift.setTargetPosition(liftHeight);
-        pixelLift.setPower(0.6);
-    }
-
-    private void liftRobot(int height) {
-        robotLift.setTargetPosition(height);
-        robotLift.setPower(0.4);
-    }
-
     private void setDrivePower(double lf, double lb, double rf, double rb) {
-        leftFront.setPower(lf);
-        leftBack.setPower(lb);
-        rightFront.setPower(rf);
-        rightBack.setPower(rb);
-    }
-
-    private void initialize() {
-        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        pixelLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robotLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        pixelLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robotLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        pixelLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robotLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        pixelLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robotLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        //reverse motors
-        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        drive.leftFront.setPower(lf);
+        drive.leftBack.setPower(lb);
+        drive.rightFront.setPower(rf);
+        drive.rightBack.setPower(rb);
     }
 }

@@ -15,7 +15,6 @@ public class Motors extends LinearOpMode {
         leftWheel = hardwareMap.get(DcMotorEx.class, "launchMotorRight");
         rightWheel = hardwareMap.get(DcMotorEx.class, "launchMotorLeft");
 
-
         waitForStart();
 
         leftWheel.setPower(-1);
