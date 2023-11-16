@@ -110,21 +110,8 @@ public class RobotSystems {
         deadState();
     }
 
-    public class RobotActions implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-            ElapsedTime delay = new ElapsedTime();
-
-            intakeMotor.setPower(0.07);
-
-            double pos = intakeMotor.getPower();
-
-            telemetryPacket.put("hopperPos", pos);
-
-            return delay.seconds() <= 2;
-        }
+    public void ejectPixelFromIntake() {
+        intakeMotor.setPower(-0.05);
     }
-    public Action runIntake() {
-        return new RobotActions();
-    }
+
 }
