@@ -87,7 +87,6 @@ public class Auto1 extends LinearOpMode {
             case 1:
                 Actions.runBlocking(new SequentialAction(
                         //rightSpike,
-                        robot.rotateHopper(servoPos)
                         //,midDrop
                 ));
                 break;
