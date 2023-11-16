@@ -108,11 +108,11 @@ public class DC1 extends LinearOpMode {
             placePixel();
 
             if(gamepad1.b){
-                robot.intakeMotor.setPower(0.04);
+                robot.intakeMotor.setPower(0.08);
             } else if(gamepad1.a){
                 robot.intakeMotor.setPower(0);
             } else if (gamepad1.x){
-                robot.intakeMotor.setPower(-0.04);
+                robot.intakeMotor.setPower(-0.08);
             }
 
             //robot.intakeMotor.setPower(gamepad1.right_trigger/6);

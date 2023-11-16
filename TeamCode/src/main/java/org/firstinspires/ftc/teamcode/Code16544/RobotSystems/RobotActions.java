@@ -35,13 +35,17 @@ public class RobotActions implements Action {
         switch (system) {
             case PIXEL_LIFT:
                 ElapsedTime elapsedTime = new ElapsedTime();
-                robot.setPixelLiftHeight(pixelHeight);
-                return elapsedTime.seconds() < 2;
+                while (elapsedTime.seconds() < 1.5) {
+                    robot.setPixelLiftHeight(pixelHeight);
+                }
+                return false;
             case INTAKE_MOTOR:
                 ElapsedTime elapsedTime1 = new ElapsedTime();
 
-                robot.ejectPixelFromIntake();
-                return elapsedTime1.seconds() < 1.5;
+                while (elapsedTime1.seconds() < 1.5) {
+                    robot.ejectPixelFromIntake();
+                }
+                return false;
             case SERVO:
                 robot.deadState();
                 robot.servoToZero();
@@ -49,6 +53,7 @@ public class RobotActions implements Action {
                 robot.autoDrop();
                 robot.servoToZero();
                 robot.deadState();
+                return false;
         }
         return false;
     }

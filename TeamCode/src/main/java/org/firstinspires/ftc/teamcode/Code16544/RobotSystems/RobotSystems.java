@@ -111,7 +111,10 @@ public class RobotSystems {
     }
 
     public void ejectPixelFromIntake() {
-        intakeMotor.setPower(-0.05);
+        intakeMotor.setPower(0.1);
+        sleep(1000);
+        intakeMotor.setPower(0);
+
     }
 
 }

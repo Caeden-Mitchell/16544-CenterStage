@@ -36,8 +36,8 @@ public class AutoActions {
                 .build();
 
          midSpike = drive.actionBuilder(startPose)
-                .strafeToLinearHeading(new Vector2d(-36, 34), Math.toRadians(270))
-                //.strafeTo(new Vector2d(-36, 34))
+                //.strafeToLinearHeading(new Vector2d(-36, 34), Math.toRadians(270))
+                .strafeTo(new Vector2d(-36, 34))
                 .turnTo(Math.toRadians(270))
                 .build();
 
@@ -49,13 +49,13 @@ public class AutoActions {
 
          leftDrop = drive.actionBuilder(new Pose2d(-33.41, 36, Math.toRadians(0)))
                 .turnTo(Math.toRadians(180))
-                .strafeToConstantHeading(new Vector2d(8.92, 360))
+                .strafeToConstantHeading(new Vector2d(8.92, 36))
                 .splineToSplineHeading(new Pose2d(45, 43.3, Math.toRadians(180)), Math.toRadians(180))
                 .build();
 
          rightDrop = drive.actionBuilder(new Pose2d(-36.5, 35, Math.toRadians(180)))
-                .strafeToConstantHeading(new Vector2d(8.92, 360))
-                .splineToSplineHeading(new Pose2d(45, 29.0, Math.toRadians(180)), Math.toRadians(180))
+                .strafeToConstantHeading(new Vector2d(8.92, 36))
+                .splineToSplineHeading(new Pose2d(43.4, 27.75, Math.toRadians(180)), Math.toRadians(0))
                 .build();
 
     }

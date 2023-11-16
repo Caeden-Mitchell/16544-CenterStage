@@ -9,12 +9,14 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 public class Camera {
-
-    OpenCvCamera camera;
+    private final OpenCvCamera camera;
     int cameraMonitorViewId;
-    ColorDetector detector;
+
+    private final ColorDetector colorDetector;
+
 
     public Camera(HardwareMap hardwareMap, Telemetry telemetry, ColorDetector.Color color) {
+
         cameraMonitorViewId = hardwareMap.appContext
                 .getResources().getIdentifier("cameraMonitorViewId",
                         "id", hardwareMap.appContext.getPackageName());
@@ -22,9 +24,9 @@ public class Camera {
 
         camera = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        detector = new ColorDetector(telemetry);
+        colorDetector = new ColorDetector(telemetry);
 
-        camera.setPipeline(detector);
+        camera.setPipeline(colorDetector);
 
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
@@ -36,6 +38,6 @@ public class Camera {
             public void onError(int errorCode) {}
         });
 
-        detector.setColor(color);
+        colorDetector.setColor(color);
     }
 }

@@ -86,8 +86,7 @@ public class Auto1 extends LinearOpMode {
         switch (trajType) {
             case 1:
                 Actions.runBlocking(new SequentialAction(
-                        rightSpike,
-                        robot.runIntake()
+                        rightSpike
                         ,midDrop
                 ));
                 break;
