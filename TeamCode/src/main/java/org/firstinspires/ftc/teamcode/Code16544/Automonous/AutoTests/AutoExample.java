@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Code16544.Automonous;
+package org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoTests;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;

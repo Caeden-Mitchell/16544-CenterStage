@@ -15,6 +15,7 @@ import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 public class DC1 extends LinearOpMode {
     MecanumDrive drive;
     RobotSystems robot;
+    int isOn = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,6 +28,8 @@ public class DC1 extends LinearOpMode {
         double x = 0.0; //left stick x
         double rx = 0.0; //right stick x
         double denominator = 0.0;
+
+
 
         waitForStart();
 
@@ -65,6 +68,14 @@ public class DC1 extends LinearOpMode {
                 drive.rightBack.setPower(0.7);
             }
 
+            if(gamepad1.b){
+                isOn = true;
+            } else if(gamepad1.a){
+                isOn = false;
+            }
+
+
+
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio, but only when
             // at least one is out of the range [-1, 1]
@@ -95,5 +106,23 @@ public class DC1 extends LinearOpMode {
         drive.leftBack.setPower(lb);
         drive.rightFront.setPower(rf);
         drive.rightBack.setPower(rb);
+    }
+
+    private void setIntake(){
+        if(gamepad1.b){
+            isOn = 1;
+        } else if(gamepad1.a){
+            isOn = 0;
+        } else if(gamepad1.x){
+            //reverse
+            isOn = 2;
+        }
+        if(isOn == 1){
+            robot.intakeMotor.setPower(0.45);
+        } else if(isOn == 0){
+            robot.intakeMotor.setPower(0);
+        } else {
+            robot.intakeMotor.setPower(-0.45);
+        }
     }
 }
