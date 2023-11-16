@@ -8,6 +8,7 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.*;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class RobotSystems {
     public DcMotorEx pixelLift; // lifts the pixels using linear slide
@@ -84,6 +85,20 @@ public class RobotSystems {
         setServos(0.18, 0.13, 2500, true);
     }
 
+    public void DCDrop(){
+        setServos(0.13, 0.07, 0, false);
+    }
+
+    public void DCLiftHopper(){
+        setServos(0,0,0,false);
+        setServos(0.13, 0.15, 0, false);
+    }
+
+    public void DCLowerHopper(){
+        setServos(0,0,0, false);
+        setServos(0.019, 0.03, 0, false);
+    }
+
     public void liftHopper(){
         servoToZero();
         preDrop();
@@ -96,24 +111,20 @@ public class RobotSystems {
     }
 
     public class RobotActions implements Action {
-
-        public double position = 0;
-
-        public RobotActions(double pos) {
-            this.position = pos;
-        }
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-            rotateHopper.setPosition(position);
+            ElapsedTime delay = new ElapsedTime();
 
-            double pos = rotateHopper.getPosition();
+            intakeMotor.setPower(0.07);
+
+            double pos = intakeMotor.getPower();
 
             telemetryPacket.put("hopperPos", pos);
 
-            return pos <= 1;
+            return delay.seconds() <= 2;
         }
     }
-    public Action rotateHopper(double pos) {
-        return new RobotActions(pos);
+    public Action runIntake() {
+        return new RobotActions();
     }
 }

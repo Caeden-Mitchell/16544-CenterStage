@@ -86,9 +86,9 @@ public class Auto1 extends LinearOpMode {
         switch (trajType) {
             case 1:
                 Actions.runBlocking(new SequentialAction(
-                        //rightSpike,
-                        robot.rotateHopper(servoPos)
-                        //,midDrop
+                        rightSpike,
+                        robot.runIntake()
+                        ,midDrop
                 ));
                 break;
             case 2:
@@ -116,14 +116,29 @@ public class Auto1 extends LinearOpMode {
 
         }
 
-        /*Actions.runBlocking(new SequentialAction(
-                rightSpike,
-                telemetryPacket -> {
-                    //robot.rotateHopper.setPosition(1);
-                    sleep(2000);
-                    return false;
-                }
-                ,midDrop
-        ));*/
+        robot.servoToZero();
+
+        ElapsedTime delay = new ElapsedTime();
+
+        while (delay.seconds() < 2) {
+            robot.setPixelLiftHeight(target);
+        }
+
+        robot.preDrop();
+        robot.autoDrop();
+
+        delay.reset();
+
+        while (delay.seconds() < 1) {
+            robot.setPixelLiftHeight(2500);
+        }
+
+        robot.servoToZero();
+        robot.deadState();
+
+        delay.reset();
+        while (delay.seconds() < 1) {
+            robot.setPixelLiftHeight(0);
+        }
     }
 }

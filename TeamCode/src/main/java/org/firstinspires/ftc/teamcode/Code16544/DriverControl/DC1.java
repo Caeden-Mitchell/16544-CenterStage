@@ -7,21 +7,35 @@ import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoTests.DCDrop;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
+
+import java.util.Objects;
 
 @TeleOp
 public class DC1 extends LinearOpMode {
     MecanumDrive drive;
     RobotSystems robot;
     int isOn = 0;
+    int pixelOn = 0;
+
+    private enum Height{
+        DEAD_STATE,
+        LOW,
+        MID,
+        HIGH
+    }
+
+
 
     @Override
     public void runOpMode() throws InterruptedException {
         drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
         robot = new RobotSystems(hardwareMap);
-
+        Height height = Height.DEAD_STATE;
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         double y = 0.0; //left stick y
@@ -29,7 +43,10 @@ public class DC1 extends LinearOpMode {
         double rx = 0.0; //right stick x
         double denominator = 0.0;
 
+        telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
+        telemetry.update();
 
+        robot.deadState();
 
         waitForStart();
 
@@ -38,41 +55,69 @@ public class DC1 extends LinearOpMode {
         while (opModeIsActive()) {
             if (gamepad1.left_bumper) {
                 //slow mode
-                y = -gamepad1.left_stick_y / 3.5; // Y Stick is reversed
-                x = -gamepad1.left_stick_x * 1.1 / 3.5; //counters imperfect strafing
-                rx = -gamepad1.right_stick_x / 3.5;
+                y = gamepad1.left_stick_y / 7; // Y Stick is reversed
+                x = gamepad1.left_stick_x * 1.1 / 7; //counters imperfect strafing
+                rx = gamepad1.right_stick_x / 7;
             } else {
                 //fast mode
-                y = -gamepad1.left_stick_y; // Y Stick is reversed
-                x = -gamepad1.left_stick_x * 1.1; //counters imperfect strafing
-                rx = -gamepad1.right_stick_x;
+                y = gamepad1.left_stick_y; // Y Stick is reversed
+                x = gamepad1.left_stick_x * 1.1; //counters imperfect strafing
+                rx = gamepad1.right_stick_x;
             }
 
-            //set height for pixel lift
-            if (gamepad2.dpad_down) {
-                robot.setPixelLiftHeight(0);
+           //if(!robot.pixelLift.isBusy()) {
+                //set height for pixel lift
+                if (gamepad2.dpad_down) {
+                    height = Height.DEAD_STATE;
+                }
+                if (gamepad2.dpad_left) {
+                    height = Height.LOW;
+                }
+                if (gamepad2.dpad_right) {
+                    height = Height.MID;
+                }
+                if (gamepad2.dpad_up) {
+                    height = Height.HIGH;
+                }
+
+                switch(height){
+                    case DEAD_STATE:
+                        robot.setPixelLiftHeight(0);
+                        break;
+                    case LOW:
+                        robot.setPixelLiftHeight(750);
+                        break;
+                    case MID:
+                        robot.setPixelLiftHeight(1500);
+                        break;
+                    case HIGH:
+                        robot.setPixelLiftHeight(3000);
+                        break;
+                }
+
+
+
+            if(gamepad2.left_bumper)
+                robot.DCLowerHopper();
+            if (gamepad2.right_bumper){
+                robot.DCLiftHopper();
             }
-            if (gamepad2.dpad_left){
-                robot.setPixelLiftHeight(750);
-            }
-            if (gamepad2.dpad_right) {
-                robot.setPixelLiftHeight(1500);
-            }
-            if (gamepad2.dpad_up) {
-                robot.setPixelLiftHeight(3000);
-            }
-            if (gamepad2.a) {
-                drive.leftFront.setPower(0.7);
-                drive.leftBack.setPower(0.7);
-                drive.rightFront.setPower(0.7);
-                drive.rightBack.setPower(0.7);
-            }
+
+
+
+            placePixel();
 
             if(gamepad1.b){
-                isOn = true;
+                robot.intakeMotor.setPower(0.04);
             } else if(gamepad1.a){
-                isOn = false;
+                robot.intakeMotor.setPower(0);
+            } else if (gamepad1.x){
+                robot.intakeMotor.setPower(-0.04);
             }
+
+            //robot.intakeMotor.setPower(gamepad1.right_trigger/6);
+            //robot.intakeMotor.setPower(-gamepad1.left_trigger/6);
+
 
 
 
@@ -93,11 +138,9 @@ public class DC1 extends LinearOpMode {
                 robot.liftRobot(0);
             }
 
-            telemetry.addData("pixel pos ", robot.pixelLift.getCurrentPosition());
-            telemetry.addData("right encoder", drive.leftFront.getCurrentPosition());
-            telemetry.addData("left encoder", drive.rightBack.getCurrentPosition());
-            telemetry.addData("perp encoder", drive.leftBack.getCurrentPosition());
+            telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
             telemetry.update();
+
         }
     }
 
@@ -108,21 +151,13 @@ public class DC1 extends LinearOpMode {
         drive.rightBack.setPower(rb);
     }
 
-    private void setIntake(){
-        if(gamepad1.b){
-            isOn = 1;
-        } else if(gamepad1.a){
-            isOn = 0;
-        } else if(gamepad1.x){
-            //reverse
-            isOn = 2;
+    private void placePixel(){
+        if(gamepad2.a){
+            robot.DCDrop();
         }
-        if(isOn == 1){
-            robot.intakeMotor.setPower(0.45);
-        } else if(isOn == 0){
-            robot.intakeMotor.setPower(0);
-        } else {
-            robot.intakeMotor.setPower(-0.45);
-        }
+        if(gamepad2.x)
+            robot.servoToZero();
+        if(gamepad2.b)
+            robot.deadState();
     }
 }
