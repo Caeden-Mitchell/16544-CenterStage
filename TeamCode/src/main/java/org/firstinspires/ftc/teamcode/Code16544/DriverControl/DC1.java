@@ -7,13 +7,8 @@ import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoTests.DCDrop;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
-
-import java.util.Objects;
 
 @TeleOp
 public class DC1 extends LinearOpMode {
@@ -21,6 +16,7 @@ public class DC1 extends LinearOpMode {
     RobotSystems robot;
     int isOn = 0;
     int pixelOn = 0;
+    public static double intakePower = 0.065;
 
     private enum Height{
         DEAD_STATE,
@@ -57,12 +53,12 @@ public class DC1 extends LinearOpMode {
                 //slow mode
                 y = gamepad1.left_stick_y / 7; // Y Stick is reversed
                 x = gamepad1.left_stick_x * 1.1 / 7; //counters imperfect strafing
-                rx = gamepad1.right_stick_x / 7;
+                rx = -gamepad1.right_stick_x / 7;
             } else {
                 //fast mode
                 y = gamepad1.left_stick_y; // Y Stick is reversed
                 x = gamepad1.left_stick_x * 1.1; //counters imperfect strafing
-                rx = gamepad1.right_stick_x;
+                rx = -gamepad1.right_stick_x;
             }
 
            //if(!robot.pixelLift.isBusy()) {
@@ -95,24 +91,21 @@ public class DC1 extends LinearOpMode {
                         break;
                 }
 
-
-
             if(gamepad2.left_bumper)
                 robot.DCLowerHopper();
             if (gamepad2.right_bumper){
                 robot.DCLiftHopper();
             }
 
-
-
             placePixel();
 
             if(gamepad1.b){
-                robot.intakeMotor.setPower(0.08);
+                robot.intakeMotor.setPower(intakePower);
             } else if(gamepad1.a){
                 robot.intakeMotor.setPower(0);
             } else if (gamepad1.x){
-                robot.intakeMotor.setPower(-0.08);
+                robot.intakeMotor.setPower(-intakePower);
+
             }
 
             //robot.intakeMotor.setPower(gamepad1.right_trigger/6);
@@ -138,6 +131,7 @@ public class DC1 extends LinearOpMode {
                 robot.liftRobot(0);
             }
 
+            telemetry.addData("intake power", robot.intakeMotor.getPower());
             telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
             telemetry.update();
 
@@ -152,12 +146,12 @@ public class DC1 extends LinearOpMode {
     }
 
     private void placePixel(){
-        if(gamepad2.a){
+        if(gamepad2.y){
             robot.DCDrop();
         }
-        if(gamepad2.x)
-            robot.servoToZero();
         if(gamepad2.b)
+            robot.servoToZero();
+        if(gamepad2.a)
             robot.deadState();
     }
 }

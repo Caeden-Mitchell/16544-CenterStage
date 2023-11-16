@@ -46,8 +46,8 @@ public class RightBlueAuto extends LinearOpMode {
                 autoActions.rightSpike
                 ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ,autoActions.rightDrop
-                ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
+                //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
         ));
                 /*telemetry.addData("ELEMENT", "RIGHT");
                 telemetry.update();

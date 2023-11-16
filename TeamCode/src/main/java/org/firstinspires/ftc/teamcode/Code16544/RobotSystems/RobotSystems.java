@@ -42,7 +42,7 @@ public class RobotSystems {
         intakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         robotLift.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        intakeMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        //intakeMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
         rotateArm.setDirection(Servo.Direction.REVERSE);
     }
