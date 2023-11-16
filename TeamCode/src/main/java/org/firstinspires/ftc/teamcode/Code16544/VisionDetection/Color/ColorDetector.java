@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Code16544.VisionDetection.TestPipeline;
+package org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -12,20 +12,18 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-public class test extends OpenCvPipeline {
+public class ColorDetector extends OpenCvPipeline {
     Telemetry telemetry;
     Mat mat = new Mat();
     public enum Location{
         LEFT,
         RIGHT,
-        CENTRE,
-        NOT_FOUND
+        CENTRE
     }
 
     public enum Color {
         BLUE,
-        RED,
-        YELLOW
+        RED
     }
 
     private Location location;
@@ -35,15 +33,14 @@ public class test extends OpenCvPipeline {
     // triangle, which are connected by the diagonals
     // We need to create Regions Of Interest where the camera will be
     // looking for the items colors being searched for
-    static final Rect LEFT_ROI = new Rect(new Point(10, 35), new Point(340, 400));
-    static final Rect CENTRE_ROI = new Rect(new Point(350,35), new Point(450,400));
-    static final Rect RIGHT_ROI = new Rect(new Point(460, 35), new Point(790, 400));
+    // 800x400
+    static final Rect LEFT_ROI = new Rect(new Point(10, 35), new Point(400, 400));
+    static final Rect RIGHT_ROI = new Rect(new Point(401, 35), new Point(790, 400));
     // define the threshold
     static double PERCENT_COLOR_THRESHOLD = 0.025;
-    public test(Telemetry t) {
+    public ColorDetector(Telemetry t) {
         telemetry = t;
     }
-    @Override
     public Mat processFrame(Mat input){
         //Telemetry to DashBoard
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -61,11 +58,6 @@ public class test extends OpenCvPipeline {
             //Create a range for the camera to detect red
             lowHSV = new Scalar(160, 100, 20);
             highHSV = new Scalar(180, 255, 255);
-
-        } else if(colorChoice == Color.YELLOW) {
-            //Create a range for the camera to detect yellow
-            lowHSV = new Scalar(20, 100, 100);
-            highHSV = new Scalar(30, 255, 255);
         }
 
         //Apply thresholding, which outlines the area of the image that is of the colour you want
@@ -79,7 +71,6 @@ public class test extends OpenCvPipeline {
         // create the submats
         // submat = submatrix, which is a portion of the original matrix
         Mat left = mat.submat(LEFT_ROI);
-        Mat centre = mat.submat(CENTRE_ROI);
         Mat right = mat.submat(RIGHT_ROI);
 
         //check percentage of the image that became white
@@ -88,42 +79,29 @@ public class test extends OpenCvPipeline {
         // here we take the first element of the sum result, because there
         // is only one channel in a greyscale image
         double leftValue = Core.sumElems(left).val[0] / LEFT_ROI.area() / 255;
-        double centreValue = Core.sumElems(centre).val[0] / CENTRE_ROI.area() / 255;
         double rightValue = Core.sumElems(right).val[0] / RIGHT_ROI.area() / 255;
 
         //make sure to release the submatricies
         left.release();
-        centre.release();
         right.release();
 
         // To help with debugging, you can use telemetry to
         // display the values used in the calculation
         telemetry.addData("Left percentage", Math.round(leftValue * 100) + "%");
-        telemetry.addData("Centre percentage", Math.round(centreValue * 100) + "%");
         telemetry.addData("Right percentage", Math.round(rightValue * 100) + "%");
 
-        boolean isLeft = ((leftValue > PERCENT_COLOR_THRESHOLD) && (leftValue > rightValue));
+        boolean isCentre = ((leftValue > PERCENT_COLOR_THRESHOLD) && (leftValue > rightValue));
         boolean isRight = (rightValue > PERCENT_COLOR_THRESHOLD) && (rightValue > leftValue);
-        boolean isCentre = ((!isLeft) && (!isRight) && (centreValue > PERCENT_COLOR_THRESHOLD));
 
-        //get location of
-        if (!isCentre && !isRight && !isLeft) {
-            // not found
-            location = Location.NOT_FOUND;
-            telemetry.addData("ELEMENT", "Not found");
-        } else if (isRight) {
-            //right
-            location = Location.RIGHT;
-            telemetry.addData("ELEMENT", "Right");
-        } else if (isCentre) {
-            //centre
+        //get location of game element
+        if(isCentre){
             location = Location.CENTRE;
-            telemetry.addData("ELEMENT", "Centre");
+        } else if(isRight) {
+            location = Location.RIGHT;
         } else {
-            // left
             location = Location.LEFT;
-            telemetry.addData("ELEMENT", "left");
         }
+        telemetry.addData("Location", location);
         telemetry.update();
 
         //Convert from greyscale to rgb
@@ -136,7 +114,6 @@ public class test extends OpenCvPipeline {
         // use a ternary operator, which is basically a mini if statement to choose
         // which color to use based on the loction of the skystone
         Imgproc.rectangle(mat, LEFT_ROI, location == Location.LEFT ? Green : Red);
-        Imgproc.rectangle(mat, CENTRE_ROI, location == Location.CENTRE ? Green : Red);
         Imgproc.rectangle(mat, RIGHT_ROI, location == Location.RIGHT ? Green : Red);
 
         //return matrix so image can be drawn

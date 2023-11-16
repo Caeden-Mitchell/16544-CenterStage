@@ -2,6 +2,10 @@ package org.firstinspires.ftc.teamcode.Code16544.RobotSystems;
 
 import static android.os.SystemClock.sleep;
 
+import androidx.annotation.NonNull;
+
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.Action;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.*;
 
@@ -89,5 +93,27 @@ public class RobotSystems {
         servoToZero();
         sleep(400);
         deadState();
+    }
+
+    public class RobotActions implements Action {
+
+        public double position = 0;
+
+        public RobotActions(double pos) {
+            this.position = pos;
+        }
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            rotateHopper.setPosition(position);
+
+            double pos = rotateHopper.getPosition();
+
+            telemetryPacket.put("hopperPos", pos);
+
+            return pos <= 1;
+        }
+    }
+    public Action rotateHopper(double pos) {
+        return new RobotActions(pos);
     }
 }
