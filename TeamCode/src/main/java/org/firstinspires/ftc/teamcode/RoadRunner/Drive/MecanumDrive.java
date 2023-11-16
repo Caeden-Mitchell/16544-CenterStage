@@ -56,31 +56,31 @@ public final class MecanumDrive {
     public static class Params {
         // drive model parameters
         public double inPerTick = 0.00057210006;//1563.33544
-        public double lateralInPerTick = 0.0004263820906818023;//0.00047692283376626947
-        public double trackWidthTicks = 15858.02118908242;
+        public double lateralInPerTick = 0.0004124862037;//3.9637001073127958, 4.363874318609815,4.047011683902712
+        public double trackWidthTicks = 16026.957312852543;//
 
         // feedforward parameters (in tick units)
-        public double kS = 0.938943471592899;
-        public double kV = 0.00008701228078595128;
-        public double kA = 0.00001;
+        public double kS = 0.9589638794;//0.8207277028116056, 0.8407649460675635, 1.075052143958667, 0.9693311327456255
+        public double kV = 0.0000876885255;//0.00008755805005488873, 0.00008435684883959481, 0.0000844917201464486, 0.00008634748294273611
+        public double kA = 0.000011;
 
         // path profile parameters (in inches)
-        public double maxWheelVel = 50;
+        public double maxWheelVel = 45;
         public double minProfileAccel = -30;
-        public double maxProfileAccel = 50;
+        public double maxProfileAccel = 35;
 
         // turn profile parameters (in radians)
         public double maxAngVel = Math.PI; // shared with path
         public double maxAngAccel = Math.PI;
 
         // path controller gains
-        public double axialGain = 6.75;
-        public double lateralGain = 4.65;
-        public double headingGain = 4.75; // shared with turn
+        public double axialGain = 4;
+        public double lateralGain = 5;
+        public double headingGain = 3; // shared with turn
 
-        public double axialVelGain = 1;
-        public double lateralVelGain = 1;
-        public double headingVelGain = 0.5; // shared with turn
+        public double axialVelGain = .5;
+        public double lateralVelGain = .45;
+        public double headingVelGain = .5; // shared with turn
     }
 
     public static Params PARAMS = new Params();
@@ -175,11 +175,11 @@ public final class MecanumDrive {
     public MecanumDrive(HardwareMap hardwareMap, Pose2d pose) {
         this.pose = pose;
 
-        LynxFirmware.throwIfModulesAreOutdated(hardwareMap);
+        /*LynxFirmware.throwIfModulesAreOutdated(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
-        }
+        }*/
 
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
