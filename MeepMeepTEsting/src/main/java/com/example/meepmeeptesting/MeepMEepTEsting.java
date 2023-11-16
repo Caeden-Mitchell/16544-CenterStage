@@ -36,7 +36,7 @@ public class MeepMEepTEsting {
                                 .strafeTo(new Vector2d(-36., 35))
                                 .lineToConstantHeading(new Vector2d(-36, 13))
                                 .setTangent(Math.toRadians(0))
-                                .splineToConstantHeading(new Vector2d(43.4, 27), Math.toRadians(30))
+                                .splineToConstantHeading(new Vector2d(43.4, 27), Math.toRadians(45))
                                 .build()
                 );
 
@@ -51,7 +51,7 @@ public class MeepMEepTEsting {
 
                                 .turn(Math.toRadians(180))
                                 .lineToConstantHeading(new Vector2d(-36, 13))
-                                .setTangent(Math.toRadians(0))
+                                .setTangent(Math.toRadians(-20))
                                 .splineToConstantHeading(new Vector2d(43.4 , 43.3), Math.toRadians(90))
                                 .build()
                 );
@@ -62,8 +62,12 @@ public class MeepMEepTEsting {
                 .setDimensions(12.5, 19.5)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-37, 64.0, Math.toRadians(180)))
-                                .strafeTo(new Vector2d(-36.5,64))
-                                .strafeTo(new Vector2d(-37,64))
+                                .strafeTo(new Vector2d(-36, 34.5))
+                                .turn(Math.toRadians(90))
+                                .turn(Math.toRadians(-90))
+                                .lineToConstantHeading(new Vector2d(-36, 13))
+                                .setTangent(Math.toRadians(-15))
+                                .splineToConstantHeading(new Vector2d(43.4, 36), Math.toRadians(60))
 
                                 .build()
                 );

@@ -64,7 +64,7 @@ public class AutoActions {
          rightDrop = drive.actionBuilder(new Pose2d(-36.5, 35, Math.toRadians(180)))
                 .strafeToConstantHeading(new Vector2d(-40, 10))
                 .setTangent(Math.toRadians(0))
-                .splineToSplineHeading(new Pose2d(43.4, 27, Math.toRadians(180)), Math.toRadians(30))
+                .splineToConstantHeading(new Vector2d(43.4, 27), Math.toRadians(45))
                 .build();
 
     }
