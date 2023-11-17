@@ -30,13 +30,13 @@ public class MeepMEepTEsting {
         RoadRunnerBotEntity right = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(12.5,19.5)
+                .setDimensions(12.5,12.5)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-37, 64.0, Math.toRadians(180)))
                                 .strafeTo(new Vector2d(-36., 35))
                                 .lineToConstantHeading(new Vector2d(-36, 13))
-                                .setTangent(Math.toRadians(0))
-                                .splineToConstantHeading(new Vector2d(43.4, 27), Math.toRadians(45))
+                                .setTangent(Math.toRadians(-10))
+                                .splineToConstantHeading(new Vector2d(52, 22), Math.toRadians(45))
                                 .build()
                 );
 
@@ -64,6 +64,7 @@ public class MeepMEepTEsting {
                         drive.trajectorySequenceBuilder(new Pose2d(-37, 64.0, Math.toRadians(180)))
                                 .strafeTo(new Vector2d(-36, 34.5))
                                 .turn(Math.toRadians(90))
+
                                 .turn(Math.toRadians(-90))
                                 .lineToConstantHeading(new Vector2d(-36, 13))
                                 .setTangent(Math.toRadians(-15))
@@ -75,9 +76,9 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                //.addEntity(right)
+                .addEntity(right)
                 //.addEntity(left)
-                .addEntity(middle)
+                //.addEntity(middle)
                 .start();
     }
 }

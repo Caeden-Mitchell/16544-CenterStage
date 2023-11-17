@@ -113,7 +113,7 @@ public class ColorDetector extends OpenCvPipeline {
 
         // use a ternary operator, which is basically a mini if statement to choose
         // which color to use based on the loction of the skystone
-        Imgproc.rectangle(mat, LEFT_ROI, location == Location.LEFT ? Green : Red);
+        Imgproc.rectangle(mat, LEFT_ROI, location == Location.CENTRE ? Green : Red);
         Imgproc.rectangle(mat, RIGHT_ROI, location == Location.RIGHT ? Green : Red);
 
         //return matrix so image can be drawn

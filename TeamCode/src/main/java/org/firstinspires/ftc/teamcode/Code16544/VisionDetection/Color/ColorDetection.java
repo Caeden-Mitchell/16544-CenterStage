@@ -74,8 +74,6 @@ public class ColorDetection extends LinearOpMode{
 
         detector.setColor(ColorDetector.Color.BLUE);
 
-        waitForStart();
-
         while (opModeIsActive()) {
             while (detector.getLocation() == ColorDetector.Location.LEFT) {
                 telemetry.addData("ELEMENT", "LEFT");

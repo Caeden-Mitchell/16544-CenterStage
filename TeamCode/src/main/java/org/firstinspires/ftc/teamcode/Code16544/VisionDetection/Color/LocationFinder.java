@@ -8,14 +8,15 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-public class Camera {
+public class LocationFinder {
     private final OpenCvCamera camera;
     int cameraMonitorViewId;
+    public int trajType = 0;
 
     private final ColorDetector colorDetector;
 
 
-    public Camera(HardwareMap hardwareMap, Telemetry telemetry, ColorDetector.Color color) {
+    public LocationFinder(HardwareMap hardwareMap, Telemetry telemetry, ColorDetector.Color color) {
 
         cameraMonitorViewId = hardwareMap.appContext
                 .getResources().getIdentifier("cameraMonitorViewId",
@@ -33,11 +34,25 @@ public class Camera {
             public void onOpened() {
                 camera.startStreaming(800, 448, OpenCvCameraRotation.UPRIGHT);
             }
-
             @Override
             public void onError(int errorCode) {}
         });
 
         colorDetector.setColor(color);
+
+    }
+
+    public void getTrajectory(Telemetry telemetry) {
+        if (colorDetector.getLocation() == ColorDetector.Location.LEFT) {
+            trajType = 3;
+        }
+        if (colorDetector.getLocation() == ColorDetector.Location.RIGHT) {
+            trajType = 1;
+        }
+        if (colorDetector.getLocation() == ColorDetector.Location.CENTRE) {
+            trajType = 2;
+        }
+        telemetry.addData("ELEMENT", colorDetector.getLocation());
+        telemetry.update();
     }
 }

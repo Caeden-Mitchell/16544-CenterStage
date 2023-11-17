@@ -8,6 +8,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
+import org.firstinspires.ftc.teamcode.R;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 
 public class AutoActions {
@@ -20,51 +21,50 @@ public class AutoActions {
     public Action midDrop;
     public Action leftDrop;
     public Action rightDrop;
-    public Action jerkStart;
 
 
     public AutoActions(HardwareMap hardwareMap, Pose2d startPose) {
         drive = new MecanumDrive(hardwareMap, startPose);
 
-        jerkStart = drive.actionBuilder(startPose)
-                .strafeTo(new Vector2d(-35.5,64))
-                .strafeTo(new Vector2d(-37,64))
-                .build();
-
         rightSpike = drive.actionBuilder(startPose)
-                .strafeTo(new Vector2d(-36.5, 35))
+                .strafeTo(new Vector2d(-35, 34))
                 .build();
 
-         leftSpike = drive.actionBuilder(startPose)
+        leftSpike = drive.actionBuilder(startPose)
                 //.strafeToLinearHeading(new Vector2d(-33.41, 36), Math.toRadians(180))
-                .strafeTo(new Vector2d(-34.8, 36))
-                .turnTo(Math.toRadians(0))
+                .strafeTo(new Vector2d(-35, 36))
+                .turn(Math.toRadians(-180))
                 .build();
 
-         midSpike = drive.actionBuilder(startPose)
+        midSpike = drive.actionBuilder(startPose)
                 //.strafeToLinearHeading(new Vector2d(-36, 34), Math.toRadians(270))
-                .strafeTo(new Vector2d(-36, 34.5))
-                .turnTo(Math.toRadians(270))
+                .strafeTo(new Vector2d(-36, 10))
+                .turnTo(Math.toRadians(90))
                 .build();
 
-         midDrop = drive.actionBuilder(new Pose2d(-36, 34.5, Math.toRadians(270)))
+         midDrop = drive.actionBuilder(new Pose2d(-36, 10, Math.toRadians(90)))
                 .turnTo(Math.toRadians(180))
-                .strafeToConstantHeading(new Vector2d(-36, 13))
-                .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(43.4, 36), Math.toRadians(60))
+                .setTangent(Math.toRadians(-15))
+                .splineToConstantHeading(new Vector2d(50, 36), Math.toRadians(60))
+                 //.strafeToConstantHeading(new Vector2d(50, 19))
+                 //.strafeToConstantHeading(new Vector2d(43, 19))
                 .build();
 
-         leftDrop = drive.actionBuilder(new Pose2d(-34.8, 36, Math.toRadians(0)))
+        leftDrop = drive.actionBuilder(new Pose2d(-35, 36, Math.toRadians(0)))
                  .turnTo(Math.toRadians(180))
                  .strafeToConstantHeading(new Vector2d(-36, 13))
                  .setTangent(Math.toRadians(0))
-                 .splineToConstantHeading(new Vector2d(43.4 , 43.3), Math.toRadians(90))
+                 .splineToConstantHeading(new Vector2d(50 , 43.3), Math.toRadians(90))
+                //.strafeToConstantHeading(new Vector2d(50, 19))
+                //.strafeToConstantHeading(new Vector2d(43, 19))
                 .build();
 
-         rightDrop = drive.actionBuilder(new Pose2d(-36.5, 35, Math.toRadians(180)))
+        rightDrop = drive.actionBuilder(new Pose2d(-35, 34, Math.toRadians(180)))
                 .strafeToConstantHeading(new Vector2d(-40, 10))
-                .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(43.4, 27), Math.toRadians(45))
+                .setTangent(Math.toRadians(-20))
+                .splineToConstantHeading(new Vector2d(50, 26.75), Math.toRadians(45))
+                //.strafeToConstantHeading(new Vector2d(50, 19))
+                //.strafeToConstantHeading(new Vector2d(43, 19))
                 .build();
 
     }

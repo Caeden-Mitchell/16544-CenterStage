@@ -70,7 +70,7 @@ public class RobotSystems {
     }
 
     public void deadState(){
-        setServos(0.019, 0.03, 1000, false);
+        setServos(0.012, 0.1, 1000, false);
     }
 
     public void servoToZero(){
@@ -78,25 +78,29 @@ public class RobotSystems {
     }
 
     public void preDrop(){
-        setServos(0.13, 0.15, 1750, true);
+        setServos(0.13, 0.9, 1750, true);
     }
 
     public void autoDrop(){
-        setServos(0.18, 0.13, 2500, true);
+        setServos(0.185, 0.91, 2500, true);
     }
 
     public void DCDrop(){
-        setServos(0.13, 0.07, 0, false);
+        setServos(0.137, 0.5, 0, false);
     }
 
     public void DCLiftHopper(){
-        setServos(0,0,0,false);
-        setServos(0.13, 0.15, 0, false);
+        //setServos(0,0,0,false);
+        //setServos(0.13, 0.15, 0, false);
+        servoToZero();
+        preDrop();
     }
 
     public void DCLowerHopper(){
-        setServos(0,0,0, false);
-        setServos(0.019, 0.03, 0, false);
+        //setServos(0,0,0, false);
+        //setServos(0.019, 0.03, 0, false);
+        servoToZero();
+        deadState();
     }
 
     public void liftHopper(){
@@ -111,7 +115,7 @@ public class RobotSystems {
     }
 
     public void ejectPixelFromIntake() {
-        intakeMotor.setPower(0.1);
+        intakeMotor.setPower(0.775);
         sleep(1000);
         intakeMotor.setPower(0);
 
