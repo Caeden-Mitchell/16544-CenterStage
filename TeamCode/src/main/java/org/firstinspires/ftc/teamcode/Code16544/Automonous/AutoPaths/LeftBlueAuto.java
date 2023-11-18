@@ -15,9 +15,9 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 
 @Config
 @Autonomous
-public class RightBlueAuto extends LinearOpMode {
-    public static double startingY = 64.0;
-    public static double startingX = -33;
+public class LeftBlueAuto extends LinearOpMode {
+    public static double startingY = 63.5;
+    public static double startingX = 14;
 
     public static int target = 200;
 
@@ -47,40 +47,44 @@ public class RightBlueAuto extends LinearOpMode {
         if(isStopRequested()) return;
 
         switch (locationFinder.trajType) {
-            case 1:
-        Actions.runBlocking(new SequentialAction(
-                autoActions.rightBlueRightSpike
-                ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                ,autoActions.rightBlueRightDrop
-                //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-        ));
-                break;
-            case 2:
+            case 1://right
                 Actions.runBlocking(new SequentialAction(
-                        autoActions.rightBlueMidSpike
+                        autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueMidDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
+                        ,autoActions.leftBlueRightDrop
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
                 ));
                 break;
-            case 3:
+            case 3://left
                 Actions.runBlocking(new SequentialAction(
-                        autoActions.rightBlueLeftSpike
+                        autoActions.leftBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueLeftDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
+                        ,autoActions.leftBlueLeftDrop
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                ));
+                break;
+            case 2://middle
+                Actions.runBlocking(new SequentialAction(
+                        autoActions.leftBlueMidSpike
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,autoActions.leftBlueMidDrop
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
                 ));
                 break;
             default:
                 Actions.runBlocking(new SequentialAction(
-                        autoActions.rightBlueRightSpike
+                        autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueRightDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 2500)
+                        ,autoActions.leftBlueRightDrop
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 2500)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
                 telemetry.update();

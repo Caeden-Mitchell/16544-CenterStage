@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -12,9 +13,11 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+
 public class ColorDetector extends OpenCvPipeline {
     Telemetry telemetry;
     Mat mat = new Mat();
+    public static int upH=165, upS=100, upV=20, downH=180, downS=250, downV=200;
     public enum Location{
         LEFT,
         RIGHT,
@@ -34,10 +37,10 @@ public class ColorDetector extends OpenCvPipeline {
     // We need to create Regions Of Interest where the camera will be
     // looking for the items colors being searched for
     // 800x400
-    static final Rect LEFT_ROI = new Rect(new Point(10, 35), new Point(400, 400));
-    static final Rect RIGHT_ROI = new Rect(new Point(401, 35), new Point(790, 400));
+    static final Rect LEFT_ROI = new Rect(new Point(80, 100), new Point(400, 400));
+    static final Rect RIGHT_ROI = new Rect(new Point(450, 100), new Point(790, 400));
     // define the threshold
-    static double PERCENT_COLOR_THRESHOLD = 0.025;
+    static double PERCENT_COLOR_THRESHOLD = 0.015;
     public ColorDetector(Telemetry t) {
         telemetry = t;
     }
@@ -56,8 +59,8 @@ public class ColorDetector extends OpenCvPipeline {
             highHSV = new Scalar(138, 255, 255);
         } else if(colorChoice == Color.RED){
             //Create a range for the camera to detect red
-            lowHSV = new Scalar(160, 100, 20);
-            highHSV = new Scalar(180, 255, 255);
+            lowHSV = new Scalar(upH, upS, upV);
+            highHSV = new Scalar(downH, downS, downV);
         }
 
         //Apply thresholding, which outlines the area of the image that is of the colour you want

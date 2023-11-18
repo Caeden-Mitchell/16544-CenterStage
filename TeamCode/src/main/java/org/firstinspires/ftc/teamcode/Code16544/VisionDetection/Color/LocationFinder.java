@@ -35,7 +35,9 @@ public class LocationFinder {
                 camera.startStreaming(800, 448, OpenCvCameraRotation.UPRIGHT);
             }
             @Override
-            public void onError(int errorCode) {}
+            public void onError(int errorCode) {
+                telemetry.addLine("camera not found");
+            }
         });
 
         colorDetector.setColor(color);

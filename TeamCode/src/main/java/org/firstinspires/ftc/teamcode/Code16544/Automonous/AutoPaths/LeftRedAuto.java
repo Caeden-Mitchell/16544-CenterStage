@@ -15,8 +15,8 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 
 @Config
 @Autonomous
-public class RightBlueAuto extends LinearOpMode {
-    public static double startingY = 64.0;
+public class LeftRedAuto extends LinearOpMode {
+    public static double startingY = -63.5;
     public static double startingX = -33;
 
     public static int target = 200;
@@ -27,7 +27,7 @@ public class RightBlueAuto extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.BLUE);
+        locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.RED);
 
         Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(180));
 
@@ -36,7 +36,7 @@ public class RightBlueAuto extends LinearOpMode {
         autoActions = new AutoActions(hardwareMap, startPose);
 
         while (!opModeIsActive() && !isStopRequested()) {
-            robot.rotateArm.setPosition(0.040);
+            robot.rotateArm.setPosition(0.045);
             robot.rotateHopper.setPosition(0);
             locationFinder.getTrajectory(telemetry);
         }
@@ -47,42 +47,42 @@ public class RightBlueAuto extends LinearOpMode {
         if(isStopRequested()) return;
 
         switch (locationFinder.trajType) {
-            case 1:
-        Actions.runBlocking(new SequentialAction(
-                autoActions.rightBlueRightSpike
-                ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                ,autoActions.rightBlueRightDrop
-                //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-        ));
-                break;
-            case 2:
+            case 1://right
                 Actions.runBlocking(new SequentialAction(
-                        autoActions.rightBlueMidSpike
+                        autoActions.leftRedRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueMidDrop
+                        ,autoActions.leftRedRightDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
-            case 3:
+            case 3://left
                 Actions.runBlocking(new SequentialAction(
-                        autoActions.rightBlueLeftSpike
+                        autoActions.leftRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueLeftDrop
+                        ,autoActions.leftRedLeftDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                ));
+                break;
+            case 2://middle
+                Actions.runBlocking(new SequentialAction(
+                        autoActions.leftRedMidSpike
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,autoActions.leftRedMidDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             default:
                 Actions.runBlocking(new SequentialAction(
-                        autoActions.rightBlueRightSpike
+                        autoActions.leftRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueRightDrop
+                        ,autoActions.leftRedLeftDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 2500)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
-                telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
+                telemetry.addData("ELEMENT", "NOT FOUND. RUNNING LEFT TRAJ");
                 telemetry.update();
                 break;
         }

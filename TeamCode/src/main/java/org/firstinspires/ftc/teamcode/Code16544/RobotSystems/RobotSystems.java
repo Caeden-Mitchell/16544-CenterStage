@@ -15,7 +15,7 @@ public class RobotSystems {
     public DcMotorEx robotLift; // lifts the robot in endgame
     public DcMotorEx intakeMotor; // intake motor
 
-    public Servo rotateArm, rotateHopper;
+    public Servo rotateArm, rotateHopper, droneLauncher;
 
     private final double pixP = 0.008, pixI = 0.0002, pixD = 0.0001; // pid coefficients for pixel lift
 
@@ -36,6 +36,7 @@ public class RobotSystems {
 
         rotateArm = hardwareMap.get(Servo.class, "rotateArm");
         rotateHopper = hardwareMap.get(Servo.class, "rotateHopper");
+        droneLauncher = hardwareMap.get(Servo.class, "droneLauncher");
 
         pixelLift.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         robotLift.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -63,7 +64,7 @@ public class RobotSystems {
     public void setServos(double pos1, double pos2, int time, boolean isDelayed){
         rotateArm.setPosition(pos1);
         if(isDelayed){
-            sleep(100);
+            sleep(200);
         }
         rotateHopper.setPosition(pos2);
         sleep(time);
@@ -82,7 +83,7 @@ public class RobotSystems {
     }
 
     public void autoDrop(){
-        setServos(0.185, 0.91, 2500, true);
+        setServos(0.185, 0.87, 2500, true);
     }
 
     public void DCDrop(){
@@ -115,8 +116,8 @@ public class RobotSystems {
     }
 
     public void ejectPixelFromIntake() {
-        intakeMotor.setPower(0.775);
-        sleep(1000);
+        intakeMotor.setPower(1);
+        sleep(250);
         intakeMotor.setPower(0);
 
     }

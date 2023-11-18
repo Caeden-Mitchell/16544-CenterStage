@@ -237,9 +237,7 @@ public class DC1 extends LinearOpMode {
 
         //airplane launcher
         if(gamepad2.left_bumper){
-            /**
-             *  WRITE ACTION FOR HERE
-             */
+            robot.droneLauncher.setPosition(1);
         }
     }
 }
