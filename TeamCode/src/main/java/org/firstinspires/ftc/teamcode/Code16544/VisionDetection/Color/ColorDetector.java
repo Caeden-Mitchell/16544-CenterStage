@@ -32,12 +32,12 @@ public class ColorDetector extends OpenCvPipeline {
     private Location location;
     private Color colorChoice;
 
-    // A Rect in OpenCV can be defined using 2 opposite vertices of a
+    // A Rect in OpenCV can  be defined using 2 opposite vertices of a
     // triangle, which are connected by the diagonals
     // We need to create Regions Of Interest where the camera will be
     // looking for the items colors being searched for
     // 800x400
-    static final Rect LEFT_ROI = new Rect(new Point(80, 100), new Point(400, 400));
+    static final Rect LEFT_ROI = new Rect(new Point(80, 100), new Point(420, 400));
     static final Rect RIGHT_ROI = new Rect(new Point(450, 100), new Point(790, 400));
     // define the threshold
     static double PERCENT_COLOR_THRESHOLD = 0.015;

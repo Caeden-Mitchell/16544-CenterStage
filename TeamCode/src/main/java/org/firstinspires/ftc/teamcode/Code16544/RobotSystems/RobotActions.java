@@ -15,7 +15,8 @@ public class RobotActions implements Action {
     public enum System {
         PIXEL_LIFT,
         INTAKE_MOTOR,
-        SERVO
+        SERVO,
+        PARK
     }
 
     public RobotActions(HardwareMap hardwareMap, System system)  {

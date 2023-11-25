@@ -17,9 +17,9 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Autonomous
 public class LeftBlueAuto extends LinearOpMode {
     public static double startingY = 63.5;
-    public static double startingX = 14;
+    public static double startingX = 14.5;
 
-    public static int target = 200;
+    public static int target = 0;
 
     LocationFinder locationFinder;
     RobotSystems robot;
@@ -55,6 +55,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkLeft
                 ));
                 break;
             case 3://left
@@ -65,6 +66,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkLeft
                 ));
                 break;
             case 2://middle
@@ -75,6 +77,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkLeft
                 ));
                 break;
             default:
@@ -85,6 +88,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 2500)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkLeft
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
                 telemetry.update();

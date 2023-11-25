@@ -7,6 +7,8 @@ import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 
@@ -57,8 +59,8 @@ public class DC1 extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            runGamepad1();
-            runGamepad2();
+            //runGamepad1();
+            //runGamepad2();
 
             telemetry.addData("intake power", robot.intakeMotor.getPower());
             telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
@@ -183,11 +185,16 @@ public class DC1 extends LinearOpMode {
         //intake
         if(gamepad1.b){
             robot.intakeMotor.setPower(intakePower);
-        } else if(gamepad1.a){
-            robot.intakeMotor.setPower(0);
         } else if (gamepad1.x){
             robot.intakeMotor.setPower(-intakePower);
+        } else {
+            robot.intakeMotor.setPower(0);
         }
+
+        if (gamepad1.left_trigger > 0.1) {
+            robot.intakeMotor.setPower(gamepad1.left_trigger/1.25);
+        }
+
 
         //robot lift
         /*
@@ -225,10 +232,10 @@ public class DC1 extends LinearOpMode {
         }
 
         //hopper
-        if(gamepad2.y) {
+        if(gamepad2.a) {
             robot.DCLowerHopper();
         }
-        if (gamepad2.a){
+        if (gamepad2.y){
             robot.DCLiftHopper();
         }
         if (gamepad2.right_bumper){
@@ -237,7 +244,9 @@ public class DC1 extends LinearOpMode {
 
         //airplane launcher
         if(gamepad2.left_bumper){
-            robot.droneLauncher.setPosition(1);
+            robot.droneLauncher.setPosition(0);
         }
     }
+
+
 }

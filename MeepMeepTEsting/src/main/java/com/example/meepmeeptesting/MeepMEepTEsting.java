@@ -157,18 +157,18 @@ public class MeepMEepTEsting {
 
                                 .build()
                 );
-        //run();
+        run();
 
-       meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
-                .setDarkMode(true)
-                .setBackgroundAlpha(0.95f)
+       //meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
+               // .setDarkMode(true)
+               // .setBackgroundAlpha(0.95f)
                 //.addEntity(rightBlue)
                 //.addEntity(leftBlue)
                 //.addEntity(middleBlue)
                 //.addEntity(rightRed)
                 //.addEntity(leftRed)
-                .addEntity(middleRed)
-                .start();
+                //.addEntity(middleRed)
+              //  .start();
     }
 
     public static void run() {
@@ -194,11 +194,11 @@ public class MeepMEepTEsting {
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(14, 64.0, Math.toRadians(180)))
                                 .strafeTo(new Vector2d(14, 33))
-                                .strafeTo(new Vector2d(30.5, 33))
+                                .strafeTo(new Vector2d(34.9, 33))
                                 .waitSeconds(0.75)
 
                                 .setTangent(Math.toRadians(0))
-                                .splineToSplineHeading(new Pose2d(49 , 42.5, Math.toRadians(180)), Math.toRadians(0))
+                                .splineToSplineHeading(new Pose2d(52 , 42, Math.toRadians(180)), Math.toRadians(0))
                                 .build()
                 );
 

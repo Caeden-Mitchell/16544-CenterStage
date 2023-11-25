@@ -51,39 +51,38 @@ public class RightBlueAuto extends LinearOpMode {
         Actions.runBlocking(new SequentialAction(
                 autoActions.rightBlueRightSpike
                 ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                ,autoActions.rightBlueRightDrop
+                //,autoActions.rightBlueRightDrop
                 //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
         ));
                 break;
             case 2:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueMidDrop
+                        //,autoActions.rightBlueMidDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                         //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             case 3:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueLeftDrop
+                        //,autoActions.rightBlueLeftDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             default:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.rightBlueRightDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 2500)
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,autoActions.rightBlueRightDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+
                 ));
-                telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
-                telemetry.update();
                 break;
         }
 

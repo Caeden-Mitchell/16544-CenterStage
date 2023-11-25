@@ -51,27 +51,27 @@ public class LeftRedAuto extends LinearOpMode {
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftRedRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.leftRedRightDrop
+                        //,autoActions.leftRedRightDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             case 3://left
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.leftRedLeftDrop
+                        //,autoActions.leftRedLeftDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             case 2://middle
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftRedMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        ,autoActions.leftRedMidDrop
+                        //,autoActions.leftRedMidDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             default:

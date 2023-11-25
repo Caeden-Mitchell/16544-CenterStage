@@ -17,10 +17,20 @@ public class AutoActions {
     public Action rightRedRightSpike,rightRedLeftSpike,rightRedMidSpike,rightRedMidDrop,rightRedLeftDrop,rightRedRightDrop;
     public Action leftRedRightSpike, leftRedLeftSpike, leftRedMidSpike, leftRedMidDrop, leftRedLeftDrop, leftRedRightDrop;
 
+    public Action parkRight, parkLeft;
+
 
 
     public AutoActions(HardwareMap hardwareMap, Pose2d startPose) {
         drive = new MecanumDrive(hardwareMap, startPose);
+
+        parkRight = drive.actionBuilder(new Pose2d(50.25, -35.25, Math.toRadians(180)))
+                .strafeTo(new Vector2d(50.25, -64))
+                .build();
+
+        parkLeft = drive.actionBuilder(new Pose2d(50.65, 35.2, Math.toRadians(180)))
+                .strafeTo(new Vector2d(50.65, 64))
+                .build();
 
         rightBlueRightSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(-32, 34.5))
@@ -85,7 +95,7 @@ public class AutoActions {
 
         leftBlueLeftDrop = drive.actionBuilder(new Pose2d(34.9, 33, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(52 , 42), Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(50.65 , 42), Math.toRadians(0))
                 .build();
 
         leftBlueMidDrop = drive.actionBuilder(new Pose2d(16, 9, Math.toRadians(91)))

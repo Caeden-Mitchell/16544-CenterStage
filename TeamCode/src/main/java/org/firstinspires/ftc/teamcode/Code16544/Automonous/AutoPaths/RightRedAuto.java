@@ -55,6 +55,7 @@ public class RightRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkRight
                 ));
                 break;
             case 3://left
@@ -65,6 +66,7 @@ public class RightRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 350)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkRight
                 ));
                 break;
             case 2://middle
@@ -75,6 +77,7 @@ public class RightRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkRight
                 ));
                 break;
             default:
@@ -85,6 +88,7 @@ public class RightRedAuto extends LinearOpMode {
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 2500)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkRight
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING LEFT TRAJ");
                 telemetry.update();

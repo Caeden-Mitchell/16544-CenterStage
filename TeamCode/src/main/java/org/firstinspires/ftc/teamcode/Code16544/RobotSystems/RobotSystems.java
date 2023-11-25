@@ -10,17 +10,19 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 public class RobotSystems {
     public DcMotorEx pixelLift; // lifts the pixels using linear slide
     public DcMotorEx robotLift; // lifts the robot in endgame
     public DcMotorEx intakeMotor; // intake motor
 
     public Servo rotateArm, rotateHopper, droneLauncher;
+    public DistanceSensor distance;
 
     private final double pixP = 0.008, pixI = 0.0002, pixD = 0.0001; // pid coefficients for pixel lift
 
     private final double robP = 0, robI = 0, robD = 0; // pid coefficients for robot lift
-
 
     private final PIDController pixPIDController;
     private final PIDController robPIDController;
@@ -33,6 +35,7 @@ public class RobotSystems {
         robotLift = hardwareMap.get(DcMotorEx.class, "robotLift");
         intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
 
+        //distance = hardwareMap.get(DistanceSensor.class, "distance");
 
         rotateArm = hardwareMap.get(Servo.class, "rotateArm");
         rotateHopper = hardwareMap.get(Servo.class, "rotateHopper");
@@ -43,7 +46,7 @@ public class RobotSystems {
         intakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         robotLift.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        //intakeMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         rotateArm.setDirection(Servo.Direction.REVERSE);
     }
@@ -53,7 +56,6 @@ public class RobotSystems {
         double power = pixPIDController.calculate(pixelLift.getCurrentPosition(), target);
         pixelLift.setPower(power);
     }
-
 
     public void liftRobot(int target) {
         robPIDController.setPID(pixP, pixI, pixD);
@@ -87,21 +89,21 @@ public class RobotSystems {
     }
 
     public void DCDrop(){
-        setServos(0.137, 0.5, 0, false);
+        setServos(0.137, 0.5, 10, false);
     }
 
     public void DCLiftHopper(){
-        //setServos(0,0,0,false);
-        //setServos(0.13, 0.15, 0, false);
-        servoToZero();
-        preDrop();
+        setServos(0,0,0,false);
+        setServos(0.13, 0.9, 0, false);
+        //servoToZero();
+        //preDrop();
     }
 
     public void DCLowerHopper(){
-        //setServos(0,0,0, false);
-        //setServos(0.019, 0.03, 0, false);
-        servoToZero();
-        deadState();
+        setServos(0,0,0, false);
+        setServos(0.012, 0.1, 0, false);
+        //servoToZero();
+        //deadState();
     }
 
     public void liftHopper(){
@@ -116,7 +118,7 @@ public class RobotSystems {
     }
 
     public void ejectPixelFromIntake() {
-        intakeMotor.setPower(1);
+        intakeMotor.setPower(0.9);
         sleep(250);
         intakeMotor.setPower(0);
 
