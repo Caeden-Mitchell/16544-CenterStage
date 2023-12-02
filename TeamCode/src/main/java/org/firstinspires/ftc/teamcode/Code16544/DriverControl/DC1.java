@@ -59,8 +59,8 @@ public class DC1 extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            //runGamepad1();
-            //runGamepad2();
+            runGamepad1();
+            runGamepad2();
 
             telemetry.addData("intake power", robot.intakeMotor.getPower());
             telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
@@ -146,12 +146,6 @@ public class DC1 extends LinearOpMode {
         }
     }
 
-    private void setDrivePower(double lf, double lb, double rf, double rb) {
-        drive.leftFront.setPower(lf);
-        drive.leftBack.setPower(lb);
-        drive.rightFront.setPower(rf);
-        drive.rightBack.setPower(rb);
-    }
 
     /*private void placePixel(){
         if(gamepad2.y){
@@ -236,10 +230,10 @@ public class DC1 extends LinearOpMode {
             robot.DCLowerHopper();
         }
         if (gamepad2.y){
-            robot.DCLiftHopper();
+            //robot.DCLiftHopper();
         }
         if (gamepad2.right_bumper){
-            robot.DCDrop();
+            robot. DCDrop();
         }
 
         //airplane launcher
@@ -247,6 +241,4 @@ public class DC1 extends LinearOpMode {
             robot.droneLauncher.setPosition(0);
         }
     }
-
-
 }

@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.Code16544.RobotSystems;
 
 import static android.os.SystemClock.sleep;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
+
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
@@ -35,7 +38,7 @@ public class RobotSystems {
         robotLift = hardwareMap.get(DcMotorEx.class, "robotLift");
         intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
 
-        //distance = hardwareMap.get(DistanceSensor.class, "distance");
+        distance = hardwareMap.get(DistanceSensor.class, "distance");
 
         rotateArm = hardwareMap.get(Servo.class, "rotateArm");
         rotateHopper = hardwareMap.get(Servo.class, "rotateHopper");
@@ -64,11 +67,13 @@ public class RobotSystems {
     }
 
     public void setServos(double pos1, double pos2, int time, boolean isDelayed){
+        ElapsedTime elapsedTime = new ElapsedTime();
         rotateArm.setPosition(pos1);
         if(isDelayed){
             sleep(200);
         }
         rotateHopper.setPosition(pos2);
+
         sleep(time);
     }
 
@@ -89,12 +94,13 @@ public class RobotSystems {
     }
 
     public void DCDrop(){
-        setServos(0.137, 0.5, 10, false);
+        setServos(0.137, 0.5, 0, false);
     }
 
     public void DCLiftHopper(){
-        setServos(0,0,0,false);
-        setServos(0.13, 0.9, 0, false);
+            setServos(0, 0, 0, false);
+            setServos(0.13, 0.9, 0, false);
+
         //servoToZero();
         //preDrop();
     }
@@ -123,5 +129,7 @@ public class RobotSystems {
         intakeMotor.setPower(0);
 
     }
+
+
 
 }

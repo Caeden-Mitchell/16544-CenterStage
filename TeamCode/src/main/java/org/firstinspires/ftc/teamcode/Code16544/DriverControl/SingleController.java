@@ -93,15 +93,15 @@ public class SingleController extends LinearOpMode {
         }
         if (gamepad1.dpad_left) {
             height = Height.LOW;
-            robot.DCLiftHopper();
+           // robot.DCLiftHopper();
         }
         if (gamepad1.dpad_right) {
             height = Height.MID;
-            robot.DCLiftHopper();
+           // robot.DCLiftHopper();
         }
         if (gamepad1.dpad_up) {
             height = Height.HIGH;
-            robot.DCLiftHopper();
+           // robot.DCLiftHopper();
         }
 
         switch(height){
