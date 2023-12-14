@@ -12,7 +12,7 @@ For more detailed instructions see the /teamcode readme.
 ### Naming of Samples
 
 To gain a better understanding of how the samples are organized, and how to interpret the
-naming system, it will help to understand the conventions that were used during their creation.
+naming systemType, it will help to understand the conventions that were used during their creation.
 
 These conventions are described (in detail) in the sample_conventions.md file in this folder.
 

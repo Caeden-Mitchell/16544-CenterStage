@@ -6,7 +6,7 @@ This document defines the FTC Sample OpMode and Class conventions.
 ### OpMode Name
 
 To gain a better understanding of how the samples are organized, and how to interpret the
-naming system, it will help to understand the conventions that were used during their creation.
+naming systemType, it will help to understand the conventions that were used during their creation.
 
 To summarize: A range of different samples classes will reside in the java/external/samples.
 The class names will follow a naming convention which indicates the purpose of each class.
@@ -48,7 +48,7 @@ simply as possible.
 
 Special programming methods, or robot control techniques should be reserved for “Concept” Samples,
 and where possible, Samples should strive to only demonstrate a single concept,
-eg: State machine coding, or a User Menu system, and not combine them into a single “all inclusive”
+eg: State machine coding, or a User Menu systemType, and not combine them into a single “all inclusive”
 sample.  This will prevent an “all inclusive” Sample being deleted just because one part of it
 becomes obsolete.
 
