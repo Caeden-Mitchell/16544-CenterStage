@@ -159,16 +159,16 @@ public class MeepMEepTEsting {
                 );
         run();
 
-       //meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
-               // .setDarkMode(true)
-               // .setBackgroundAlpha(0.95f)
-                //.addEntity(rightBlue)
-                //.addEntity(leftBlue)
-                //.addEntity(middleBlue)
-                //.addEntity(rightRed)
-                //.addEntity(leftRed)
-                //.addEntity(middleRed)
-              //  .start();
+       meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
+                .setDarkMode(true)
+                .setBackgroundAlpha(0.95f)
+                .addEntity(rightBlue)
+                .addEntity(leftBlue)
+                .addEntity(middleBlue)
+                .addEntity(rightRed)
+                .addEntity(leftRed)
+                .addEntity(middleRed)
+                .start();
     }
 
     public static void run() {
@@ -271,12 +271,12 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                //.addEntity(rightBlue)
+                .addEntity(rightBlue)
                 .addEntity(leftBlue)
-                //.addEntity(middleBlue)
-                //.addEntity(rightRed)
+                .addEntity(middleBlue)
+                .addEntity(rightRed)
                 .addEntity(leftRed)
-               // .addEntity(middleRed)
+                .addEntity(middleRed)
                 .start();
     }
 }
