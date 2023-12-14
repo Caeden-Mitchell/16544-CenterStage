@@ -72,7 +72,7 @@ public class ColorDetection extends LinearOpMode{
          */
         //camera.openCameraDevice();
 
-        detector.setColor(ColorDetector.Color.BLUE);
+        detector.setColor(ColorDetector.Color.RED);
 
         waitForStart();
 

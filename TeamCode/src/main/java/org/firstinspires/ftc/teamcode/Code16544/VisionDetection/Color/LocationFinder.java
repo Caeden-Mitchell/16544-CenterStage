@@ -21,6 +21,7 @@ public class LocationFinder {
         cameraMonitorViewId = hardwareMap.appContext
                 .getResources().getIdentifier("cameraMonitorViewId",
                         "id", hardwareMap.appContext.getPackageName());
+
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "Webcam");
 
         camera = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
