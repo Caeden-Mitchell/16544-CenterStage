@@ -19,7 +19,7 @@ Expand the following tree elements:
 ### Naming of Samples
 
 To gain a better understanding of how the samples are organized, and how to interpret the
-naming system, it will help to understand the conventions that were used during their creation.
+naming systemType, it will help to understand the conventions that were used during their creation.
 
 These conventions are described (in detail) in the sample_conventions.md file in this folder.
 
@@ -113,7 +113,7 @@ To clone TeamCode, do the following:
 
 Note: Some names start with "Team" and others start with "team".  This is intentional.
 
-1)  Using your operating system file management tools, copy the whole "TeamCode"
+1)  Using your operating systemType file management tools, copy the whole "TeamCode"
     folder to a sibling folder with a corresponding new name, eg: "Team0417".
 
 2)  In the new Team0417 folder, delete the TeamCode.iml file.

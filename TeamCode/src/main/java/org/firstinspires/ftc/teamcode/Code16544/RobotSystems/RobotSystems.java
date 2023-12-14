@@ -7,6 +7,7 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gam
 
 import androidx.annotation.NonNull;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.arcrobotics.ftclib.controller.PIDController;
@@ -15,6 +16,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
+@Config
+
 public class RobotSystems {
     public DcMotorEx pixelLift; // lifts the pixels using linear slide
     public DcMotorEx robotLift; // lifts the robot in endgame
@@ -22,6 +25,8 @@ public class RobotSystems {
 
     public Servo rotateArm, rotateHopper, droneLauncher;
     public DistanceSensor distance;
+
+    public static double armNum = 0.045, hopperNum = 0;
 
     private final double pixP = 0.008, pixI = 0.0002, pixD = 0.0001; // pid coefficients for pixel lift
 
@@ -77,6 +82,11 @@ public class RobotSystems {
         sleep(time);
     }
 
+    public void holdIntake () {
+        rotateArm.setPosition(0);
+        rotateHopper.setPosition(0);
+    }
+
     public void deadState(){
         setServos(0.012, 0.1, 1000, false);
     }
@@ -127,9 +137,5 @@ public class RobotSystems {
         intakeMotor.setPower(0.9);
         sleep(250);
         intakeMotor.setPower(0);
-
     }
-
-
-
 }
