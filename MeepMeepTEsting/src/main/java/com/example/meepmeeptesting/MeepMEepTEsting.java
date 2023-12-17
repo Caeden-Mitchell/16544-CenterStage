@@ -226,10 +226,9 @@ public class MeepMEepTEsting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 10.5)
                 .setDimensions(12.5,12.5)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d( 14,-64.0, Math.toRadians(0)))
-                                .strafeTo(new Vector2d(-45, -35))
-                                .turn(Math.toRadians(180))
-                                .strafeTo(new Vector2d(-38.5, -35))
+                        drive.trajectorySequenceBuilder(new Pose2d( 14,-64.0, Math.toRadians(180)))
+                                .strafeTo(new Vector2d(14, -35))
+                                .strafeTo(new Vector2d(34.5, -35))
 
                                 .setTangent(Math.toRadians(0))
                                 .splineToConstantHeading(new Vector2d(49, -27.5), Math.toRadians(0))
@@ -247,7 +246,7 @@ public class MeepMEepTEsting {
                                 .waitSeconds(0.75)
 
                                 .setTangent(Math.toRadians(0))
-                                .splineToSplineHeading(new Pose2d(49 , -42.5, Math.toRadians(180)), Math.toRadians(0))
+                                .splineToConstantHeading(new Vector2d(49 , -42.5), Math.toRadians(0))
                                 .build()
                 );
 
