@@ -9,29 +9,31 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class RobotActions implements Action {
     RobotSystems robot;
+
     private int pixelHeight = 0;
 
-    public enum SystemType {
+    public enum System {
         PIXEL_LIFT,
         INTAKE_MOTOR,
         SERVO,
+        PARK
     }
 
-    public RobotActions(HardwareMap hardwareMap, SystemType systemType)  {
+    public RobotActions(HardwareMap hardwareMap, System system)  {
         robot = new RobotSystems(hardwareMap);
-        this.systemType = systemType;
+        this.system = system;
     }
 
-    public RobotActions(HardwareMap hardwareMap, SystemType systemType, int pixelHeight) {
+    public RobotActions(HardwareMap hardwareMap, System system, int pixelHeight) {
         robot = new RobotSystems(hardwareMap);
-        this.systemType = systemType;
+        this.system = system;
         this.pixelHeight = pixelHeight;
     }
 
-    SystemType systemType;
+    System system;
     @Override
     public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-        switch (systemType) {
+        switch (system) {
             case PIXEL_LIFT:
                 ElapsedTime elapsedTime = new ElapsedTime();
                 while (elapsedTime.seconds() < 1.5) {
@@ -40,6 +42,7 @@ public class RobotActions implements Action {
                 return false;
             case INTAKE_MOTOR:
                 ElapsedTime elapsedTime1 = new ElapsedTime();
+
                 while (elapsedTime1.seconds() < .75) {
                     robot.ejectPixelFromIntake();
                 }
@@ -55,4 +58,9 @@ public class RobotActions implements Action {
         }
         return false;
     }
+
+
+
+
+
 }

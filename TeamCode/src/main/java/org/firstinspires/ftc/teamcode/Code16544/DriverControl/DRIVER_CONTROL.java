@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 public class DRIVER_CONTROL extends LinearOpMode {
     MecanumDrive drive;
     RobotSystems robot;
-    public static double intakePower = 0.93;
+    public static double intakePower = 1;
 
     ElapsedTime elapsedTime = new ElapsedTime();
 
@@ -83,7 +83,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         double speed = 0.15;
         switch (height) {
             case MID:
-                while (robot.distance.getDistance(DistanceUnit.CM) > 4.05) {
+                while (robot.distance.getDistance(DistanceUnit.CM) > 4.5) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -93,7 +93,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (robot.distance.getDistance(DistanceUnit.CM) < 4.05) {
+                while (robot.distance.getDistance(DistanceUnit.CM) < 4.5) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
