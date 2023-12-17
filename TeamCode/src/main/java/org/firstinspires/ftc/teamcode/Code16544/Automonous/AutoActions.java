@@ -90,18 +90,18 @@ public class AutoActions {
 
         leftBlueRightDrop = drive.actionBuilder(new Pose2d(15, 36, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(49, 27.5), Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(50.65, 27.5), Math.toRadians(0))
                 .build();
 
         leftBlueLeftDrop = drive.actionBuilder(new Pose2d(34.9, 33, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(49 , 42), Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(50.65 , 42), Math.toRadians(0))
                 .build();
 
         leftBlueMidDrop = drive.actionBuilder(new Pose2d(16, 9, Math.toRadians(91)))
                 .turnTo(Math.toRadians(180))
                 .setTangent(Math.toRadians(45))
-                .splineToConstantHeading(new Vector2d(49, 35.2), Math.toRadians(45))
+                .splineToConstantHeading(new Vector2d(50.65, 35.2), Math.toRadians(45))
                 .build();
 
 
@@ -156,18 +156,18 @@ public class AutoActions {
         
         rightRedLeftDrop = drive.actionBuilder(new Pose2d(15, -36, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(49  , -27.5), Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(50.65  , -27.5), Math.toRadians(0))
                 .build();
         
         rightRedRightDrop = drive.actionBuilder(new Pose2d(34.75, -33, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(49 , -42), Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(50.65 , -42), Math.toRadians(0))
                 .build();
         
         rightRedMidDrop = drive.actionBuilder(new Pose2d(16, -9, Math.toRadians(269)))
                 .turnTo(Math.toRadians(180))
                 .setTangent(Math.toRadians(-45))
-                .splineToConstantHeading(new Vector2d(49, -35.25), Math.toRadians(-45))
+                .splineToConstantHeading(new Vector2d(50.25, -35.25), Math.toRadians(-45))
                 .build();
         
 
