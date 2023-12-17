@@ -134,9 +134,6 @@ public final class MecanumDrive {
             rightBack = new OverflowEncoder(new RawEncoder(MecanumDrive.this.rightBack));
             rightFront = new OverflowEncoder(new RawEncoder(MecanumDrive.this.rightFront));
 
-            // TODO: reverse encoders if needed
-            // leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
-
             lastLeftFrontPos = leftFront.getPositionAndVelocity().position;
             lastLeftBackPos = leftBack.getPositionAndVelocity().position;
             lastRightBackPos = rightBack.getPositionAndVelocity().position;
@@ -151,9 +148,6 @@ public final class MecanumDrive {
             PositionVelocityPair leftBackPosVel = leftBack.getPositionAndVelocity();
             PositionVelocityPair rightBackPosVel = rightBack.getPositionAndVelocity();
             PositionVelocityPair rightFrontPosVel = rightFront.getPositionAndVelocity();
-
-            FlightRecorder.write("MECANUM_ENCODERS", new MecanumEncodersMessage(
-                    leftFrontPosVel, leftBackPosVel, rightBackPosVel, rightFrontPosVel));
 
             Rotation2d heading = Rotation2d.exp(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
             double headingDelta = heading.minus(lastHeading);
@@ -200,8 +194,6 @@ public final class MecanumDrive {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }*/
 
-        // TODO: make sure your config has motors with these names (or change them)
-        //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
@@ -216,8 +208,6 @@ public final class MecanumDrive {
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
-        //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         imu = hardwareMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 PARAMS.logoFacingDirection, PARAMS.usbFacingDirection));
@@ -396,6 +386,7 @@ public final class MecanumDrive {
 
             MecanumKinematics.WheelVelocities<Time> wheelVels = kinematics.inverse(command);
             double voltage = voltageSensor.getVoltage();
+
             final MotorFeedforward feedforward = new MotorFeedforward(PARAMS.kS,
                     PARAMS.kV / PARAMS.inPerTick, PARAMS.kA / PARAMS.inPerTick);
             double leftFrontPower = feedforward.compute(wheelVels.leftFront) / voltage;
@@ -410,6 +401,8 @@ public final class MecanumDrive {
             leftBack.setPower(feedforward.compute(wheelVels.leftBack) / voltage);
             rightBack.setPower(feedforward.compute(wheelVels.rightBack) / voltage);
             rightFront.setPower(feedforward.compute(wheelVels.rightFront) / voltage);
+
+            FlightRecorder.write("TARGET_POSE", new PoseMessage(txWorldTarget.value()));
 
             Canvas c = p.fieldOverlay();
             drawPoseHistory(c);
