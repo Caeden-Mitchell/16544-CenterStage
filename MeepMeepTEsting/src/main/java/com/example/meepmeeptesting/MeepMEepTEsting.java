@@ -22,6 +22,12 @@ public class MeepMEepTEsting {
                                 .strafeTo(new Vector2d(-32, 34.5))
                                 .build());
 
+        meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
+                .setDarkMode(true)
+                .setBackgroundAlpha(0.95f)
+                .addEntity(rightBlue)
+                .start();
+
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
