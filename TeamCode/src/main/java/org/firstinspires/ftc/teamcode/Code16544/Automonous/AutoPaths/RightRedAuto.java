@@ -49,44 +49,36 @@ public class RightRedAuto extends LinearOpMode {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedRightSpike
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.rightRedRightDrop
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.PIXEL_LIFT, target)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.PIXEL_LIFT, 0)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight
                 ));
                 break;
             case 3://left
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedLeftSpike
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.PIXEL_LIFT, 350)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.PIXEL_LIFT, 0)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight
                 ));
                 break;
             case 2://middle
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedMidSpike
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.rightRedMidDrop
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.PIXEL_LIFT, target)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.PIXEL_LIFT, 0)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight
                 ));
                 break;
             default:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedLeftSpike
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 2500)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.PIXEL_LIFT, 0)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING LEFT TRAJ");

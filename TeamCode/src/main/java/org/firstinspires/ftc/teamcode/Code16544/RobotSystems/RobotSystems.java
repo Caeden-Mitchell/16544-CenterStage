@@ -88,7 +88,7 @@ public class RobotSystems {
     }
 
     public void deadState(){
-        setServos(0.012, 0.1, 1000, false);
+        setServos(0.012, 0.1, 500, false);
     }
 
     public void servoToZero(){
@@ -100,7 +100,7 @@ public class RobotSystems {
     }
 
     public void autoDrop(){
-        setServos(0.185, 0.87, 2500, true);
+        setServos(0.185, 0.87, 1750, true);
     }
 
     public void DCDrop(){

@@ -49,7 +49,7 @@ public class RightBlueAuto extends LinearOpMode {
             case 1:
         Actions.runBlocking(new SequentialAction(
                 autoActions.rightBlueRightSpike
-                ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 //,autoActions.rightBlueRightDrop
                 //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                 //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
@@ -58,7 +58,7 @@ public class RightBlueAuto extends LinearOpMode {
             case 2:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueMidSpike
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         //,autoActions.rightBlueMidDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                          //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
@@ -67,7 +67,7 @@ public class RightBlueAuto extends LinearOpMode {
             case 3:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueLeftSpike
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         //,autoActions.rightBlueLeftDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
@@ -76,7 +76,7 @@ public class RightBlueAuto extends LinearOpMode {
             default:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueRightSpike
-                        ,new RobotActions(hardwareMap, RobotActions.SystemType.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         //,autoActions.rightBlueRightDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
