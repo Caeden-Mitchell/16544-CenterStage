@@ -20,6 +20,7 @@ public class RightBlueAuto extends LinearOpMode {
     public static double startingX = -33;
 
     public static int target = 200;
+    public static int numer = 2;
 
     LocationFinder locationFinder;
     RobotSystems robot;
@@ -45,7 +46,7 @@ public class RightBlueAuto extends LinearOpMode {
 
         if(isStopRequested()) return;
 
-        switch (locationFinder.trajType) {
+        switch (numer) {
             case 1:
         Actions.runBlocking(new SequentialAction(
                 autoActions.rightBlueRightSpike
@@ -59,7 +60,7 @@ public class RightBlueAuto extends LinearOpMode {
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        //,autoActions.rightBlueMidDrop
+                        ,autoActions.rightBlueMidDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                          //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
@@ -68,7 +69,7 @@ public class RightBlueAuto extends LinearOpMode {
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        //,autoActions.rightBlueLeftDrop
+                        ,autoActions.rightBlueLeftDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
@@ -77,7 +78,7 @@ public class RightBlueAuto extends LinearOpMode {
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                        //,autoActions.rightBlueRightDrop
+                        ,autoActions.rightBlueRightDrop
                         //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
                         //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
 

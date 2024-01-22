@@ -65,9 +65,9 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(midBlue)
+                //.addEntity(midBlue)
                 .addEntity(leftBlue)
-                .addEntity(rightBlue)
+                //.addEntity(rightBlue)
                 .start();
 
     }

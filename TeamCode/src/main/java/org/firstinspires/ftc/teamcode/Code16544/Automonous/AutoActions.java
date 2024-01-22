@@ -24,6 +24,12 @@ public class AutoActions {
     public AutoActions(HardwareMap hardwareMap, Pose2d startPose) {
         drive = new MecanumDrive(hardwareMap, startPose);
 
+        initPark();
+        initBlueActions(startPose);
+        initRedActions(startPose);
+    }
+
+    private void initPark() {
         parkRight = drive.actionBuilder(new Pose2d(50.25, -35.25, Math.toRadians(180)))
                 .strafeTo(new Vector2d(50.25, -64))
                 .build();
@@ -31,7 +37,10 @@ public class AutoActions {
         parkLeft = drive.actionBuilder(new Pose2d(50.65, 35.2, Math.toRadians(180)))
                 .strafeTo(new Vector2d(50.65, 64))
                 .build();
+    }
 
+    private void initBlueActions( Pose2d startPose) {
+        // right
         rightBlueRightSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(-32, 34.5))
                 .build();
@@ -45,11 +54,11 @@ public class AutoActions {
                 .strafeToSplineHeading(new Vector2d(-36, 9), Math.toRadians(90))
                 .build();
 
-         rightBlueMidDrop = drive.actionBuilder(new Pose2d(-36, 9, Math.toRadians(90)))
-                 .setTangent(Math.toRadians(180))
-                 .splineToSplineHeading(new Pose2d(-59.68, 11.37, Math.toRadians(180)), Math.toRadians(180.00))
-                 .setTangent(Math.toRadians(0))
-                 .splineToConstantHeading(new Vector2d(49, 35), Math.toRadians(60))
+        rightBlueMidDrop = drive.actionBuilder(new Pose2d(-36, 9, Math.toRadians(90)))
+                .setTangent(Math.toRadians(180))
+                .splineToSplineHeading(new Pose2d(-59.68, 11.37, Math.toRadians(180)), Math.toRadians(180.00))
+                .setTangent(Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(49, 35), Math.toRadians(60))
                 .build();
 
         rightBlueLeftDrop = drive.actionBuilder(new Pose2d(-38.5, 35, Math.toRadians(0)))
@@ -67,6 +76,7 @@ public class AutoActions {
                 .splineToConstantHeading(new Vector2d(49, 27.5), Math.toRadians(45))
                 .build();
 
+        // left
         leftBlueRightSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(15, 36))
                 .build();
@@ -96,9 +106,10 @@ public class AutoActions {
                 .setTangent(Math.toRadians(45))
                 .splineToConstantHeading(new Vector2d(49.5, 35.2), Math.toRadians(45))
                 .build();
+    }
 
-
-
+    private void initRedActions( Pose2d startPose) {
+        // left
         leftRedLeftSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(-32, -34.5))
                 .build();
@@ -133,40 +144,36 @@ public class AutoActions {
                 .splineToConstantHeading(new Vector2d(49.5, -35), Math.toRadians(-60))
                 .build();
 
+        // right
+
         rightRedLeftSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(15, -36))
                 .build();
-        
+
         rightRedRightSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(14, -33))
                 .strafeTo(new Vector2d(34.75, -33))
                 .build();
-        
+
         rightRedMidSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(16, -9))
                 .turnTo(Math.toRadians(269))
                 .build();
-        
+
         rightRedLeftDrop = drive.actionBuilder(new Pose2d(15, -36, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49.7, -27.5), Math.toRadians(0))
                 .build();
-        
+
         rightRedRightDrop = drive.actionBuilder(new Pose2d(34.75, -33, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49.7 , -42), Math.toRadians(0))
                 .build();
-        
+
         rightRedMidDrop = drive.actionBuilder(new Pose2d(16, -9, Math.toRadians(269)))
                 .turnTo(Math.toRadians(180))
                 .setTangent(Math.toRadians(-45))
                 .splineToConstantHeading(new Vector2d(49.7, -35.25), Math.toRadians(-45))
                 .build();
-        
-
-
-
-
-
     }
 }

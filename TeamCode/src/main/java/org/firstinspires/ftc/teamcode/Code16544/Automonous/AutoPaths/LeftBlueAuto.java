@@ -51,9 +51,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 break;
@@ -62,9 +60,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.leftBlueLeftDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 break;
@@ -73,9 +69,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.leftBlueMidDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, target)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 break;
@@ -84,9 +78,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, 2500)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new RobotActions(hardwareMap, RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
