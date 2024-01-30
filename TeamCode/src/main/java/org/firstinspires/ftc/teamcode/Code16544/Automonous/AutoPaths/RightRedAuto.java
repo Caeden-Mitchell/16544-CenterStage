@@ -16,8 +16,8 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class RightRedAuto extends LinearOpMode {
-    public static double startingY = -63.5;
-    public static double startingX = 14;
+    public static double startingY = -61.25;
+    public static double startingX = 17.25;
 
     public static int target = 200;
 
@@ -33,7 +33,7 @@ public class RightRedAuto extends LinearOpMode {
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose);
+        autoActions = new AutoActions(hardwareMap, startPose, new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR));
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.holdIntake();
@@ -49,7 +49,7 @@ public class RightRedAuto extends LinearOpMode {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedRightSpike
-                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedRightDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight
@@ -58,7 +58,7 @@ public class RightRedAuto extends LinearOpMode {
             case 3://left
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedLeftSpike
-                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight
@@ -67,7 +67,7 @@ public class RightRedAuto extends LinearOpMode {
             case 2://middle
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedMidSpike
-                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedMidDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight
@@ -76,7 +76,7 @@ public class RightRedAuto extends LinearOpMode {
             default:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedLeftSpike
-                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,autoActions.parkRight

@@ -1,7 +1,10 @@
 package com.example.meepmeeptesting;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.NullAction;
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SleepAction;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.core.colorscheme.ColorScheme;
 import com.noahbres.meepmeep.core.colorscheme.scheme.ColorSchemeBlueLight;
@@ -14,60 +17,55 @@ public class MeepMEepTEsting {
     public static MeepMeep meepMeep = new MeepMeep(800);
     public static void main(String[] args) {
 
+        Action a = null;
+
         RoadRunnerBotEntity rightBlue = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(12.5,12.5)
-                .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d( -33,64.0, Math.toRadians(180)))
-                                .strafeTo(new Vector2d(-32, 34.5))
-
-                                .strafeTo(new Vector2d(-36, 9.25))
-                                .setTangent(Math.toRadians(180))
-                                .splineToConstantHeading(new Vector2d(-59.68, 11.37), Math.toRadians(180.00))
-                                .setTangent(Math.toRadians(0))
-                                .splineToConstantHeading(new Vector2d(49, 27.5), Math.toRadians(45))
-                                .build());
+                .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
+                .setDimensions(17.5,12.5)
+                .build();
 
         RoadRunnerBotEntity leftBlue = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(12.5,12.5)
-                .followTrajectorySequence(drive ->
-                                drive.trajectorySequenceBuilder(new Pose2d( -33,64.0, Math.toRadians(180)))
-                                        .lineToSplineHeading(new Pose2d(-39, 35, Math.toRadians(0)))
-                                        //.turn(Math.toRadians(180))
-                                        .strafeTo(new Vector2d(-38.5, 35))
-
-                                        //.lineToSplineHeading(new Pose2d(-36, 9.25, Math.toRadians(180)))
-                                        .setTangent(Math.toRadians(270))
-                                        .splineToSplineHeading(new Pose2d(-59.68, 11.37, Math.toRadians(-179.99)), Math.toRadians(180.00))
-                                        .setTangent(Math.toRadians(0))
-                                        .splineToConstantHeading(new Vector2d(49 , 42.5), Math.toRadians(90))
-
-                                        .build());
+                .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
+                .setDimensions(17.5,12.5)
+                .build();
 
         RoadRunnerBotEntity midBlue = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(12.5,12.5)
-                .followTrajectorySequence(drive ->
-                                drive.trajectorySequenceBuilder(new Pose2d( -33,64.0, Math.toRadians(180)))
-                                        .lineToSplineHeading(new Pose2d(-36, 9, Math.toRadians(90)))
-                                        //.turn(Math.toRadians(-90))
+                .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
 
-                                        .setTangent(Math.toRadians(180))
-                                        .splineToSplineHeading(new Pose2d(-59.68, 11.37, Math.toRadians(180)), Math.toRadians(180.00))
-                                        .setTangent(Math.toRadians(0))
-                                        .splineToConstantHeading(new Vector2d(49, 35), Math.toRadians(60))
-                                        .build());
+                .setDimensions(17.5,12.5)
+                .build();
+
+
+        rightBlue.runAction(rightBlue.getDrive().actionBuilder(new Pose2d( 17.25,-61.25, Math.toRadians(180)))
+                .strafeTo(new Vector2d(7.75, -30))
+                .setTangent(Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(49.5, -27.5), Math.toRadians(0))
+                .build());
+
+
+        leftBlue.runAction(leftBlue.getDrive().actionBuilder(new Pose2d( 17.25,-61.25, Math.toRadians(180)))
+                //.strafeTo(new Vector2d(14, 33))
+                .strafeTo(new Vector2d(30.75, -32))
+                .setTangent(Math.toRadians(300))
+                .splineToConstantHeading(new Vector2d(49.5 , -42), Math.toRadians(0))
+                .build());
+
+        midBlue.runAction(midBlue.getDrive().actionBuilder(new Pose2d( 17.25,-61.25, Math.toRadians(180)))
+                .strafeToSplineHeading(new Vector2d(14, -16.75), Math.toRadians(270))
+                .setTangent(Math.toRadians(30))
+                .splineToSplineHeading(new Pose2d(49.5, -35.2, Math.toRadians(180)), Math.toRadians(315))
+
+                .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
                 //.addEntity(midBlue)
-                .addEntity(leftBlue)
                 //.addEntity(rightBlue)
+                .addEntity(leftBlue)
                 .start();
 
     }

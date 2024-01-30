@@ -16,8 +16,8 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class RightBlueAuto extends LinearOpMode {
-    public static double startingY = 64.0;
-    public static double startingX = -33;
+    public static double startingY = 61.25;
+    public static double startingX = -41;
 
     public static int target = 200;
     public static int numer = 2;
@@ -34,7 +34,7 @@ public class RightBlueAuto extends LinearOpMode {
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose);
+        autoActions = new AutoActions(hardwareMap, startPose, new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR));
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.holdIntake();
@@ -50,39 +50,37 @@ public class RightBlueAuto extends LinearOpMode {
             case 1:
         Actions.runBlocking(new SequentialAction(
                 autoActions.rightBlueRightSpike
-                ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
-                //,autoActions.rightBlueRightDrop
-                //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
+                ,autoActions.rightBlueRightDrop
+                ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
         ));
                 break;
             case 2:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueMidSpike
-                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueMidDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                         //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             case 3:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueLeftSpike
-                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueLeftDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                 ));
                 break;
             default:
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightBlueRightSpike
-                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+                        ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueRightDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, target)
-                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
 
                 ));
+                telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
+                telemetry.update();
                 break;
         }
 

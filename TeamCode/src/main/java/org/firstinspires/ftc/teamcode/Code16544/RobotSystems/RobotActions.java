@@ -14,6 +14,7 @@ public class RobotActions implements Action {
 
     public enum System {
         PIXEL_LIFT,
+        REVERSE_INTAKE_MOTOR,
         INTAKE_MOTOR,
         SERVO,
         PARK
@@ -40,11 +41,18 @@ public class RobotActions implements Action {
                     robot.setPixelLiftHeight(pixelHeight);
                 }
                 return false;
-            case INTAKE_MOTOR:
+            case REVERSE_INTAKE_MOTOR:
                 ElapsedTime elapsedTime1 = new ElapsedTime();
 
                 while (elapsedTime1.seconds() < .5) {
                     robot.ejectPixelFromIntake();
+                }
+                return false;
+            case INTAKE_MOTOR:
+                ElapsedTime elapsedTime2 = new ElapsedTime();
+
+                while (elapsedTime2.seconds() < .5) {
+                    robot.runIntake();
                 }
                 return false;
             case SERVO:
@@ -58,9 +66,4 @@ public class RobotActions implements Action {
         }
         return false;
     }
-
-
-
-
-
 }

@@ -138,4 +138,10 @@ public class RobotSystems {
         sleep(250);
         intakeMotor.setPower(0);
     }
+
+    public void runIntake() {
+        intakeMotor.setPower(-0.9);
+        sleep(250);
+        intakeMotor.setPower(0);
+    }
 }
