@@ -36,7 +36,7 @@ public class PixelLiftTest extends LinearOpMode {
             } else if (gamepad1.a) {
                 robot.setPixelLiftHeight(0);
             } else {
-                robot.pixelLift.setPower(0);
+                robot.linearSlideLeft.setPower(0);
             }
             if(gamepad1.left_bumper) {
                 robot.setPixelLiftHeight(target);
@@ -52,7 +52,7 @@ public class PixelLiftTest extends LinearOpMode {
                 servo.setPosition(0);
                 sleep(750);
             }
-            telemetry.addData("pos ", robot.pixelLift.getCurrentPosition());
+            telemetry.addData("pos ", robot.linearSlideLeft.getCurrentPosition());
             telemetry.update();
         }
     }

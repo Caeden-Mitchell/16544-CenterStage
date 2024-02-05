@@ -7,7 +7,6 @@ import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -40,11 +39,11 @@ public class DRIVER_CONTROL extends LinearOpMode {
         robot = new RobotSystems(hardwareMap);
         height = Height.DEAD_STATE;
 
-        initialPixelPos = robot.pixelLift.getCurrentPosition();
+        initialPixelPos = robot.linearSlideLeft.getCurrentPosition();
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
+        telemetry.addData("Position", robot.linearSlideLeft.getCurrentPosition());
         telemetry.update();
 
         robot.deadState();

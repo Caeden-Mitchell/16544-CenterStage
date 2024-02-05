@@ -22,7 +22,7 @@ public class PIDF_LinearSlide extends LinearOpMode {
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         telemetry.addData("target", target);
-        telemetry.addData("pixel pos", robot.pixelLift.getCurrentPosition());
+        telemetry.addData("pixel pos", robot.linearSlideLeft.getCurrentPosition());
         telemetry.update();
 
         waitForStart();
@@ -50,7 +50,7 @@ public class PIDF_LinearSlide extends LinearOpMode {
 
         robot.deadState();
 
-        telemetry.addData("position", robot.pixelLift.getCurrentPosition());
+        telemetry.addData("position", robot.linearSlideLeft.getCurrentPosition());
         telemetry.addData("Target ", target);
         telemetry.update();
     }
