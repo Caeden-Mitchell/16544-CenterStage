@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class RightBlueAuto extends LinearOpMode {
-    public static double startingY = 61.25;
+    public static double startingY = 64;
     public static double startingX = -41;
 
     public static int target = 200;

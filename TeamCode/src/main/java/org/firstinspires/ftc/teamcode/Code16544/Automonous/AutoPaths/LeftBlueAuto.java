@@ -16,10 +16,12 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class LeftBlueAuto extends LinearOpMode {
-    public static double startingY = 61.25;
+    public static double startingY = 64;
     public static double startingX = 17.25;
 
     public static int target = 0;
+
+    public static int numer = 1;
 
     LocationFinder locationFinder;
     RobotSystems robot;
@@ -45,7 +47,7 @@ public class LeftBlueAuto extends LinearOpMode {
 
         if(isStopRequested()) return;
 
-        switch (locationFinder.trajType) {
+        switch (numer) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftBlueRightSpike
