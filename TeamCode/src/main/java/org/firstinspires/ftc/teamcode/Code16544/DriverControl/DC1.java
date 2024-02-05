@@ -8,7 +8,6 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
 import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 
@@ -39,7 +38,7 @@ public class DC1 extends LinearOpMode {
         robot = new RobotSystems(hardwareMap);
         height = Height.DEAD_STATE;
 
-        initialPixelPos = robot.pixelLift.getCurrentPosition();
+        initialPixelPos = robot.linearSlideLeft.getCurrentPosition();
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -48,7 +47,7 @@ public class DC1 extends LinearOpMode {
         double rx = 0.0; //right stick x
         double denominator = 0.0;
 
-        telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
+        telemetry.addData("Position", robot.linearSlideLeft.getCurrentPosition());
         telemetry.update();
 
         robot.deadState();
@@ -63,7 +62,7 @@ public class DC1 extends LinearOpMode {
             runGamepad2();
 
             telemetry.addData("intake power", robot.intakeMotor.getPower());
-            telemetry.addData("Position", robot.pixelLift.getCurrentPosition());
+            telemetry.addData("Position", robot.linearSlideLeft.getCurrentPosition());
             telemetry.update();
 
             /*if (gamepad1.left_bumper) {

@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
-import org.checkerframework.checker.propkey.qual.PropertyKeyBottom;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
 @Config
 @Autonomous
@@ -32,7 +31,7 @@ public class TouchLinSlideTest extends LinearOpMode {
 
         while (opModeIsActive()) {
             if (touch.isPressed()) {
-                target = robot.pixelLift.getCurrentPosition();
+                target = robot.linearSlideLeft.getCurrentPosition();
 
                 telemetry.addData("Touch Sensor", "Is Pressed");
             } else {
@@ -40,7 +39,7 @@ public class TouchLinSlideTest extends LinearOpMode {
             }
 
             robot.setPixelLiftHeight(target);
-            telemetry.addData("pos", robot.pixelLift.getCurrentPosition());
+            telemetry.addData("pos", robot.linearSlideLeft.getCurrentPosition());
             telemetry.update();
 
         }

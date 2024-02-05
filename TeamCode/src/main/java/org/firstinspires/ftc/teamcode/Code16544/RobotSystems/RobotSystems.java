@@ -2,25 +2,15 @@ package org.firstinspires.ftc.teamcode.Code16544.RobotSystems;
 
 import static android.os.SystemClock.sleep;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
-
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
-import com.acmerobotics.roadrunner.Action;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
 @Config
 
 public class RobotSystems {
-    public DcMotorEx pixelLift; // lifts the pixels using linear slide
-    public DcMotorEx robotLift; // lifts the robot in endgame
+    public DcMotorEx linearSlideLeft, linearSlideRight; // lifts the pixels using linear slide
     public DcMotorEx intakeMotor; // intake motor
 
     public Servo rotateArm, rotateHopper, droneLauncher;
@@ -39,8 +29,9 @@ public class RobotSystems {
         pixPIDController = new PIDController(pixP, pixI, pixD);
         robPIDController = new PIDController(robP, robI, robD);
 
-        pixelLift = hardwareMap.get(DcMotorEx.class, "pixelLift");
-        robotLift = hardwareMap.get(DcMotorEx.class, "robotLift");
+        linearSlideLeft = hardwareMap.get(DcMotorEx.class, "linearSlide1");
+        linearSlideRight = hardwareMap.get(DcMotorEx.class, "linearSlide2");
+
         intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
 
         distance = hardwareMap.get(DistanceSensor.class, "distance");
@@ -49,11 +40,10 @@ public class RobotSystems {
         rotateHopper = hardwareMap.get(Servo.class, "rotateHopper");
         droneLauncher = hardwareMap.get(Servo.class, "droneLauncher");
 
-        pixelLift.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        robotLift.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        intakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        linearSlideLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        linearSlideRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-        robotLift.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        intakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         rotateArm.setDirection(Servo.Direction.REVERSE);
@@ -61,15 +51,14 @@ public class RobotSystems {
 
     public void setPixelLiftHeight(int target) {
         pixPIDController.setPID(pixP, pixI, pixD);
-        double power = pixPIDController.calculate(pixelLift.getCurrentPosition(), target);
-        pixelLift.setPower(power);
+        double power1 = pixPIDController.calculate(linearSlideLeft.getCurrentPosition(), target);
+        double power2 = -pixPIDController.calculate(linearSlideRight.getCurrentPosition(), target);
+
+        linearSlideLeft.setPower(power1);
+        linearSlideLeft.setPower(power2);
     }
 
-    public void liftRobot(int target) {
-        robPIDController.setPID(pixP, pixI, pixD);
-        double power = robPIDController.calculate(robotLift.getCurrentPosition(), target);
-        robotLift.setPower(power);
-    }
+
 
     public void setServos(double pos1, double pos2, int time, boolean isDelayed){
         ElapsedTime elapsedTime = new ElapsedTime();

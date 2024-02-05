@@ -4,15 +4,12 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.Action;
-import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
@@ -45,7 +42,7 @@ public class AutoExample extends LinearOpMode {
                 .turnTo(Math.toRadians(183))
                 .build();
 
-        telemetry.addData("pixel pos", robot.pixelLift.getCurrentPosition());
+        telemetry.addData("pixel pos", robot.linearSlideLeft.getCurrentPosition());
         telemetry.update();
 
         waitForStart();
@@ -79,8 +76,8 @@ public class AutoExample extends LinearOpMode {
             robot.setPixelLiftHeight(0);
         }
 
-        telemetry.addData("power", robot.pixelLift.getPower());
-        telemetry.addData("pixel pos", robot.pixelLift.getCurrentPosition());
+        telemetry.addData("power", robot.linearSlideLeft.getPower());
+        telemetry.addData("pixel pos", robot.linearSlideLeft.getCurrentPosition());
         telemetry.update();
     }
 }
