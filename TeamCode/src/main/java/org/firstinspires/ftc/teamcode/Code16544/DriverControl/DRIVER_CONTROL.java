@@ -7,11 +7,7 @@ import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
@@ -23,9 +19,6 @@ public class DRIVER_CONTROL extends LinearOpMode {
     RobotSystems robot;
     public static double intakePower = 1;
 
-    ElapsedTime elapsedTime = new ElapsedTime();
-
-    boolean isUp = false;
 
     private enum Height {
         DEAD_STATE,
@@ -34,14 +27,10 @@ public class DRIVER_CONTROL extends LinearOpMode {
         HIGH
     }
 
-
     private enum TwoLift {
         ON,
         OFF
     }
-
-    private DcMotorEx linearSlideRight = null;
-    private DcMotorEx linearSlideLeft = null;
 
     Gamepad.RumbleEffect customRumbleEffect;
 
