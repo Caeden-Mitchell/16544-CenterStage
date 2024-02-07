@@ -18,6 +18,7 @@ public class PixelLiftTest extends LinearOpMode {
 
     private Servo servo, servo1;
 
+    private int initialPixelPos = 0;
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new RobotSystems(hardwareMap);
@@ -28,18 +29,20 @@ public class PixelLiftTest extends LinearOpMode {
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
+        initialPixelPos = robot.linearSlideLeft.getCurrentPosition();
         waitForStart();
 
         while (opModeIsActive()) {
             if (gamepad1.b) {
-                robot.setPixelLiftHeight(target);
+                robot.setLineLeftHeight(target + initialPixelPos);
             } else if (gamepad1.a) {
-                robot.setPixelLiftHeight(0);
+                robot.setLineLeftHeight(initialPixelPos);
             } else {
                 robot.linearSlideLeft.setPower(0);
+
             }
             if(gamepad1.left_bumper) {
-                robot.setPixelLiftHeight(target);
+                robot.setLineLeftHeight(target);
                 servo1.setPosition(0.16);
                 servo.setPosition(0);
                 sleep(1000);
@@ -52,7 +55,8 @@ public class PixelLiftTest extends LinearOpMode {
                 servo.setPosition(0);
                 sleep(750);
             }
-            telemetry.addData("pos ", robot.linearSlideLeft.getCurrentPosition());
+            telemetry.addData("pos left", robot.linearSlideLeft.getCurrentPosition());
+            //telemetry.addData("pos right", robot.linearSlideRight.getCurrentPosition());
             telemetry.update();
         }
     }

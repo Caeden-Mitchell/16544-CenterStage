@@ -7,6 +7,9 @@ import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -17,11 +20,12 @@ import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 public class DRIVER_CONTROL extends LinearOpMode {
     MecanumDrive drive;
     RobotSystems robot;
-    public static double intakePower = 0.93;
+    public static double intakePower = 1;
 
     ElapsedTime elapsedTime = new ElapsedTime();
 
-    private int initialPixelPos = 0;
+    private int initialLeftSlidePos = 0;
+    private int initialRightSlidePos = 0;
     boolean isUp = false;
 
     private enum Height {
@@ -31,19 +35,41 @@ public class DRIVER_CONTROL extends LinearOpMode {
         HIGH
     }
 
+    private enum TwoLift {
+        ON,
+        OFF
+    }
+
+    private DcMotorEx linearSlideRight = null;
+    private DcMotorEx linearSlideLeft = null;
+
     public Height height;
+    public TwoLift twoLift;
 
     @Override
     public void runOpMode() throws InterruptedException {
         drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
         robot = new RobotSystems(hardwareMap);
         height = Height.DEAD_STATE;
+        twoLift = TwoLift.OFF;
 
-        initialPixelPos = robot.linearSlideLeft.getCurrentPosition();
+        initialLeftSlidePos = robot.linearSlideLeft.getCurrentPosition();
+        initialRightSlidePos = robot.linearSlideRight.getCurrentPosition();
+
+        linearSlideRight = hardwareMap.get(DcMotorEx.class, "linearSlideRight");
+        linearSlideLeft = hardwareMap.get(DcMotorEx.class, "linearSlideLeft");
+        linearSlideRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlideRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        linearSlideLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        linearSlideLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlideRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        linearSlideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        telemetry.addData("Position", robot.linearSlideLeft.getCurrentPosition());
+        telemetry.addData("Position lrft", robot.linearSlideLeft.getCurrentPosition());
+        telemetry.addData("Position right", robot.linearSlideRight.getCurrentPosition());
         telemetry.update();
 
         robot.deadState();
@@ -55,6 +81,64 @@ public class DRIVER_CONTROL extends LinearOpMode {
         while (opModeIsActive()) {
             runGamepad1();
             runGamepad2();
+            if (gamepad2.dpad_down) {
+               // height = Height.DEAD_STATE;
+                linearSlideRight.setTargetPosition(0);
+                linearSlideRight.setPower(1);
+
+                // robot.DCLowerHopper();
+            }
+            if (gamepad2.dpad_left) {
+                //height = Height.LOW;
+                linearSlideRight.setTargetPosition(750);
+                linearSlideRight.setPower(1);
+
+                //robot.DCLiftHopper();
+            }
+            if (gamepad2.dpad_right) {
+                //height = Height.MID;
+                linearSlideRight.setTargetPosition(1500);
+                linearSlideRight.setPower(1);
+
+                //robot.DCLiftHopper();
+            }
+            if (gamepad2.dpad_up) {
+                //height = Height.HIGH;
+                linearSlideRight.setTargetPosition(3000);
+                linearSlideRight.setPower(1);
+
+                //robot.DCLiftHopper();
+            }
+
+
+            /*switch(height){
+                case DEAD_STATE:
+
+                    // robot.setLineLeftHeight(initialLeftSlidePos);
+                    //robot.setLinRightHeight(initialRightSlidePos);
+                    break;
+                case LOW:
+
+                    //robot.setLineLeftHeight(750 + initialLeftSlidePos);
+                    //robot.setLinRightHeight(750 + initialRightSlidePos);
+
+                    break;
+                case MID:
+
+                    //robot.setLineLeftHeight(1500 + initialLeftSlidePos);
+                    //robot.setLinRightHeight(1500+ initialRightSlidePos);
+
+                    break;
+                case HIGH:
+                    //robot.setLineLeftHeight(3000 + initialLeftSlidePos);
+                    //robot.setLinRightHeight(3000 + initialRightSlidePos);
+
+                    break;
+            }*/
+            telemetry.addData("Position lrft", robot.linearSlideLeft.getCurrentPosition());
+            telemetry.addData("Position right", robot.linearSlideRight.getCurrentPosition());
+            telemetry.addData("Lift Function", twoLift);
+            telemetry.update();
         }
 
     }
@@ -68,6 +152,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         setLift();
         launchPlane();
         dropPixel();
+        liftBot();
     }
 
     private void dropPixel() {
@@ -192,39 +277,33 @@ public class DRIVER_CONTROL extends LinearOpMode {
     }
 
     //uses dpad to control lift height
-    private void setLift(){
+    private void setLift() {
 
-        //linear slide
         if (gamepad2.dpad_down) {
-            height = Height.DEAD_STATE;
-            robot.DCLowerHopper();
+            // height = Height.DEAD_STATE;
+            linearSlideRight.setTargetPosition(0);
+            linearSlideRight.setPower(1);
+
+            // robot.DCLowerHopper();
         }
         if (gamepad2.dpad_left) {
-            height = Height.LOW;
-            robot.DCLiftHopper();
+            //height = Height.LOW;
+            linearSlideRight.setTargetPosition(750);
+            linearSlideRight.setPower(1);
+
+            //robot.DCLiftHopper();
         }
         if (gamepad2.dpad_right) {
-            height = Height.MID;
-            robot.DCLiftHopper();
+            //height = Height.MID;
+            linearSlideRight.setTargetPosition(1500);
+            linearSlideRight.setPower(1);
+
+            //robot.DCLiftHopper();
         }
         if (gamepad2.dpad_up) {
-            height = Height.HIGH;
-            robot.DCLiftHopper();
-        }
-
-        switch(height){
-            case DEAD_STATE:
-                robot.setPixelLiftHeight(initialPixelPos);
-                break;
-            case LOW:
-                robot.setPixelLiftHeight(750 + initialPixelPos);
-                break;
-            case MID:
-                robot.setPixelLiftHeight(1500 + initialPixelPos);
-                break;
-            case HIGH:
-                robot.setPixelLiftHeight(3000 + initialPixelPos);
-                break;
+            //height = Height.HIGH;
+            linearSlideRight.setTargetPosition(3000);
+            linearSlideRight.setPower(1);
         }
     }
 
@@ -242,4 +321,21 @@ public class DRIVER_CONTROL extends LinearOpMode {
         drive.rightBack.setPower(0);
     }
 
+    public void liftBot(){
+        if(gamepad2.y){
+            twoLift = TwoLift.ON;
+        } else if(gamepad2.x){
+            twoLift = TwoLift.OFF;
+        }
+        if(twoLift == TwoLift.ON){
+            gamepad2.rumble(100);
+            if(gamepad2.right_trigger>0.5){
+                robot.setLinearSlideLeft(3000);
+                robot.setLinearSlideRight(3000);
+            } else {
+                robot.setLinearSlideLeft(0);
+                robot.setLinearSlideRight(0);
+            }
+        }
+    }
 }

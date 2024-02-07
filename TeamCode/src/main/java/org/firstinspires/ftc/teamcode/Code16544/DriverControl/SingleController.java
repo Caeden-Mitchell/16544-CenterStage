@@ -105,16 +105,16 @@ public class SingleController extends LinearOpMode {
 
         switch(height){
             case DEAD_STATE:
-                robot.setPixelLiftHeight(initialPixelPos);
+                robot.setLineLeftHeight(initialPixelPos);
                 break;
             case LOW:
-                robot.setPixelLiftHeight(750 + initialPixelPos);
+                robot.setLineLeftHeight(750 + initialPixelPos);
                 break;
             case MID:
-                robot.setPixelLiftHeight(1500 + initialPixelPos);
+                robot.setLineLeftHeight(1500 + initialPixelPos);
                 break;
             case HIGH:
-                robot.setPixelLiftHeight(3000 + initialPixelPos);
+                robot.setLineLeftHeight(3000 + initialPixelPos);
                 break;
         }
     }

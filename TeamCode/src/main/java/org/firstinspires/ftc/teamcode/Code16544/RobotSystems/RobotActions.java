@@ -38,7 +38,7 @@ public class RobotActions implements Action {
             case PIXEL_LIFT:
                 ElapsedTime elapsedTime = new ElapsedTime();
                 while (elapsedTime.seconds() < 1.5) {
-                    robot.setPixelLiftHeight(pixelHeight);
+                    robot.setLineLeftHeight(pixelHeight);
                 }
                 return false;
             case REVERSE_INTAKE_MOTOR:

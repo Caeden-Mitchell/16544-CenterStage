@@ -56,7 +56,7 @@ public class AutoExample extends LinearOpMode {
         ElapsedTime delay = new ElapsedTime();
 
         while (delay.seconds() < 2) {
-            robot.setPixelLiftHeight(target);
+            robot.setLineLeftHeight(target);
         }
 
         robot.preDrop();
@@ -65,7 +65,7 @@ public class AutoExample extends LinearOpMode {
         delay.reset();
 
         while (delay.seconds() < 1) {
-            robot.setPixelLiftHeight(2500);
+            robot.setLineLeftHeight(2500);
         }
 
         robot.servoToZero();
@@ -73,7 +73,7 @@ public class AutoExample extends LinearOpMode {
 
         delay.reset();
         while (delay.seconds() < 1) {
-            robot.setPixelLiftHeight(0);
+            robot.setLineLeftHeight(0);
         }
 
         telemetry.addData("power", robot.linearSlideLeft.getPower());

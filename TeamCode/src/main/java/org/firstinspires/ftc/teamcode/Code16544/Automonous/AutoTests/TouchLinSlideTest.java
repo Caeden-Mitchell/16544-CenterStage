@@ -38,7 +38,7 @@ public class TouchLinSlideTest extends LinearOpMode {
                 target = intialTarget;
             }
 
-            robot.setPixelLiftHeight(target);
+            robot.setLineLeftHeight(target);
             telemetry.addData("pos", robot.linearSlideLeft.getCurrentPosition());
             telemetry.update();
 

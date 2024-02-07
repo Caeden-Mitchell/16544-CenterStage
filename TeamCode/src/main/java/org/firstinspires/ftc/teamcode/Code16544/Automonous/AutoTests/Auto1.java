@@ -1,13 +1,8 @@
 package org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoTests;
 
-import android.app.appsearch.SearchResult;
-
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
@@ -120,7 +115,7 @@ public class Auto1 extends LinearOpMode {
         ElapsedTime delay = new ElapsedTime();
 
         while (delay.seconds() < 2) {
-            robot.setPixelLiftHeight(target);
+            robot.setLineLeftHeight(target);
         }
 
         robot.preDrop();
@@ -129,7 +124,7 @@ public class Auto1 extends LinearOpMode {
         delay.reset();
 
         while (delay.seconds() < 1) {
-            robot.setPixelLiftHeight(2500);
+            robot.setLineLeftHeight(2500);
         }
 
         robot.servoToZero();
@@ -137,7 +132,7 @@ public class Auto1 extends LinearOpMode {
 
         delay.reset();
         while (delay.seconds() < 1) {
-            robot.setPixelLiftHeight(0);
+            robot.setLineLeftHeight(0);
         }
     }
 }

@@ -29,8 +29,8 @@ public class RobotSystems {
         pixPIDController = new PIDController(pixP, pixI, pixD);
         robPIDController = new PIDController(robP, robI, robD);
 
-        linearSlideLeft = hardwareMap.get(DcMotorEx.class, "linearSlide1");
-        linearSlideRight = hardwareMap.get(DcMotorEx.class, "linearSlide2");
+        linearSlideLeft = hardwareMap.get(DcMotorEx.class, "linearSlideLeft");
+        linearSlideRight = hardwareMap.get(DcMotorEx.class, "linearSlideRight");
 
         intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
 
@@ -43,22 +43,45 @@ public class RobotSystems {
         linearSlideLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         linearSlideRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
+        linearSlideLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        linearSlideRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        linearSlideLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlideRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        linearSlideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        linearSlideRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
         intakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         rotateArm.setDirection(Servo.Direction.REVERSE);
     }
 
-    public void setPixelLiftHeight(int target) {
+    public void setLineLeftHeight(int target) {
         pixPIDController.setPID(pixP, pixI, pixD);
         double power1 = pixPIDController.calculate(linearSlideLeft.getCurrentPosition(), target);
-        double power2 = -pixPIDController.calculate(linearSlideRight.getCurrentPosition(), target);
 
         linearSlideLeft.setPower(power1);
-        linearSlideLeft.setPower(power2);
     }
 
+    public void setLinRightHeight(int target) {
+        pixPIDController.setPID(pixP, pixI, pixD);
+        double power2 = pixPIDController.calculate(linearSlideRight.getCurrentPosition(), target);
 
+        linearSlideRight.setPower(power2);
+    }
+
+    public void setLinearSlideLeft(int targetPos){
+        linearSlideLeft.setTargetPosition(targetPos);
+        linearSlideLeft.setPower(1);
+    }
+
+    public void setLinearSlideRight(int targetPos){
+        linearSlideRight.setTargetPosition(targetPos);
+        linearSlideRight.setPower(1);
+    }
 
     public void setServos(double pos1, double pos2, int time, boolean isDelayed){
         ElapsedTime elapsedTime = new ElapsedTime();
