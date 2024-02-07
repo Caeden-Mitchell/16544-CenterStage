@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -35,6 +36,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         HIGH
     }
 
+
     private enum TwoLift {
         ON,
         OFF
@@ -42,6 +44,8 @@ public class DRIVER_CONTROL extends LinearOpMode {
 
     private DcMotorEx linearSlideRight = null;
     private DcMotorEx linearSlideLeft = null;
+
+    Gamepad.RumbleEffect customRumbleEffect;
 
     public Height height;
     public TwoLift twoLift;
@@ -52,6 +56,15 @@ public class DRIVER_CONTROL extends LinearOpMode {
         robot = new RobotSystems(hardwareMap);
         height = Height.DEAD_STATE;
         twoLift = TwoLift.OFF;
+
+        customRumbleEffect = new Gamepad.RumbleEffect.Builder()
+                .addStep(1.0,1.0,500) // rumble both for 10ms
+                //.addStep(0.0, 1.0, 500)  //  Rumble right motor 100% for 500 mSec
+                //.addStep(0.0, 0.0, 300)  //  Pause for 300 mSec
+                //.addStep(1.0, 0.0, 250)  //  Rumble left motor 100% for 250 mSec
+                //.addStep(0.0, 0.0, 250)  //  Pause for 250 mSec
+                //.addStep(1.0, 0.0, 250)  //  Rumble left motor 100% for 250 mSec
+                .build();
 
         initialLeftSlidePos = robot.linearSlideLeft.getCurrentPosition();
         initialRightSlidePos = robot.linearSlideRight.getCurrentPosition();
@@ -81,60 +94,6 @@ public class DRIVER_CONTROL extends LinearOpMode {
         while (opModeIsActive()) {
             runGamepad1();
             runGamepad2();
-            if (gamepad2.dpad_down) {
-               // height = Height.DEAD_STATE;
-                linearSlideRight.setTargetPosition(0);
-                linearSlideRight.setPower(1);
-
-                // robot.DCLowerHopper();
-            }
-            if (gamepad2.dpad_left) {
-                //height = Height.LOW;
-                linearSlideRight.setTargetPosition(750);
-                linearSlideRight.setPower(1);
-
-                //robot.DCLiftHopper();
-            }
-            if (gamepad2.dpad_right) {
-                //height = Height.MID;
-                linearSlideRight.setTargetPosition(1500);
-                linearSlideRight.setPower(1);
-
-                //robot.DCLiftHopper();
-            }
-            if (gamepad2.dpad_up) {
-                //height = Height.HIGH;
-                linearSlideRight.setTargetPosition(3000);
-                linearSlideRight.setPower(1);
-
-                //robot.DCLiftHopper();
-            }
-
-
-            /*switch(height){
-                case DEAD_STATE:
-
-                    // robot.setLineLeftHeight(initialLeftSlidePos);
-                    //robot.setLinRightHeight(initialRightSlidePos);
-                    break;
-                case LOW:
-
-                    //robot.setLineLeftHeight(750 + initialLeftSlidePos);
-                    //robot.setLinRightHeight(750 + initialRightSlidePos);
-
-                    break;
-                case MID:
-
-                    //robot.setLineLeftHeight(1500 + initialLeftSlidePos);
-                    //robot.setLinRightHeight(1500+ initialRightSlidePos);
-
-                    break;
-                case HIGH:
-                    //robot.setLineLeftHeight(3000 + initialLeftSlidePos);
-                    //robot.setLinRightHeight(3000 + initialRightSlidePos);
-
-                    break;
-            }*/
             telemetry.addData("Position lrft", robot.linearSlideLeft.getCurrentPosition());
             telemetry.addData("Position right", robot.linearSlideRight.getCurrentPosition());
             telemetry.addData("Lift Function", twoLift);
@@ -328,7 +287,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
             twoLift = TwoLift.OFF;
         }
         if(twoLift == TwoLift.ON){
-            gamepad2.rumble(100);
+            gamepad2.runRumbleEffect(customRumbleEffect);
             if(gamepad2.right_trigger>0.5){
                 robot.setLinearSlideLeft(3000);
                 robot.setLinearSlideRight(3000);
