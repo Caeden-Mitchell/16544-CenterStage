@@ -34,15 +34,15 @@ public class PixelLiftTest extends LinearOpMode {
 
         while (opModeIsActive()) {
             if (gamepad1.b) {
-                robot.setLineLeftHeight(target + initialPixelPos);
+                robot.setLinearSlideRight(target + initialPixelPos);
             } else if (gamepad1.a) {
-                robot.setLineLeftHeight(initialPixelPos);
+                robot.setLinearSlideRight(initialPixelPos);
             } else {
                 robot.linearSlideLeft.setPower(0);
 
             }
             if(gamepad1.left_bumper) {
-                robot.setLineLeftHeight(target);
+                robot.setLinearSlideRight(target);
                 servo1.setPosition(0.16);
                 servo.setPosition(0);
                 sleep(1000);

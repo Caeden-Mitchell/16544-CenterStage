@@ -16,19 +16,8 @@ public class RobotSystems {
     public Servo rotateArm, rotateHopper, droneLauncher;
     public DistanceSensor distance;
 
-    public static double armNum = 0.045, hopperNum = 0;
-
-    private final double pixP = 0.008, pixI = 0.0002, pixD = 0.0001; // pid coefficients for pixel lift
-
-    private final double robP = 0, robI = 0, robD = 0; // pid coefficients for robot lift
-
-    private final PIDController pixPIDController;
-    private final PIDController robPIDController;
 
     public RobotSystems(HardwareMap hardwareMap) {
-        pixPIDController = new PIDController(pixP, pixI, pixD);
-        robPIDController = new PIDController(robP, robI, robD);
-
         linearSlideLeft = hardwareMap.get(DcMotorEx.class, "linearSlideLeft");
         linearSlideRight = hardwareMap.get(DcMotorEx.class, "linearSlideRight");
 
@@ -59,19 +48,6 @@ public class RobotSystems {
         rotateArm.setDirection(Servo.Direction.REVERSE);
     }
 
-    public void setLineLeftHeight(int target) {
-        pixPIDController.setPID(pixP, pixI, pixD);
-        double power1 = pixPIDController.calculate(linearSlideLeft.getCurrentPosition(), target);
-
-        linearSlideLeft.setPower(power1);
-    }
-
-    public void setLinRightHeight(int target) {
-        pixPIDController.setPID(pixP, pixI, pixD);
-        double power2 = pixPIDController.calculate(linearSlideRight.getCurrentPosition(), target);
-
-        linearSlideRight.setPower(power2);
-    }
 
     public void setLinearSlideLeft(int targetPos){
         linearSlideLeft.setTargetPosition(targetPos);

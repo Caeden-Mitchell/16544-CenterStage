@@ -211,16 +211,16 @@ public class DC1 extends LinearOpMode {
         }
         switch(height){
             case DEAD_STATE:
-                robot.setLineLeftHeight(initialPixelPos);
+                robot.setLinearSlideRight(initialPixelPos);
                 break;
             case LOW:
-                robot.setLineLeftHeight(750 + initialPixelPos);
+                robot.setLinearSlideRight(750 + initialPixelPos);
                 break;
             case MID:
-                robot.setLineLeftHeight(1500 + initialPixelPos);
+                robot.setLinearSlideRight(1500 + initialPixelPos);
                 break;
             case HIGH:
-                robot.setLineLeftHeight(3000 + initialPixelPos);
+                robot.setLinearSlideRight(3000 + initialPixelPos);
                 break;
         }
 

@@ -34,7 +34,7 @@ public class PIDF_LinearSlide extends LinearOpMode {
         ElapsedTime delay = new ElapsedTime();
 
         while (delay.seconds() < delayInSec) {
-            robot.setLineLeftHeight(target);
+            robot.setLinearSlideRight(target);
         }
 
         robot.preDrop();
@@ -45,7 +45,7 @@ public class PIDF_LinearSlide extends LinearOpMode {
         delay.reset();
 
         while (delay.seconds() < 2) {
-            robot.setLineLeftHeight(0);
+            robot.setLinearSlideRight(0);
         }
 
         robot.deadState();

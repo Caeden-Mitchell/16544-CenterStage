@@ -115,7 +115,7 @@ public class Auto1 extends LinearOpMode {
         ElapsedTime delay = new ElapsedTime();
 
         while (delay.seconds() < 2) {
-            robot.setLineLeftHeight(target);
+            robot.setLinearSlideRight(target);
         }
 
         robot.preDrop();
@@ -124,7 +124,7 @@ public class Auto1 extends LinearOpMode {
         delay.reset();
 
         while (delay.seconds() < 1) {
-            robot.setLineLeftHeight(2500);
+            robot.setLinearSlideRight(2500);
         }
 
         robot.servoToZero();
@@ -132,7 +132,7 @@ public class Auto1 extends LinearOpMode {
 
         delay.reset();
         while (delay.seconds() < 1) {
-            robot.setLineLeftHeight(0);
+            robot.setLinearSlideRight(0);
         }
     }
 }
