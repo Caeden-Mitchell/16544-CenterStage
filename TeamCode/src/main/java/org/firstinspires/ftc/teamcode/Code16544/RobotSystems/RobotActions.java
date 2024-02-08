@@ -58,8 +58,9 @@ public class RobotActions implements Action {
             case SERVO:
                 robot.deadState();
                 robot.servoToZero();
-                robot.preDrop();
+                robot.autoPreDrop();
                 robot.autoDrop();
+                robot.autoPullOut();
                 robot.servoToZero();
                 robot.deadState();
                 return false;

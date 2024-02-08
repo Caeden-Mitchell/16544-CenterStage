@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotSystems;
 public class PIDF_LinearSlide extends LinearOpMode {
     RobotSystems robot;
     public static int target = 0;
-    public static double delayInSec = 5.0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -31,23 +30,12 @@ public class PIDF_LinearSlide extends LinearOpMode {
 
         if (isStopRequested()) return;
 
-        ElapsedTime delay = new ElapsedTime();
-
-        while (delay.seconds() < delayInSec) {
-            robot.setLinearSlideRight(target);
-        }
-
-        robot.preDrop();
+        robot.deadState();
+        robot.servoToZero();
+        robot.autoPreDrop();
         robot.autoDrop();
+        robot.autoPullOut();
         robot.servoToZero();
-        sleep(1000);
-        robot.servoToZero();
-        delay.reset();
-
-        while (delay.seconds() < 2) {
-            robot.setLinearSlideRight(0);
-        }
-
         robot.deadState();
 
         telemetry.addData("position", robot.linearSlideLeft.getCurrentPosition());

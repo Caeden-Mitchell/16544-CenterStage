@@ -110,7 +110,7 @@ public class RobotSystems {
         setServos(0.07,0.47,0,false);
     }
 
-    public void autoPullout(){
+    public void autoPullOut(){
         setServos(0.105,0.55,0,false);
     }
 
