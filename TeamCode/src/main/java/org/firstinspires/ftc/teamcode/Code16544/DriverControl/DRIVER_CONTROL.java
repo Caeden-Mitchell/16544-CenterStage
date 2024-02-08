@@ -23,10 +23,6 @@ public class DRIVER_CONTROL extends LinearOpMode {
     RobotSystems robot;
     public static double intakePower = 1;
 
-    ElapsedTime elapsedTime = new ElapsedTime();
-
-    private int initialLeftSlidePos = 0;
-    private int initialRightSlidePos = 0;
     boolean isUp = false;
 
     private enum Height {
@@ -41,9 +37,6 @@ public class DRIVER_CONTROL extends LinearOpMode {
         ON,
         OFF
     }
-
-    private DcMotorEx linearSlideRight = null;
-    private DcMotorEx linearSlideLeft = null;
 
     Gamepad.RumbleEffect customRumbleEffect;
 
@@ -66,18 +59,6 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 //.addStep(1.0, 0.0, 250)  //  Rumble left motor 100% for 250 mSec
                 .build();
 
-        initialLeftSlidePos = robot.linearSlideLeft.getCurrentPosition();
-        initialRightSlidePos = robot.linearSlideRight.getCurrentPosition();
-
-        linearSlideRight = hardwareMap.get(DcMotorEx.class, "linearSlideRight");
-        linearSlideLeft = hardwareMap.get(DcMotorEx.class, "linearSlideLeft");
-        linearSlideRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        linearSlideRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        linearSlideLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        linearSlideLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlideRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        linearSlideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -243,29 +224,25 @@ public class DRIVER_CONTROL extends LinearOpMode {
 
         if (gamepad2.dpad_down) {
             height = Height.DEAD_STATE;
-            linearSlideRight.setTargetPosition(0);
-            linearSlideRight.setPower(1);
+            robot.setLinearSlideRight(0);
 
             robot.DCLowerHopper();
         }
         if (gamepad2.dpad_left) {
             height = Height.LOW;
-            linearSlideRight.setTargetPosition(750);
-            linearSlideRight.setPower(1);
+            robot.setLinearSlideRight(750);
 
             robot.DCLiftHopper();
         }
         if (gamepad2.dpad_right) {
             height = Height.MID;
-            linearSlideRight.setTargetPosition(1500);
-            linearSlideRight.setPower(1);
+            robot.setLinearSlideRight(1500);
 
             robot.DCLiftHopper();
         }
         if (gamepad2.dpad_up) {
             height = Height.HIGH;
-            linearSlideRight.setTargetPosition(3000);
-            linearSlideRight.setPower(1);
+            robot.setLinearSlideRight(3000);
 
             robot.DCLiftHopper();
         }
