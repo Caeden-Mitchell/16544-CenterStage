@@ -7,6 +7,8 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
+
 @Config
 
 public class RobotSystems {
@@ -32,12 +34,16 @@ public class RobotSystems {
         linearSlideLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         linearSlideRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
+
         linearSlideLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         linearSlideRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         linearSlideLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         linearSlideRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlideRight.setTargetPosition(0);
+        linearSlideLeft.setTargetPosition(0);
         linearSlideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         linearSlideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
         linearSlideRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -59,6 +65,13 @@ public class RobotSystems {
         linearSlideRight.setPower(1);
     }
 
+    public void setMotorPower(double drive, double strafe, double rotate, MecanumDrive mecanumDrive){
+        mecanumDrive.leftFront.setPower(drive + strafe + rotate);
+        mecanumDrive.leftBack.setPower(drive - strafe + rotate);
+        mecanumDrive.rightFront.setPower(drive - strafe - rotate);
+        mecanumDrive.rightBack.setPower(drive + strafe - rotate);
+    }
+
     public void setServos(double pos1, double pos2, int time, boolean isDelayed){
         ElapsedTime elapsedTime = new ElapsedTime();
         rotateArm.setPosition(pos1);
@@ -76,7 +89,8 @@ public class RobotSystems {
     }
 
     public void deadState(){
-        setServos(0.012, 0.1, 500, false);
+        //setServos(0.012, 0.1, 500, false);
+        setServos(0.08,0.88,0,false);
     }
 
     public void servoToZero(){
@@ -84,34 +98,50 @@ public class RobotSystems {
     }
 
     public void preDrop(){
-        setServos(0.13, 0.9, 1750, true);
+        //setServos(0.13, 0.9, 1750, true);
+        setServos(0.07,0.55,0,false);
+    }
+
+    public void DCPreDrop(){
+        setServos(0.045,0.4,0,false);
+    }
+
+    public void autoPreDrop(){
+        setServos(0.07,0.47,0,false);
+    }
+
+    public void autoPullout(){
+        setServos(0.105,0.55,0,false);
     }
 
     public void autoDrop(){
-        setServos(0.185, 0.87, 1750, true);
+        setServos(0.105,0.47,0,false);
+        //setServos(0.185, 0.87, 1750, true);
     }
 
     public void DCDrop(){
-        setServos(0.137, 0.5, 0, false);
+        setServos(0.12,0.4,0,false);
+        //setServos(0.137, 0.5, 0, false);
     }
 
     public void DCLiftHopper(){
-            setServos(0, 0, 0, false);
-            setServos(0.13, 0.9, 0, false);
-
+            //setServos(0, 0, 0, false);
+            //setServos(0.13, 0.9, 0, false);
+        preDrop();
         //servoToZero();
         //preDrop();
     }
 
     public void DCLowerHopper(){
-        setServos(0,0,0, false);
-        setServos(0.012, 0.1, 0, false);
+        //setServos(0.03,0.38,0,false);
+        //setServos(0,0,0, false);
+        //setServos(0.012, 0.1, 0, false);
         //servoToZero();
-        //deadState();
+        deadState();
     }
 
     public void liftHopper(){
-        servoToZero();
+        //servoToZero();
         preDrop();
     }
 
