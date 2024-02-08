@@ -90,7 +90,7 @@ public class RobotSystems {
 
     public void deadState(){
         //setServos(0.012, 0.1, 500, false);
-        setServos(0.08,0.88,0,false);
+        setServos(0.077,0.84,0,false);
     }
 
     public void servoToZero(){
@@ -107,15 +107,15 @@ public class RobotSystems {
     }
 
     public void autoPreDrop(){
-        setServos(0.07,0.47,0,false);
+        setServos(0.065,0.47,1000,true);
     }
 
     public void autoPullOut(){
-        setServos(0.105,0.55,0,false);
+        setServos(0.105,0.55,1000,true);
     }
 
     public void autoDrop(){
-        setServos(0.105,0.47,0,false);
+        setServos(0.105,0.47,2500,false);
         //setServos(0.185, 0.87, 1750, true);
     }
 
