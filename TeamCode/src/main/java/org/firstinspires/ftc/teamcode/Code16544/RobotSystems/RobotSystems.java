@@ -90,7 +90,7 @@ public class RobotSystems {
 
     public void deadState(){
         //setServos(0.012, 0.1, 500, false);
-        setServos(0.077,0.84,0,false);
+        setServos(0.056,0.86,0,false);
     }
 
     public void servoToZero(){
