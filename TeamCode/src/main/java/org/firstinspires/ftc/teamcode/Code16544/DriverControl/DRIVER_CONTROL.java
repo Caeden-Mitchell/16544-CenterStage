@@ -117,9 +117,9 @@ public class DRIVER_CONTROL extends LinearOpMode {
 
     private void dropPixel() {
         if (gamepad2.right_bumper) {
-            //if (approachBoard()) {
+            if (approachBoard()) {
                 robot.DCDrop();
-            //}
+            }
         }
     }
 
@@ -127,7 +127,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         double speed = 0.15;
         switch (height) {
             case MID:
-                while (robot.distance.getDistance(DistanceUnit.CM) > 4.05) {
+                while (robot.distance.getDistance(DistanceUnit.CM) > 6.5) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -137,7 +137,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (robot.distance.getDistance(DistanceUnit.CM) < 4.05) {
+                while (robot.distance.getDistance(DistanceUnit.CM) < 6.5) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
@@ -149,7 +149,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 }
                 break;
             case HIGH:
-                while (robot.distance.getDistance(DistanceUnit.CM) > 14) {
+                while (robot.distance.getDistance(DistanceUnit.CM) > 13) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -159,7 +159,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (robot.distance.getDistance(DistanceUnit.CM) < 14) {
+                while (robot.distance.getDistance(DistanceUnit.CM) < 13) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
@@ -171,7 +171,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 }
                 break;
             default:
-                while (robot.distance.getDistance(DistanceUnit.CM) > 2) {
+                while (robot.distance.getDistance(DistanceUnit.CM) > 3.8) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -181,7 +181,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (robot.distance.getDistance(DistanceUnit.CM) < 2) {
+                while (robot.distance.getDistance(DistanceUnit.CM) < 3.8) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
