@@ -246,6 +246,9 @@ public class DRIVER_CONTROL extends LinearOpMode {
 
             robot.DCLiftHopper();
         }
+        if(gamepad2.b){
+            robot.underBarState();
+        }
     }
 
     //uses left bumper to launch airplane

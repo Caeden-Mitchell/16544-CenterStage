@@ -16,7 +16,7 @@ public class LocationFinder {
     private final ColorDetector colorDetector;
 
 
-    public LocationFinder(HardwareMap hardwareMap, Telemetry telemetry, ColorDetector.Color color) {
+    public LocationFinder(HardwareMap hardwareMap, Telemetry telemetry, ColorDetector.Color color, boolean far) {
 
         cameraMonitorViewId = hardwareMap.appContext
                 .getResources().getIdentifier("cameraMonitorViewId",
@@ -26,7 +26,7 @@ public class LocationFinder {
 
         camera = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        colorDetector = new ColorDetector(telemetry);
+        colorDetector = new ColorDetector(telemetry, far);
 
         camera.setPipeline(colorDetector);
 

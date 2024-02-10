@@ -46,7 +46,7 @@ public class ColorDetection extends LinearOpMode{
          */
 
         //open detection pipeline
-        ColorDetector detector = new ColorDetector(telemetry);
+        ColorDetector detector = new ColorDetector(telemetry, false);
 
         //set camera to pipeline
         camera.setPipeline(detector);

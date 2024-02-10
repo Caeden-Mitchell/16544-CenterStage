@@ -27,7 +27,7 @@ public class LeftRedAuto extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.RED);
+        locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.RED, true);
 
         Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(90));
 

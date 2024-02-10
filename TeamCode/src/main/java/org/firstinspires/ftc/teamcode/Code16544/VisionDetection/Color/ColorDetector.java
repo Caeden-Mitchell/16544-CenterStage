@@ -13,11 +13,10 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Config
 public class ColorDetector extends OpenCvPipeline {
     Telemetry telemetry;
+
     Mat mat = new Mat();
-    public static int highH=220, highS=255, highV=200, lowH=150, lowS=100, lowV=60;
     public enum Location{
         LEFT,
         RIGHT,
@@ -37,12 +36,21 @@ public class ColorDetector extends OpenCvPipeline {
     // We need to create Regions Of Interest where the camera will be
     // looking for the items colors being searched for
     // 800x400
-    static final Rect LEFT_ROI = new Rect(new Point(200, 250), new Point(475, 400));
-    static final Rect RIGHT_ROI = new Rect(new Point(575, 250), new Point(700, 400));
+    static Rect LEFT_ROI;
+    static Rect RIGHT_ROI;
     // define the threshold
     static double PERCENT_COLOR_THRESHOLD = 0.015;
-    public ColorDetector(Telemetry t) {
+    public ColorDetector(Telemetry t, boolean far) {
         telemetry = t;
+        if(far) {
+            LEFT_ROI = new Rect(new Point(135, 250), new Point(355, 400));
+            RIGHT_ROI = new Rect(new Point(405, 250), new Point(500, 400));
+        } else{
+            LEFT_ROI = new Rect(new Point(200, 250), new Point(420, 400));
+            RIGHT_ROI = new Rect(new Point(520, 250), new Point(630, 400));
+        }
+
+
     }
     public Mat processFrame(Mat input){
         //Telemetry to DashBoard
