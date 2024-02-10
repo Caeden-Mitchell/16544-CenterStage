@@ -15,7 +15,7 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 import java.awt.Color;
 
 public class MeepMEepTEsting {
-    public static MeepMeep meepMeep = new MeepMeep(1000,120);
+    public static MeepMeep meepMeep = new MeepMeep(800,60);
     static RoadRunnerBotEntity rightBlue1;
     static RoadRunnerBotEntity leftBlue1;
     static RoadRunnerBotEntity midBlue1;
@@ -35,14 +35,14 @@ public class MeepMEepTEsting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setColorScheme(new ColorSchemeBlueDark())
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         leftBlue1 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueDark())
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         midBlue1 = new DefaultBotBuilder(meepMeep)
@@ -50,21 +50,21 @@ public class MeepMEepTEsting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
 
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         rightBlue2 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueDark())
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         leftBlue2 = new DefaultBotBuilder(meepMeep)
                 .setColorScheme(new ColorSchemeBlueDark())
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         midBlue2 = new DefaultBotBuilder(meepMeep)
@@ -72,7 +72,7 @@ public class MeepMEepTEsting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
 
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
         
         
@@ -80,158 +80,158 @@ public class MeepMEepTEsting {
         rightRed1 = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         leftRed1 = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         midRed1 = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
 
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         rightRed2 = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         leftRed2 = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
 
         midRed2 = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(45, 35, Math.toRadians(180), Math.toRadians(180), 10.5)
 
-                .setDimensions(17.5,12.5)
+                .setDimensions(17.5,17.5)
                 .build();
     }
     public static void main(String[] args) {
 
-        Pose2d rightRedPose = new Pose2d(17.25,-61.25, Math.toRadians(180));
-        Pose2d leftRedPose  = new Pose2d(-41,-61.25, Math.toRadians(180));
-        Pose2d rightBluePose  = new Pose2d(-41,61.25, Math.toRadians(180));
-        Pose2d leftBluePose = new Pose2d(17.25,61.25, Math.toRadians(180));
+        Pose2d rightRedPose = new Pose2d(14.5,-64, Math.toRadians(90));
+        Pose2d leftRedPose  = new Pose2d(-38.4,-64, Math.toRadians(90));
+        Pose2d rightBluePose= new Pose2d(-38.4,64, Math.toRadians(270));
+        Pose2d leftBluePose = new Pose2d(14.5,64, Math.toRadians(270));
 
         initBots();
         
         leftRed1.runAction(leftRed1.getDrive().actionBuilder(leftRedPose)
                 .setTangent(Math.toRadians(100))
-                .splineToConstantHeading(new Vector2d(-38.5, -33), Math.toRadians(90))
+                .splineToSplineHeading(new Pose2d(-35.5, -33,Math.toRadians(180)), Math.toRadians(90))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-48,-11.37), Math.toRadians(180))
-                .splineToConstantHeading(new Vector2d(-59.68, -11.37), Math.toRadians(180))
-                .waitSeconds(2)
-                .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, -29), Math.toRadians(315))
                 .build());
 
         rightRed1.runAction(rightRed1.getDrive().actionBuilder(leftRedPose)
-                .setTangent(Math.toRadians(90))
-                .splineToSplineHeading(new Pose2d(-31, -33, Math.toRadians(0)), Math.toRadians(90))
+                .setTangent(Math.toRadians(110))
+                .splineToSplineHeading(new Pose2d(-36, -33, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2)
-                .setTangent(Math.toRadians(90))
-                .splineToSplineHeading(new Pose2d(-59.68, -11.37, Math.toRadians(180)), Math.toRadians(180.00))
-                .waitSeconds(2)
+
+                .setTangent(Math.toRadians(160))
+                .splineToSplineHeading(new Pose2d(-35 , -11, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49 , -41), Math.toRadians(270))
                 .build());
 
         midRed1.runAction(midRed1.getDrive().actionBuilder(leftRedPose)
                 .setTangent(Math.toRadians(90))
-                .splineToSplineHeading(new Pose2d(-36, -17, Math.toRadians(270)), Math.toRadians(90))
+                .splineToSplineHeading(new Pose2d(-36, -14, Math.toRadians(270)), Math.toRadians(90))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(90))
-                .splineToSplineHeading(new Pose2d(-59.68, -11.37, Math.toRadians(180)), Math.toRadians(180.00))
-                .waitSeconds(2)
+                .splineToSplineHeading(new Pose2d(-36, -10, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, -35), Math.toRadians(300))
                 .build());
 
         leftRed2.runAction(leftRed2.getDrive().actionBuilder(rightRedPose)
-                .strafeTo(new Vector2d(7.75, -30))
+                .strafeToSplineHeading(new Vector2d(10.75, -30),Math.toRadians(180))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, -29), Math.toRadians(0))
                 .build());
 
         rightRed2.runAction(rightRed2.getDrive().actionBuilder(rightRedPose)
-                .strafeTo(new Vector2d(30.75, -32))
+                .strafeToSplineHeading(new Vector2d(33.75, -32),Math.toRadians(180))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49 , -41), Math.toRadians(310))
                 .build());
 
         midRed2.runAction(midRed2.getDrive().actionBuilder(rightRedPose)
-                .strafeToSplineHeading(new Vector2d(14, -16.75), Math.toRadians(270))
+                .strafeToSplineHeading(new Vector2d(14, -14), Math.toRadians(270))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(30))
                 .splineToSplineHeading(new Pose2d(49, -35.2, Math.toRadians(180)), Math.toRadians(315))
                 .build());
 
         
         rightBlue1.runAction(rightBlue1.getDrive().actionBuilder(leftBluePose)
-                .strafeTo(new Vector2d(7.75, 30))
+                .splineToSplineHeading(new Pose2d(10.75, 30,Math.toRadians(180)),Math.toRadians(180))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, 29), Math.toRadians(0))
                 .build());
 
         leftBlue1.runAction(leftBlue1.getDrive().actionBuilder(leftBluePose)
-                .strafeTo(new Vector2d(30.75, 32))
+                .strafeToSplineHeading(new Vector2d(33.75, 32),Math.toRadians(180))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49 , 41), Math.toRadians(40))
                 .build());
 
         midBlue1.runAction(midBlue1.getDrive().actionBuilder(leftBluePose)
-                .strafeToSplineHeading(new Vector2d(14, 16.75), Math.toRadians(90))
+                .strafeToSplineHeading(new Vector2d(14, 14), Math.toRadians(90))
                 .waitSeconds(2)
-                .setTangent(Math.toRadians(300))
+
+                .setTangent(Math.toRadians(330))
                 .splineToSplineHeading(new Pose2d(49, 35.2, Math.toRadians(180)), Math.toRadians(45))
                 .build());
 
         rightBlue2.runAction(rightBlue2.getDrive().actionBuilder(rightBluePose)
                 .setTangent(Math.toRadians(280))
-                .splineToConstantHeading(new Vector2d(-38.5, 33), Math.toRadians(270))
+                .splineToSplineHeading(new Pose2d(-35.5, 33, Math.toRadians(180)), Math.toRadians(270))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(270))
-                .splineToConstantHeading(new Vector2d(-48,11.37), Math.toRadians(180))
-                .splineToConstantHeading(new Vector2d(-59.68, 11.37), Math.toRadians(180))
-                .waitSeconds(2)
-                .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, 29), Math.toRadians(45))
                 .build());
 
 
         leftBlue2.runAction(leftBlue2.getDrive().actionBuilder(rightBluePose)
                 .setTangent(Math.toRadians(250))
-                .splineToSplineHeading(new Pose2d(-33, 33, Math.toRadians(0)), Math.toRadians(0))
+                .splineToSplineHeading(new Pose2d(-36, 33, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2)
-                .setTangent(Math.toRadians(215))
-                .splineToSplineHeading(new Pose2d(-59.68, 11.37, Math.toRadians(180)), Math.toRadians(180.00))
-                .waitSeconds(2)
+
+                .setTangent(Math.toRadians(200))
+                .splineToSplineHeading(new Pose2d(-35 , 11, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49 , 41), Math.toRadians(90))
                 .build());
 
         midBlue2.runAction(midBlue2.getDrive().actionBuilder(rightBluePose)
                 .setTangent(Math.toRadians(270))
-                .splineToSplineHeading(new Pose2d(-36, 17, Math.toRadians(90)), Math.toRadians(270))
+                .splineToSplineHeading(new Pose2d(-36, 14, Math.toRadians(90)), Math.toRadians(270))
                 .waitSeconds(2)
+
                 .setTangent(Math.toRadians(270))
-                .splineToSplineHeading(new Pose2d(-59.68, 11.37, Math.toRadians(180)), Math.toRadians(180.00))
-                .waitSeconds(2)
+                .splineToSplineHeading(new Pose2d(-36, 10, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, 35), Math.toRadians(60))
                 .build());
@@ -239,7 +239,20 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
+                .addEntity(rightRed2)
+                .addEntity(leftRed2)
+                .addEntity(midRed2)
+                .addEntity(leftRed1)
+                .addEntity(rightRed1)
+                .addEntity(midRed1)
+                .addEntity(leftBlue1)
+                .addEntity(rightBlue1)
+                .addEntity(midBlue1)
+                .addEntity(rightBlue2)
                 .addEntity(leftBlue2)
+                .addEntity(midBlue2)
+
+
                 .start();
 
     }

@@ -90,7 +90,11 @@ public class RobotSystems {
 
     public void deadState(){
         //setServos(0.012, 0.1, 500, false);
-        setServos(0.056,0.86,0,false);
+        setServos(0.057,0.86,0,false);
+    }
+
+    public void underBarState() {
+        setServos(0.05,0.57,0,false);
     }
 
     public void servoToZero(){
@@ -99,7 +103,7 @@ public class RobotSystems {
 
     public void preDrop(){
         //setServos(0.13, 0.9, 1750, true);
-        setServos(0.07,0.55,0,false);
+        setServos(0.077,0.77,0,false);
     }
 
     public void DCPreDrop(){
@@ -107,7 +111,7 @@ public class RobotSystems {
     }
 
     public void autoPreDrop(){
-        setServos(0.065,0.47,1000,true);
+        setServos(0.04,0.47,1000,true);
     }
 
     public void autoPullOut(){
@@ -115,12 +119,12 @@ public class RobotSystems {
     }
 
     public void autoDrop(){
-        setServos(0.105,0.47,2500,false);
+        setServos(0.085,0.47,2500,false);
         //setServos(0.185, 0.87, 1750, true);
     }
 
     public void DCDrop(){
-        setServos(0.12,0.4,0,false);
+        setServos(0.11,0.62,0,false);
         //setServos(0.137, 0.5, 0, false);
     }
 

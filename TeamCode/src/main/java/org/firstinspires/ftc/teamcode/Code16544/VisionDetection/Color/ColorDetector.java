@@ -17,7 +17,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 public class ColorDetector extends OpenCvPipeline {
     Telemetry telemetry;
     Mat mat = new Mat();
-    public static int highH=180, highS=250, highV=200, lowH=165, lowS=100, lowV=20;
+    public static int highH=220, highS=255, highV=200, lowH=150, lowS=100, lowV=60;
     public enum Location{
         LEFT,
         RIGHT,
@@ -37,8 +37,8 @@ public class ColorDetector extends OpenCvPipeline {
     // We need to create Regions Of Interest where the camera will be
     // looking for the items colors being searched for
     // 800x400
-    static final Rect LEFT_ROI = new Rect(new Point(80, 10), new Point(420, 180));
-    static final Rect RIGHT_ROI = new Rect(new Point(450, 10), new Point(790, 180));
+    static final Rect LEFT_ROI = new Rect(new Point(200, 250), new Point(475, 400));
+    static final Rect RIGHT_ROI = new Rect(new Point(575, 250), new Point(700, 400));
     // define the threshold
     static double PERCENT_COLOR_THRESHOLD = 0.015;
     public ColorDetector(Telemetry t) {
@@ -59,8 +59,8 @@ public class ColorDetector extends OpenCvPipeline {
             highHSV = new Scalar(138, 255, 255);
         } else if(colorChoice == Color.RED){
             //Create a range for the camera to detect red
-            lowHSV = new Scalar(lowH, lowS, lowV);
-            highHSV = new Scalar(highH, highS, highV);
+            lowHSV = new Scalar(160, 100, 20);
+            highHSV = new Scalar(180, 255, 255);
         }
 
         //Apply thresholding, which outlines the area of the image that is of the colour you want

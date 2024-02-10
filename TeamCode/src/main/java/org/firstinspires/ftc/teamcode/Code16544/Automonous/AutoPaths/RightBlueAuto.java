@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Autonomous
 public class RightBlueAuto extends LinearOpMode {
     public static double startingY = 64;
-    public static double startingX = -41;
+    public static double startingX = -38.4;
 
     public static int target = 200;
     public static int numer = 2;
@@ -30,18 +30,17 @@ public class RightBlueAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.BLUE);
 
-        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(180));
+        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(270));
 
         robot = new RobotSystems(hardwareMap);
 
         autoActions = new AutoActions(hardwareMap, startPose, new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR));
 
         while (!opModeIsActive() && !isStopRequested()) {
-            robot.holdIntake();
+            robot.deadState();
             locationFinder.getTrajectory(telemetry);
         }
 
-        robot.rotateArm.setPosition(0.2);
         robot.deadState();
 
         if(isStopRequested()) return;
