@@ -24,19 +24,22 @@ public class PIDF_LinearSlide extends LinearOpMode {
         telemetry.addData("pixel pos", robot.linearSlideLeft.getCurrentPosition());
         telemetry.update();
 
-        waitForStart();
+        robot.deadState();
 
-        robot.servoToZero();
+        waitForStart();
 
         if (isStopRequested()) return;
 
+        robot.setLinearSlideRight(500);
+
         robot.deadState();
-        robot.servoToZero();
+        //robot.servoToZero();
         robot.autoPreDrop();
         robot.autoDrop();
         robot.autoPullOut();
-        robot.servoToZero();
+        //robot.servoToZero();
         robot.deadState();
+        sleep(1000);
 
         telemetry.addData("position", robot.linearSlideLeft.getCurrentPosition());
         telemetry.addData("Target ", target);
