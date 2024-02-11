@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoPaths;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
@@ -47,13 +48,16 @@ public class LeftBlueAuto extends LinearOpMode {
 
         if(isStopRequested()) return;
 
-        switch (numer) {
+        switch (locationFinder.trajType) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new SleepAction(.5)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 break;
@@ -62,7 +66,10 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueLeftDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new SleepAction(.5)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 break;
@@ -71,7 +78,10 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueMidDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new SleepAction(0.5)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 break;
@@ -80,7 +90,10 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new SleepAction(.5)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
                         ,autoActions.parkLeft
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");

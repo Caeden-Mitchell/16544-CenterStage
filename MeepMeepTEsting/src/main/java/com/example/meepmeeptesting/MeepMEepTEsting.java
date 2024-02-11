@@ -119,7 +119,7 @@ public class MeepMEepTEsting {
 
         Pose2d rightRedPose = new Pose2d(14.5,-64, Math.toRadians(90));
         Pose2d leftRedPose  = new Pose2d(-38.4,-64, Math.toRadians(90));
-        Pose2d rightBluePose= new Pose2d(-38.4,64, Math.toRadians(270));
+        Pose2d rightBluePose= new Pose2d(-38.8,64, Math.toRadians(270));
         Pose2d leftBluePose = new Pose2d(14.5,64, Math.toRadians(270));
 
         initBots();
@@ -239,18 +239,7 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(rightRed2)
-                .addEntity(leftRed2)
-                .addEntity(midRed2)
-                .addEntity(leftRed1)
-                .addEntity(rightRed1)
-                .addEntity(midRed1)
-                .addEntity(leftBlue1)
-                .addEntity(rightBlue1)
-                .addEntity(midBlue1)
                 .addEntity(rightBlue2)
-                .addEntity(leftBlue2)
-                .addEntity(midBlue2)
 
 
                 .start();

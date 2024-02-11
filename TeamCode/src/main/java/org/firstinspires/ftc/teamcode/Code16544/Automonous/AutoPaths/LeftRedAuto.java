@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.robot.Robot;
 
 import org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoActions;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotActions;
@@ -36,11 +37,11 @@ public class LeftRedAuto extends LinearOpMode {
         autoActions = new AutoActions(hardwareMap, startPose, new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR));
 
         while (!opModeIsActive() && !isStopRequested()) {
-            robot.deadState();
+            robot.underBarState();
             locationFinder.getTrajectory(telemetry);
         }
 
-        robot.deadState();
+        robot.underBarState();
 
         if(isStopRequested()) return;
 
@@ -48,6 +49,7 @@ public class LeftRedAuto extends LinearOpMode {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftRedRightSpike
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftRedRightDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)

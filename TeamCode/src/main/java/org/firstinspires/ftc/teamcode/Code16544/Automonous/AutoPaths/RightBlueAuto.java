@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoPaths;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class RightBlueAuto extends LinearOpMode {
-    public static double startingY = 64;
+    public static double startingY = 66;
     public static double startingX = -38.4;
 
     public static int target = 200;
@@ -37,21 +38,25 @@ public class RightBlueAuto extends LinearOpMode {
         autoActions = new AutoActions(hardwareMap, startPose, new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR));
 
         while (!opModeIsActive() && !isStopRequested()) {
-            robot.deadState();
+            robot.underBarState();
             locationFinder.getTrajectory(telemetry);
         }
 
-        robot.deadState();
+        robot.underBarState();
 
         if(isStopRequested()) return;
 
-        switch (numer) {
+        switch (locationFinder.trajType) {
             case 1:
         Actions.runBlocking(new SequentialAction(
                 autoActions.rightBlueRightSpike
                 ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                 ,autoActions.rightBlueRightDrop
+                //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                 ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                ,new SleepAction(.5)
+                ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                ,autoActions.parkLeft
         ));
                 break;
             case 2:
@@ -59,7 +64,11 @@ public class RightBlueAuto extends LinearOpMode {
                         autoActions.rightBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueMidDrop
-                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
+                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new SleepAction(.5)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkLeft
                 ));
                 break;
             case 3:
@@ -67,7 +76,11 @@ public class RightBlueAuto extends LinearOpMode {
                         autoActions.rightBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueLeftDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new SleepAction(.5)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkLeft
                 ));
                 break;
             default:
@@ -75,7 +88,11 @@ public class RightBlueAuto extends LinearOpMode {
                         autoActions.rightBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueRightDrop
+                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new SleepAction(.5)
+                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
+                        ,autoActions.parkLeft
 
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
