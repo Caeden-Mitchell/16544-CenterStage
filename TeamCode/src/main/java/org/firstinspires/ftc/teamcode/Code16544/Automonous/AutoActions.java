@@ -35,7 +35,7 @@ public class AutoActions {
                 .build();
 
         parkLeft = drive.actionBuilder(new Pose2d(50.65, 35.2, Math.toRadians(180)))
-                .strafeTo(new Vector2d(50.65, 64))
+                .strafeTo(new Vector2d(50.65, 60))
                 .build();
     }
 
@@ -151,17 +151,18 @@ public class AutoActions {
         // right
 
         rightRedLeftSpike = drive.actionBuilder(startPose)
-                .strafeToSplineHeading(new Vector2d(10.75, -30),Math.toRadians(180))
+                .strafeToSplineHeading(new Vector2d(10.75, -31.8),Math.toRadians(180))
                 .build();
 
-        rightRedLeftDrop = drive.actionBuilder(new Pose2d(10.75, -30, Math.toRadians(180)))
+        rightRedLeftDrop = drive.actionBuilder(new Pose2d(10.75, -31.8, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(54.2, -29), Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(53.75, -28), Math.toRadians(0))
                 .build();
 
         rightRedRightSpike = drive.actionBuilder(startPose)
                 .strafeToSplineHeading(new Vector2d(33.75, -32),Math.toRadians(180))
                 .build();
+        
 
         rightRedRightDrop = drive.actionBuilder(new Pose2d(33.75, -32, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
@@ -169,13 +170,13 @@ public class AutoActions {
                 .build();
 
         rightRedMidSpike = drive.actionBuilder(startPose)
-                .strafeTo(new Vector2d(14, -14))
+                .strafeTo(new Vector2d(13, -14))
                 .turnTo(Math.toRadians(270))
                 .build();
 
         rightRedMidDrop = drive.actionBuilder(new Pose2d(14, -14, Math.toRadians(270)))
                 .setTangent(Math.toRadians(30))
-                .splineToSplineHeading(new Pose2d(54.2, -30, Math.toRadians(170)), Math.toRadians(315))
+                .splineToSplineHeading(new Pose2d(54.2, -30, Math.toRadians(180)), Math.toRadians(315))
                 .build();
     }
 }
