@@ -33,7 +33,7 @@ public class RightRedAuto extends LinearOpMode {
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose, new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR));
+        autoActions = new AutoActions(hardwareMap, startPose);
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.deadState();
@@ -42,6 +42,7 @@ public class RightRedAuto extends LinearOpMode {
 
         robot.rotateArm.setPosition(0.2);
         robot.deadState();
+        telemetry.addLine("line 45");
 
         if(isStopRequested()) return;
 
@@ -56,7 +57,9 @@ public class RightRedAuto extends LinearOpMode {
                 ));
                 break;
             case 3://left
+                telemetry.addLine("line 60");
                 Actions.runBlocking(new SequentialAction(
+
                         autoActions.rightRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop

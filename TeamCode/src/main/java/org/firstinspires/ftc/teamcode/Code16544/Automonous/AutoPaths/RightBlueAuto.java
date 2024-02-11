@@ -35,7 +35,7 @@ public class RightBlueAuto extends LinearOpMode {
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose, new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR));
+        autoActions = new AutoActions(hardwareMap, startPose);
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.underBarState();

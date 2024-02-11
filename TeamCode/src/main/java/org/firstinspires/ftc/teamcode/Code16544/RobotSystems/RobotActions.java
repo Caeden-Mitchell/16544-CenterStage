@@ -44,12 +44,12 @@ public class RobotActions implements Action {
             case REVERSE_INTAKE_MOTOR:
                 ElapsedTime elapsedTime1 = new ElapsedTime();
 
-                while (elapsedTime1.seconds() < .5) {
-                    robot.ejectPixelFromIntake(1);
+                while (elapsedTime1.seconds() < 1) {
+                    robot.ejectPixelFromIntake(-0.23);
                 }
                 return false;
             case INTAKE_MOTOR:
-                ElapsedTime elapsedTime2 = new ElapsedTime();
+                ElapsedTime elapsedTime2 = new ElapsedTime() ;
 
                 while (elapsedTime2.seconds() < .5) {
                     robot.runIntake();

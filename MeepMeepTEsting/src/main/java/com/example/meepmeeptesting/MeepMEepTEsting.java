@@ -216,13 +216,13 @@ public class MeepMEepTEsting {
 
         leftBlue2.runAction(leftBlue2.getDrive().actionBuilder(rightBluePose)
                 .setTangent(Math.toRadians(250))
-                .splineToSplineHeading(new Pose2d(-36, 33, Math.toRadians(0)), Math.toRadians(0))
-                .waitSeconds(2)
+                .strafeTo(new Vector2d(-36, 33))
 
-                .setTangent(Math.toRadians(200))
-                .splineToSplineHeading(new Pose2d(-35 , 11, Math.toRadians(180)), Math.toRadians(0))
+                .strafeTo(new Vector2d(-39,33))
+                .turnTo(Math.toRadians(180))
+                .strafeTo(new Vector2d(-39 , 11))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(49 , 41), Math.toRadians(90))
+                .splineToConstantHeading(new Vector2d(56, 41), Math.toRadians(90))
                 .build());
 
         midBlue2.runAction(midBlue2.getDrive().actionBuilder(rightBluePose)
@@ -239,7 +239,7 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(rightBlue2)
+                .addEntity(leftBlue2)
 
 
                 .start();
