@@ -39,7 +39,7 @@ public class ColorDetector extends OpenCvPipeline {
     static Rect LEFT_ROI;
     static Rect RIGHT_ROI;
     // define the threshold
-    static double PERCENT_COLOR_THRESHOLD = 0.015;
+    static double PERCENT_COLOR_THRESHOLD = 0.035;
     public ColorDetector(Telemetry t, boolean far) {
         telemetry = t;
         if(far) {
