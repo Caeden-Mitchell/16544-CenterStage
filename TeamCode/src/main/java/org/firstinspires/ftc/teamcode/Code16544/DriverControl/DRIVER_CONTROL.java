@@ -268,7 +268,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
     public void liftBot(){
         if(gamepad2.y){
             twoLift = TwoLift.ON;
-            robot.servoToZero();
+            robot.liftServoSequence();
             gamepad2.rumble(Gamepad.RUMBLE_DURATION_CONTINUOUS);
         } else if(gamepad2.x){
             twoLift = TwoLift.OFF;
@@ -279,8 +279,8 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 robot.setLinearSlideLeft(3000);
                 robot.setLinearSlideRight(3000);
             } else if(gamepad2.left_trigger > 0.5){
-                robot.setLinearSlideRight(1500);
-                robot.setLinearSlideLeft(1500);
+                robot.setLinearSlideRight(1000);
+                robot.setLinearSlideLeft(1000);
             } else {
                 robot.setLinearSlideLeft(0);
                 robot.setLinearSlideRight(0);

@@ -110,6 +110,10 @@ public class RobotSystems {
         setServos(0.045,0.4,0,false);
     }
 
+    public void liftServoSequence(){
+        setServos(0.09, 0.45,0,false);
+    }
+
     public void autoPreDrop(){
         setServos(0.04,0.47,1000,true);
     }
