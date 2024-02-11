@@ -130,6 +130,8 @@ public class MeepMEepTEsting {
                 .waitSeconds(2)
 
                 .setTangent(Math.toRadians(90))
+                        .splineToConstantHeading(new Vector2d(-35.5,-10),Math.toRadians(0))
+                        .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, -29), Math.toRadians(315))
                 .build());
 
@@ -239,7 +241,7 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(leftBlue2)
+                .addEntity(leftRed1)
 
 
                 .start();
