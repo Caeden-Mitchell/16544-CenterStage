@@ -93,6 +93,10 @@ public class RobotSystems {
         setServos(0.057,0.86,0,false);
     }
 
+    public void reset() {
+        setServos(0.057,0.86,500,true);
+    }
+
     public void underBarState() {
         setServos(0.05,0.57,0,false);
     }
@@ -119,7 +123,7 @@ public class RobotSystems {
     }
 
     public void autoDrop(){
-        setServos(0.085,0.47,2500,false);
+        setServos(0.089,0.45,2500,false);
         //setServos(0.185, 0.87, 1750, true);
     }
 
@@ -155,8 +159,8 @@ public class RobotSystems {
         deadState();
     }
 
-    public void ejectPixelFromIntake() {
-        intakeMotor.setPower(0.9);
+    public void ejectPixelFromIntake(double power) {
+        intakeMotor.setPower(power);
         sleep(250);
         intakeMotor.setPower(0);
     }

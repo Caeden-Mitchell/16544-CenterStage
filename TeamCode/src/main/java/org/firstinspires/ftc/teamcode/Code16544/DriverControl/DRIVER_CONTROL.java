@@ -108,7 +108,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         double speed = 0.15;
         switch (height) {
             case MID:
-                while (robot.distance.getDistance(DistanceUnit.CM) > 6.5) {
+                while (robot.distance.getDistance(DistanceUnit.CM) > 6) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -118,7 +118,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (robot.distance.getDistance(DistanceUnit.CM) < 6.5) {
+                while (robot.distance.getDistance(DistanceUnit.CM) < 6) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
@@ -130,7 +130,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 }
                 break;
             case HIGH:
-                while (robot.distance.getDistance(DistanceUnit.CM) > 13) {
+                while (robot.distance.getDistance(DistanceUnit.CM) > 12.6) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -140,7 +140,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (robot.distance.getDistance(DistanceUnit.CM) < 13) {
+                while (robot.distance.getDistance(DistanceUnit.CM) < 12.6) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);

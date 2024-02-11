@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class RobotActions implements Action {
     RobotSystems robot;
 
-    private int pixelHeight = 0;
+    private int pixelHeight = 500;
 
     public enum System {
         PIXEL_LIFT,
@@ -45,7 +45,7 @@ public class RobotActions implements Action {
                 ElapsedTime elapsedTime1 = new ElapsedTime();
 
                 while (elapsedTime1.seconds() < .5) {
-                    robot.ejectPixelFromIntake();
+                    robot.ejectPixelFromIntake(1);
                 }
                 return false;
             case INTAKE_MOTOR:
@@ -56,13 +56,11 @@ public class RobotActions implements Action {
                 }
                 return false;
             case SERVO:
-                robot.deadState();
-                robot.servoToZero();
                 robot.autoPreDrop();
                 robot.autoDrop();
                 robot.autoPullOut();
-                robot.servoToZero();
-                robot.deadState();
+                robot.underBarState();
+                robot.reset();
                 return false;
         }
         return false;
