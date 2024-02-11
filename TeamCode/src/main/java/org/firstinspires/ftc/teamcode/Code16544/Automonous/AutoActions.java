@@ -53,12 +53,12 @@ public class AutoActions {
 
         rightBlueLeftSpike = drive.actionBuilder(startPose)
                 .strafeTo(new Vector2d(-36, 33))
-                .turnTo(Math.toRadians(15))
+                .turnTo(Math.toRadians(0))
                 .build();
 
-        rightBlueLeftDrop = drive.actionBuilder(new Pose2d(-36, 33, Math.toRadians(15)))
+        rightBlueLeftDrop = drive.actionBuilder(new Pose2d(-36, 33, Math.toRadians(0)))
                 .strafeTo(new Vector2d(-39,33))
-                .turnTo(Math.toRadians(195))
+                .turnTo(Math.toRadians(180))
                 .strafeTo(new Vector2d(-39 , 11))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(54, 65), Math.toRadians(90))

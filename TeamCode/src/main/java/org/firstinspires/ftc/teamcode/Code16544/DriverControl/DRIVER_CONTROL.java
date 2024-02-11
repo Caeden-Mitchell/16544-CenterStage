@@ -108,7 +108,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         double speed = 0.15;
         switch (height) {
             case MID:
-                while (robot.distance.getDistance(DistanceUnit.CM) > 5.25) {
+                while (robot.distance.getDistance(DistanceUnit.CM) > 4.25) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -118,7 +118,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (robot.distance.getDistance(DistanceUnit.CM) < 5.25) {
+                while (robot.distance.getDistance(DistanceUnit.CM) < 4.25) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
@@ -254,8 +254,8 @@ public class DRIVER_CONTROL extends LinearOpMode {
     //uses left bumper to launch airplane
     private void launchPlane(){
         if(gamepad2.left_bumper){
-            robot.droneLauncher.setPosition(0.1);
-            robot.droneLauncher.setPosition(0);
+            robot.droneLauncher.setPosition(0.4);
+            robot.droneLauncher.setPosition(0.3);
         }
     }
     public void setPowerZero() {
