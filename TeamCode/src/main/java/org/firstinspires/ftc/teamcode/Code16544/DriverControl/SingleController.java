@@ -88,7 +88,7 @@ public class SingleController extends LinearOpMode {
         //linear slide
         if (gamepad1.dpad_down) {
             height = Height.DEAD_STATE;
-            robot.DCLowerHopper();
+            robot.deadState();
         }
         if (gamepad1.dpad_left) {
             height = Height.LOW;

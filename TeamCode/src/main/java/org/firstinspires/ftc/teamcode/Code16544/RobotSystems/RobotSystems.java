@@ -90,78 +90,31 @@ public class RobotSystems {
     }
 
     public void deadState(){
-        //setServos(0.012, 0.1, 500, false);
-        setServos(0.057,0.86,0,false);
-    }
-
-    public void reset() {
-        setServos(0.057,0.86,500,true);
+        setServos(0.1,0.889,0,false);
     }
 
     public void underBarState() {
-        setServos(0.05,0.57,0,false);
-    }
-
-    public void servoToZero(){
-        setServos(0,0,600, false);
-    }
-
-    public void preDrop(){
-        //setServos(0.13, 0.9, 1750, true);
-        setServos(0.077,0.77,0,false);
+        setServos(0.47,0.91,0,false);
     }
 
     public void DCPreDrop(){
-        setServos(0.045,0.4,0,false);
-    }
-
-    public void liftServoSequence(){
-        setServos(0.09, 0.45,0,false);
-    }
-
-    public void autoPreDrop(){
-        setServos(0.04,0.47,1000,true);
-    }
-
-    public void autoPullOut(){
-        setServos(0.105,0.55,1000,true);
-    }
-
-    public void autoDrop(){
-        setServos(0.089,0.45,2500,false);
-        //setServos(0.185, 0.87, 1750, true);
+        setServos(0.3,0.88,0,false);
     }
 
     public void DCDrop(){
-        setServos(0.11,0.62,0,false);
-        //setServos(0.137, 0.5, 0, false);
+        setServos(0.34,0.83,0,false);
     }
 
-    public void DCLiftHopper(){
-            //setServos(0, 0, 0, false);
-            //setServos(0.13, 0.9, 0, false);
-        preDrop();
-        //servoToZero();
-        //preDrop();
+    public void liftServoSequence(){
+        setServos(0.5, 0.87,0,false);
     }
 
-    public void DCLowerHopper(){
-        //setServos(0.03,0.38,0,false);
-        //setServos(0,0,0, false);
-        //setServos(0.012, 0.1, 0, false);
-        //servoToZero();
-        deadState();
+    public void autoPreDrop(){
+        setServos(0.47,0.91,1000,true);
     }
 
-    public void liftHopper(){
-        //servoToZero();
-        preDrop();
-    }
-
-    public void lowerHopper(){
-        servoToZero();
-        sleep(400);
-        deadState();
+    public void autoDrop(){
+        setServos(0.47,0.85,2500,false);
     }
 
     public void ejectPixelFromIntake(double power) {

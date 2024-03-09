@@ -21,25 +21,6 @@ public class Servotest extends LinearOpMode {
 
         waitForStart();
 
-        /*while (opModeIsActive()) {
 
-            servo.setPosition(position);
-            servo1.setPosition(postion1);
-
-        }*/
-
-
-        servo1.setPosition(0);
-        servo.setPosition(0);
-        sleep(1000);
-        servo1.setPosition(.14);
-        servo.setPosition(.122);
-        sleep(4000);
-        servo1.setPosition(0.1);
-        servo.setPosition(.15);
-        sleep(2000);
-        servo1.setPosition(.14);
-        servo.setPosition(0.122);
-        sleep(2000);
     }
 }
