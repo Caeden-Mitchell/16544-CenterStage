@@ -58,9 +58,6 @@ public class RobotActions implements Action {
             case SERVO:
                 robot.autoPreDrop();
                 robot.autoDrop();
-                robot.autoPullOut();
-                robot.underBarState();
-                robot.reset();
                 return false;
         }
         return false;

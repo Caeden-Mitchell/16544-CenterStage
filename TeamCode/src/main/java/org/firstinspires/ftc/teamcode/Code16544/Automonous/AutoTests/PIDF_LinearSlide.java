@@ -36,7 +36,6 @@ public class PIDF_LinearSlide extends LinearOpMode {
         //robot.servoToZero();
         robot.autoPreDrop();
         robot.autoDrop();
-        robot.autoPullOut();
         //robot.servoToZero();
         robot.deadState();
         sleep(1000);

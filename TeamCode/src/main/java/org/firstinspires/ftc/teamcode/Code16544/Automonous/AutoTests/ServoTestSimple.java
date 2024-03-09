@@ -16,15 +16,15 @@ public class ServoTestSimple extends LinearOpMode {
     private Servo servo, servo1, servo2;
     @Override
     public void runOpMode() throws InterruptedException {
-        //servo = hardwareMap.get(Servo.class, "rotateArm");
-        servo1 = hardwareMap.get(Servo.class, "droneLauncher");
+        servo = hardwareMap.get(Servo.class, "rotateArm");
+        servo1 = hardwareMap.get(Servo.class, "rotateHopper");
 
-        //servo.setDirection(Servo.Direction.REVERSE);
+        servo.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
 
         while (opModeIsActive()) {
-            //servo.setPosition(position);
+            servo.setPosition(position);
             servo1.setPosition(postion1);
 
         }

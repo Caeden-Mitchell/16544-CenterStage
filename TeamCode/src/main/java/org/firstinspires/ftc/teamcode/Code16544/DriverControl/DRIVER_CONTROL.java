@@ -66,7 +66,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         telemetry.addData("Position right", robot.linearSlideRight.getCurrentPosition());
         telemetry.update();
 
-        robot.deadState();
+        //robot.deadState();
 
         waitForStart();
 
@@ -225,26 +225,30 @@ public class DRIVER_CONTROL extends LinearOpMode {
         if (gamepad2.dpad_down) {
             height = Height.DEAD_STATE;
             robot.setLinearSlideRight(0);
+            robot.setLinearSlideLeft(0);
 
-            robot.DCLowerHopper();
+            robot.deadState();
         }
         if (gamepad2.dpad_left) {
             height = Height.LOW;
             robot.setLinearSlideRight(750);
+            robot.setLinearSlideLeft(750);
 
-            robot.DCLiftHopper();
+            robot.DCPreDrop();
         }
         if (gamepad2.dpad_right) {
             height = Height.MID;
             robot.setLinearSlideRight(1500);
+            robot.setLinearSlideLeft(1500);
 
-            robot.DCLiftHopper();
+            robot.DCPreDrop();
         }
         if (gamepad2.dpad_up) {
             height = Height.HIGH;
             robot.setLinearSlideRight(3000);
+            robot.setLinearSlideLeft(3000);
 
-            robot.DCLiftHopper();
+            robot.DCPreDrop();
         }
         if(gamepad2.b){
             robot.underBarState();
