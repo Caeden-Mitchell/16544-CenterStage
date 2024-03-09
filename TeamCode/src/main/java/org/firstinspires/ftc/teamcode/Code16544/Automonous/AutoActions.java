@@ -124,10 +124,10 @@ public class AutoActions {
 
         leftRedRightSpike = drive.actionBuilder(startPose)
                 .setTangent(Math.toRadians(110))
-                .splineToSplineHeading(new Pose2d(-36, -40, Math.toRadians(0)), Math.toRadians(0))
+                .splineToSplineHeading(new Pose2d(-35, -40, Math.toRadians(0)), Math.toRadians(0))
                 .build();
 
-        leftRedRightDrop = drive.actionBuilder(new Pose2d(-36, -40, Math.toRadians(0)))
+        leftRedRightDrop = drive.actionBuilder(new Pose2d(-37, -40, Math.toRadians(0)))
                 .setTangent(Math.toRadians(160))
                 .splineToSplineHeading(new Pose2d(-35 , -11, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))

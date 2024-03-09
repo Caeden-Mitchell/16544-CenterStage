@@ -46,6 +46,7 @@ public class RobotSystems {
 
 
         linearSlideRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        linearSlideLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         intakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
