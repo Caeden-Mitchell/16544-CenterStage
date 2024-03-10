@@ -90,7 +90,7 @@ public class RobotSystems {
     }
 
     public void deadState(){
-        setServos(0.1,0.889,0,false);
+        setServos(0.1,0.885,0,false);
     }
 
     public void underBarState() {
@@ -102,7 +102,7 @@ public class RobotSystems {
     }
 
     public void DCDrop(){
-        setServos(0.34,0.83,0,false);
+        setServos(0.44,0.845,0,false);
     }
 
     public void liftServoSequence(){

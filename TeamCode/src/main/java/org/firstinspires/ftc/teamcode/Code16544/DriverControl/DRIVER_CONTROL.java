@@ -98,9 +98,9 @@ public class DRIVER_CONTROL extends LinearOpMode {
 
     private void dropPixel() {
         if (gamepad2.right_bumper) {
-            if (approachBoard()) {
+            //if (approachBoard()) {
                 robot.DCDrop();
-            }
+            //}
         }
     }
 
