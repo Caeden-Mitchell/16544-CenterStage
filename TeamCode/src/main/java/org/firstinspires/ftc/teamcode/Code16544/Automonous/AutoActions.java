@@ -161,13 +161,12 @@ public class AutoActions {
                 .build();
 
         rightRedRightSpike = drive.actionBuilder(startPose)
-                .strafeToSplineHeading(new Vector2d(33.75, -32),Math.toRadians(180))
+                .strafeToSplineHeading(new Vector2d(36, -32),Math.toRadians(180))
                 .build();
-        
 
-        rightRedRightDrop = drive.actionBuilder(new Pose2d(33.75, -32, Math.toRadians(180)))
+        rightRedRightDrop = drive.actionBuilder(new Pose2d(36, -32, Math.toRadians(180)))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(54.2 , -42), Math.toRadians(310))
+                .splineToConstantHeading(new Vector2d(53.75 , -42), Math.toRadians(310))
                 .build();
 
         rightRedMidSpike = drive.actionBuilder(startPose)

@@ -16,7 +16,7 @@ public class RobotSystems {
     public DcMotorEx intakeMotor; // intake motor
 
     public Servo rotateArm, rotateHopper, droneLauncher;
-    public DistanceSensor distance;
+    public DistanceSensor distanceLeft, distanceRight;
 
 
     public RobotSystems(HardwareMap hardwareMap) {
@@ -25,7 +25,8 @@ public class RobotSystems {
 
         intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
 
-        distance = hardwareMap.get(DistanceSensor.class, "distance");
+        distanceLeft = hardwareMap.get(DistanceSensor.class, "distanceLeft");
+        distanceRight = hardwareMap.get(DistanceSensor.class, "distanceRight");
 
         rotateArm = hardwareMap.get(Servo.class, "rotateArm");
         rotateHopper = hardwareMap.get(Servo.class, "rotateHopper");
@@ -90,7 +91,7 @@ public class RobotSystems {
     }
 
     public void deadState(){
-        setServos(0.1,0.885,0,false);
+        setServos(0.1,0.889,0,false);
     }
 
     public void underBarState() {

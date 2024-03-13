@@ -16,10 +16,10 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class RightRedAuto extends LinearOpMode {
-    public static double startingY = -64;
+    public static double startingY = -56;
     public static double startingX = 14.5;
 
-    public static int target = 200;
+    public static int target = 2;
 
     LocationFinder locationFinder;
     RobotSystems robot;
@@ -29,7 +29,7 @@ public class RightRedAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.RED, false);
 
-        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(90));
+        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(270));
 
         robot = new RobotSystems(hardwareMap);
 
@@ -40,13 +40,9 @@ public class RightRedAuto extends LinearOpMode {
             locationFinder.getTrajectory(telemetry);
         }
 
-        robot.rotateArm.setPosition(0.2);
-        robot.deadState();
-        telemetry.addLine("line 45");
-
         if(isStopRequested()) return;
 
-        switch (locationFinder.trajType) {
+        switch (target) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedRightSpike

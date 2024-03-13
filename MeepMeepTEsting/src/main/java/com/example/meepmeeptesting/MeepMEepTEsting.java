@@ -15,7 +15,7 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 import java.awt.Color;
 
 public class MeepMEepTEsting {
-    public static MeepMeep meepMeep = new MeepMeep(800,60);
+    public static MeepMeep meepMeep = new MeepMeep(600,60);
     static RoadRunnerBotEntity rightBlue1;
     static RoadRunnerBotEntity leftBlue1;
     static RoadRunnerBotEntity midBlue1;
@@ -117,7 +117,7 @@ public class MeepMEepTEsting {
     }
     public static void main(String[] args) {
 
-        Pose2d rightRedPose = new Pose2d(14.5,-64, Math.toRadians(90));
+        Pose2d rightRedPose = new Pose2d(14.5,-59, Math.toRadians(270));
         Pose2d leftRedPose  = new Pose2d(-38.4,-64, Math.toRadians(90));
         Pose2d rightBluePose= new Pose2d(-38.8,64, Math.toRadians(270));
         Pose2d leftBluePose = new Pose2d(14.5,64, Math.toRadians(270));
@@ -241,7 +241,7 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(leftRed1)
+                .addEntity(rightRed2)
 
 
                 .start();
