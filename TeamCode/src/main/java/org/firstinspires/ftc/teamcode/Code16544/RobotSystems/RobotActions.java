@@ -2,14 +2,19 @@ package org.firstinspires.ftc.teamcode.Code16544.RobotSystems;
 
 import androidx.annotation.NonNull;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.checkerframework.checker.units.qual.C;
+
+@Config
 public class RobotActions implements Action {
     RobotSystems robot;
-
+    public static double power = 0.15;
+    public static double time = 0.15;
     private int pixelHeight = 500;
 
     public enum System {
@@ -44,9 +49,9 @@ public class RobotActions implements Action {
             case REVERSE_INTAKE_MOTOR:
                 ElapsedTime elapsedTime1 = new ElapsedTime();
 
-                while (elapsedTime1.seconds() < .35) {
-                    robot.ejectPixelFromIntake(-0.29);
-                }
+                while (elapsedTime1.seconds() < 0.5) {
+                    robot.ejectPixelFromIntake(0.8);
+               }
                 return false;
             case INTAKE_MOTOR:
                 ElapsedTime elapsedTime2 = new ElapsedTime() ;

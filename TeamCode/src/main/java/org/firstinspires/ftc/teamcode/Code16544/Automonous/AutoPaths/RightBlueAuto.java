@@ -35,7 +35,7 @@ public class RightBlueAuto extends LinearOpMode {
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose);
+        autoActions = new AutoActions(hardwareMap, startPose,new RobotActions(hardwareMap, RobotActions.System.SERVO));
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.underBarState();
@@ -52,11 +52,7 @@ public class RightBlueAuto extends LinearOpMode {
                 autoActions.rightBlueRightSpike
                 ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                 ,autoActions.rightBlueRightDrop
-                //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                 ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                ,new SleepAction(.5)
-                ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                ,autoActions.parkLeft
         ));
                 break;
             case 2:
@@ -64,11 +60,7 @@ public class RightBlueAuto extends LinearOpMode {
                         autoActions.rightBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueMidDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new SleepAction(.5)
-                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                        ,autoActions.parkLeft
                 ));
                 break;
             case 3:
@@ -76,11 +68,7 @@ public class RightBlueAuto extends LinearOpMode {
                         autoActions.rightBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueLeftDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new SleepAction(.5)
-                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                        ,autoActions.parkLeft
                 ));
                 break;
             default:
@@ -88,11 +76,7 @@ public class RightBlueAuto extends LinearOpMode {
                         autoActions.rightBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueRightDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new SleepAction(.5)
-                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                        ,autoActions.parkLeft
 
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");

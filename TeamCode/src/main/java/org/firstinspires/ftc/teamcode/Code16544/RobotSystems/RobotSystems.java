@@ -120,7 +120,7 @@ public class RobotSystems {
 
     public void ejectPixelFromIntake(double power) {
         intakeMotor.setPower(power);
-        sleep(250);
+        sleep(350);
         intakeMotor.setPower(0);
     }
 

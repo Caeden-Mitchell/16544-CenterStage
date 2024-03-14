@@ -17,10 +17,10 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class LeftRedAuto extends LinearOpMode {
-    public static double startingY = -58;
+    public static double startingY = -56;
     public static double startingX = -38.4;
 
-    public static int target = 200;
+    public static int target = 2;
 
     LocationFinder locationFinder;
     RobotSystems robot;
@@ -30,11 +30,11 @@ public class LeftRedAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.RED, false);
 
-        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(90));
+        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(270));
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose);
+        autoActions = new AutoActions(hardwareMap, startPose,new RobotActions(hardwareMap, RobotActions.System.SERVO));
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.underBarState();
@@ -45,13 +45,14 @@ public class LeftRedAuto extends LinearOpMode {
 
         if(isStopRequested()) return;
 
-        switch (locationFinder.trajType) {
+        switch (target) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftRedRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftRedRightDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             case 3://left
@@ -60,6 +61,7 @@ public class LeftRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftRedLeftDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             case 2://middle
@@ -68,6 +70,7 @@ public class LeftRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftRedMidDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             default:
@@ -76,6 +79,7 @@ public class LeftRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftRedLeftDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING LEFT TRAJ");
                 telemetry.update();

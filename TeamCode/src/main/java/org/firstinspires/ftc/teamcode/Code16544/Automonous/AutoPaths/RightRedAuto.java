@@ -33,7 +33,7 @@ public class RightRedAuto extends LinearOpMode {
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose);
+        autoActions = new AutoActions(hardwareMap, startPose,new RobotActions(hardwareMap, RobotActions.System.SERVO));
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.deadState();
@@ -41,7 +41,7 @@ public class RightRedAuto extends LinearOpMode {
         }
 
         if(isStopRequested()) return;
-
+        //robot.ejectPixelFromIntake(-.5);
         switch (target) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
@@ -49,18 +49,18 @@ public class RightRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedRightDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,autoActions.parkRight
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
+
                 ));
                 break;
             case 3://left
                 telemetry.addLine("line 60");
                 Actions.runBlocking(new SequentialAction(
-
                         autoActions.rightRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,autoActions.parkRight
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             case 2://middle
@@ -69,7 +69,7 @@ public class RightRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedMidDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,autoActions.parkRight
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             default:
@@ -78,7 +78,7 @@ public class RightRedAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,autoActions.parkRight
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING LEFT TRAJ");
                 telemetry.update();

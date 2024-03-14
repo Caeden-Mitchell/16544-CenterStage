@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Code16544.VisionDetection.Color.ColorDetec
 @Config
 @Autonomous
 public class LeftBlueAuto extends LinearOpMode {
-    public static double startingY = 58;
+    public static double startingY = 56;
     public static double startingX = 14.5;
 
     public static int target = 0;
@@ -32,33 +32,29 @@ public class LeftBlueAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.BLUE, false);
 
-        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(270));
+        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(90));
 
         robot = new RobotSystems(hardwareMap);
 
-        autoActions = new AutoActions(hardwareMap, startPose);
+        autoActions = new AutoActions(hardwareMap, startPose,new RobotActions(hardwareMap, RobotActions.System.SERVO));
 
         while (!opModeIsActive() && !isStopRequested()) {
             robot.deadState();
             locationFinder.getTrajectory(telemetry);
         }
 
-        robot.rotateArm.setPosition(0.2);
         robot.deadState();
 
         if(isStopRequested()) return;
 
-        switch (locationFinder.trajType) {
+        switch (numer) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new SleepAction(.5)
-                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                        ,autoActions.parkLeft
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             case 3://left
@@ -66,11 +62,8 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueLeftDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new SleepAction(.5)
-                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                        ,autoActions.parkLeft
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             case 2://middle
@@ -78,11 +71,8 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueMidDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new SleepAction(0.5)
-                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                        ,autoActions.parkLeft
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             default:
@@ -90,11 +80,8 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
-                        //,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 250)
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
-                        ,new SleepAction(.5)
-                        ,new RobotActions(hardwareMap,RobotActions.System.PIXEL_LIFT, 0)
-                        ,autoActions.parkLeft
+                        ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
                 telemetry.update();

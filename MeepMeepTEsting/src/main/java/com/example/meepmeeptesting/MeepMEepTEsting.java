@@ -118,7 +118,7 @@ public class MeepMEepTEsting {
     public static void main(String[] args) {
 
         Pose2d rightRedPose = new Pose2d(14.5,-59, Math.toRadians(270));
-        Pose2d leftRedPose  = new Pose2d(-38.4,-64, Math.toRadians(90));
+        Pose2d leftRedPose  = new Pose2d(-38.4,-58, Math.toRadians(270));
         Pose2d rightBluePose= new Pose2d(-38.8,64, Math.toRadians(270));
         Pose2d leftBluePose = new Pose2d(14.5,64, Math.toRadians(270));
 
@@ -129,9 +129,9 @@ public class MeepMEepTEsting {
                 .splineToSplineHeading(new Pose2d(-35.5, -33,Math.toRadians(180)), Math.toRadians(90))
                 .waitSeconds(2)
 
-                .setTangent(Math.toRadians(90))
-                        .splineToConstantHeading(new Vector2d(-35.5,-10),Math.toRadians(0))
-                        .setTangent(Math.toRadians(0))
+                .setTangent(Math.toRadians(30))
+                .splineToConstantHeading(new Vector2d(-35.5,-5),Math.toRadians(0))
+                .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, -29), Math.toRadians(315))
                 .build());
 
@@ -141,20 +141,19 @@ public class MeepMEepTEsting {
                 .waitSeconds(2)
 
                 .setTangent(Math.toRadians(160))
-                .splineToSplineHeading(new Pose2d(-35 , -11, Math.toRadians(180)), Math.toRadians(0))
+                .splineToSplineHeading(new Pose2d(-35 , 0, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(49 , -41), Math.toRadians(270))
+                .splineToConstantHeading(new Vector2d(50 , -32), Math.toRadians(300))
                 .build());
 
         midRed1.runAction(midRed1.getDrive().actionBuilder(leftRedPose)
-                .setTangent(Math.toRadians(90))
-                .splineToSplineHeading(new Pose2d(-36, -14, Math.toRadians(270)), Math.toRadians(90))
+                .strafeTo(new Vector2d(-36,-10))
                 .waitSeconds(2)
-
-                .setTangent(Math.toRadians(90))
-                .splineToSplineHeading(new Pose2d(-36, -10, Math.toRadians(180)), Math.toRadians(0))
+                .strafeTo(new Vector2d(-36,-5))
+                .turnTo(Math.toRadians(180))
                 .setTangent(Math.toRadians(0))
                 .splineToConstantHeading(new Vector2d(49, -35), Math.toRadians(300))
+                //.splineToConstantHeading(new Vector2d(49, -35), Math.toRadians(300))
                 .build());
 
         leftRed2.runAction(leftRed2.getDrive().actionBuilder(rightRedPose)
@@ -241,7 +240,7 @@ public class MeepMEepTEsting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(rightRed2)
+                .addEntity(leftRed1)
 
 
                 .start();
