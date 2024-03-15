@@ -91,7 +91,7 @@ public class RobotSystems {
     }
 
     public void deadState(){
-        setServos(0.1,0.887,0,false);
+        setServos(0.1,0.889,0,false);
     }
 
     public void underBarState() {
