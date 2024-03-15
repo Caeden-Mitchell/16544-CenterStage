@@ -66,7 +66,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         telemetry.addData("Position right", robot.linearSlideRight.getCurrentPosition());
         telemetry.update();
 
-        //robot.deadState();
+        robot.deadState();
 
         waitForStart();
 

@@ -29,11 +29,10 @@ public class ServoTestSimple extends LinearOpMode {
 
         waitForStart();
 
-        //while (opModeIsActive()) {
-           intakeMotor.setPower(-power);
-           sleep(time);
-           intakeMotor.setPower(0);
+        while (opModeIsActive()) {
+            servo.setPosition(position);
+            servo1.setPosition(postion1);
 
-        //}
+        }
     }
 }

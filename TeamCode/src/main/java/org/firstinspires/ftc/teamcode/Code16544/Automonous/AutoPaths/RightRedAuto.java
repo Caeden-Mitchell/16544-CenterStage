@@ -48,7 +48,6 @@ public class RightRedAuto extends LinearOpMode {
                         autoActions.rightRedRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedRightDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
 
                 ));
@@ -59,7 +58,6 @@ public class RightRedAuto extends LinearOpMode {
                         autoActions.rightRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
@@ -68,7 +66,6 @@ public class RightRedAuto extends LinearOpMode {
                         autoActions.rightRedMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedMidDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
@@ -77,7 +74,6 @@ public class RightRedAuto extends LinearOpMode {
                         autoActions.rightRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightRedLeftDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING LEFT TRAJ");

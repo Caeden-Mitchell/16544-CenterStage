@@ -53,7 +53,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
@@ -62,7 +62,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueLeftDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                       // ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
@@ -71,7 +71,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueMidSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueMidDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
@@ -80,7 +80,7 @@ public class LeftBlueAuto extends LinearOpMode {
                         autoActions.leftBlueRightSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.leftBlueRightDrop
-                        ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.SERVO)
                         ,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");

@@ -50,7 +50,7 @@ public class RobotActions implements Action {
                 ElapsedTime elapsedTime1 = new ElapsedTime();
 
                 while (elapsedTime1.seconds() < 0.5) {
-                    robot.ejectPixelFromIntake(0.8);
+                    robot.ejectPixelFromIntake(0.7);
                }
                 return false;
             case INTAKE_MOTOR:
