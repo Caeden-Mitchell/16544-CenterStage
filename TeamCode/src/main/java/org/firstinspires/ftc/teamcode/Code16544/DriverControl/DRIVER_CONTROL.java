@@ -114,7 +114,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
         double speed = 0.15;
         switch (height) {
             case MID:
-                while (getAverage() > 5.5){
+                while (getAverage() > 5.2){
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -124,7 +124,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (getAverage() < 5.5) {
+                while (getAverage() < 5.2) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
@@ -136,7 +136,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 }
                 break;
             case HIGH:
-                while (getAverage() > 13.5) {
+                while (getAverage() > 12.5) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -146,7 +146,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (getAverage() < 13.5) {
+                while (getAverage() < 12.5) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
