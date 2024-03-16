@@ -124,8 +124,8 @@ public class RobotSystems {
         intakeMotor.setPower(0);
     }
 
-    public void runIntake() {
-        intakeMotor.setPower(-0.9);
+    public void runIntake(double power) {
+        intakeMotor.setPower(power);
         sleep(250);
         intakeMotor.setPower(0);
     }

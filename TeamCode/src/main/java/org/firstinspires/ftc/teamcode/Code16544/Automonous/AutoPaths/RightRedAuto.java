@@ -27,7 +27,7 @@ public class RightRedAuto extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.RED, false);
+        locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.RED, true);
 
         Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(270));
 
@@ -41,8 +41,8 @@ public class RightRedAuto extends LinearOpMode {
         }
 
         if(isStopRequested()) return;
-        //robot.ejectPixelFromIntake(-.5);
-        switch (target) {
+
+        switch (locationFinder.trajType) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedRightSpike
@@ -53,7 +53,6 @@ public class RightRedAuto extends LinearOpMode {
                 ));
                 break;
             case 3://left
-                telemetry.addLine("line 60");
                 Actions.runBlocking(new SequentialAction(
                         autoActions.rightRedLeftSpike
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)

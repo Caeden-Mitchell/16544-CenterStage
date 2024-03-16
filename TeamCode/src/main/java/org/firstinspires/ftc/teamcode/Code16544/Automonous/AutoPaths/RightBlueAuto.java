@@ -31,7 +31,7 @@ public class RightBlueAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         locationFinder = new LocationFinder(hardwareMap, telemetry, ColorDetector.Color.BLUE,true);
 
-        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(270));
+        Pose2d startPose = new Pose2d(startingX, startingY, Math.toRadians(90));
 
         robot = new RobotSystems(hardwareMap);
 
@@ -44,7 +44,10 @@ public class RightBlueAuto extends LinearOpMode {
 
         robot.underBarState();
 
-        if(isStopRequested()) return;
+        if(isStopRequested()) {
+            robot.deadState();
+            return;
+        }
 
         switch (locationFinder.trajType) {
             case 1:
@@ -53,6 +56,7 @@ public class RightBlueAuto extends LinearOpMode {
                 ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                 ,autoActions.rightBlueRightDrop
                 ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                //,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
         ));
                 break;
             case 2:
@@ -61,6 +65,7 @@ public class RightBlueAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueMidDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             case 3:
@@ -69,6 +74,7 @@ public class RightBlueAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueLeftDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
                 ));
                 break;
             default:
@@ -77,6 +83,7 @@ public class RightBlueAuto extends LinearOpMode {
                         ,new RobotActions(hardwareMap, RobotActions.System.REVERSE_INTAKE_MOTOR)
                         ,autoActions.rightBlueRightDrop
                         ,new RobotActions(hardwareMap, RobotActions.System.SERVO)
+                        //,new RobotActions(hardwareMap, RobotActions.System.INTAKE_MOTOR)
 
                 ));
                 telemetry.addData("ELEMENT", "NOT FOUND. RUNNING RIGHT TRAJ");
@@ -84,5 +91,7 @@ public class RightBlueAuto extends LinearOpMode {
                 break;
         }
 
+        robot.deadState();
+        sleep(500);
     }
 }

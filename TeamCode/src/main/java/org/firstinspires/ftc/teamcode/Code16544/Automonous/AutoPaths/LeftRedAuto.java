@@ -6,7 +6,6 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.robot.Robot;
 
 import org.firstinspires.ftc.teamcode.Code16544.Automonous.AutoActions;
 import org.firstinspires.ftc.teamcode.Code16544.RobotSystems.RobotActions;
@@ -43,9 +42,12 @@ public class LeftRedAuto extends LinearOpMode {
 
         robot.underBarState();
 
-        if(isStopRequested()) return;
+        if(isStopRequested()){
+            robot.deadState();
+            return;
+        }
 
-        switch (target) {
+        switch (locationFinder.trajType) {
             case 1://right
                 Actions.runBlocking(new SequentialAction(
                         autoActions.leftRedRightSpike

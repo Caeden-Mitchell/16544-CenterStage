@@ -56,8 +56,8 @@ public class RobotActions implements Action {
             case INTAKE_MOTOR:
                 ElapsedTime elapsedTime2 = new ElapsedTime() ;
 
-                while (elapsedTime2.seconds() < .25) {
-                    robot.runIntake();
+                while (elapsedTime2.seconds() < 0.5) {
+                    robot.runIntake(-.7);
                 }
                 return false;
             case SERVO:

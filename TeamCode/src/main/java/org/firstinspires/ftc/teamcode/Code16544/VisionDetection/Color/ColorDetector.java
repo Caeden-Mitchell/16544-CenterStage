@@ -43,14 +43,12 @@ public class ColorDetector extends OpenCvPipeline {
     public ColorDetector(Telemetry t, boolean far) {
         telemetry = t;
         if(far) {
-            LEFT_ROI = new Rect(new Point(135, 250), new Point(355, 400));
-            RIGHT_ROI = new Rect(new Point(405, 250), new Point(500, 400));
+            LEFT_ROI = new Rect(new Point(160, 250), new Point(355, 400));
+            RIGHT_ROI = new Rect(new Point(430, 250), new Point(570, 400));
         } else{
             LEFT_ROI = new Rect(new Point(200, 250), new Point(420, 400));
-            RIGHT_ROI = new Rect(new Point(520, 250), new Point(630, 400));
+            RIGHT_ROI = new Rect(new Point(565, 250), new Point(700, 400));
         }
-
-
     }
     public Mat processFrame(Mat input){
         //Telemetry to DashBoard

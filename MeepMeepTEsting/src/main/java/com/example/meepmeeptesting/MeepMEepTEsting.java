@@ -119,7 +119,7 @@ public class MeepMEepTEsting {
 
         Pose2d rightRedPose = new Pose2d(14.5,-59, Math.toRadians(270));
         Pose2d leftRedPose  = new Pose2d(-38.4,-58, Math.toRadians(270));
-        Pose2d rightBluePose= new Pose2d(-38.8,64, Math.toRadians(270));
+        Pose2d rightBluePose= new Pose2d(-38.8,64, Math.toRadians(90));
         Pose2d leftBluePose = new Pose2d(14.5,64, Math.toRadians(270));
 
         initBots();
@@ -227,20 +227,19 @@ public class MeepMEepTEsting {
                 .build());
 
         midBlue2.runAction(midBlue2.getDrive().actionBuilder(rightBluePose)
-                .setTangent(Math.toRadians(270))
-                .splineToSplineHeading(new Pose2d(-36, 14, Math.toRadians(90)), Math.toRadians(270))
+                .strafeTo(new Vector2d(-36,10))
                 .waitSeconds(2)
 
-                .setTangent(Math.toRadians(270))
-                .splineToSplineHeading(new Pose2d(-36, 10, Math.toRadians(180)), Math.toRadians(0))
-                .setTangent(Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(49, 35), Math.toRadians(60))
+                //.setTangent(Math.toRadians(270))
+                //.splineToSplineHeading(new Pose2d(-36, 10, Math.toRadians(180)), Math.toRadians(0))
+                .setTangent(Math.toRadians(300))
+                .splineToSplineHeading(new Pose2d(56.75, 35.5, Math.toRadians(180)), Math.toRadians(60))
                 .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(leftRed1)
+                .addEntity(midBlue2)
 
 
                 .start();
