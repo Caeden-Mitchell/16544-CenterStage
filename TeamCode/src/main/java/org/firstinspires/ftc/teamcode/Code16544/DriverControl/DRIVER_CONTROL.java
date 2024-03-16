@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.RoadRunner.Drive.MecanumDrive;
 public class DRIVER_CONTROL extends LinearOpMode {
     MecanumDrive drive;
     RobotSystems robot;
-    public static double intakePower = 0.72;
+    public static double intakePower = 0.85;
 
     boolean isUp = false;
 
@@ -105,15 +105,17 @@ public class DRIVER_CONTROL extends LinearOpMode {
     }
 
     double getAverage(){
-        return (robot.distanceLeft.getDistance(DistanceUnit.CM)+robot.distanceRight.getDistance(DistanceUnit.CM))/2;
+        double total = robot.distanceLeft.getDistance(DistanceUnit.CM)+robot.distanceRight.getDistance(DistanceUnit.CM);
+        double average = total/2;
+        return average;
     }
 
-    private boolean approachBoard() {
+     boolean approachBoard() {
         double speed = 0.15;
-
         switch (height) {
             case MID:
-                while (getAverage() > 5.8){ //move forwards
+                while (getAverage() > 5.5){
+                    //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
                     drive.rightFront.setPower(-speed);
@@ -122,7 +124,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (getAverage() < 5.8) {
+                while (getAverage() < 5.5) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
@@ -134,7 +136,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 }
                 break;
             case HIGH:
-                while (getAverage() > 15.3) {
+                while (getAverage() > 13.5) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -144,7 +146,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (getAverage() < 15.3) {
+                while (getAverage() < 13.5) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
@@ -156,7 +158,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                 }
                 break;
             default:
-                while (getAverage() > 2.2) {
+                while (getAverage() > 2.5) {
                     //move forwards
                     drive.leftFront.setPower(-speed);
                     drive.leftBack.setPower(-speed);
@@ -166,7 +168,7 @@ public class DRIVER_CONTROL extends LinearOpMode {
                         return false;
                     }
                 }
-                while (getAverage() < 2.2) {
+                while (getAverage() < 2.5) {
                     //move backwards
                     drive.leftFront.setPower(speed);
                     drive.leftBack.setPower(speed);
